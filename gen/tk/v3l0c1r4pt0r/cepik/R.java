@@ -864,10 +864,12 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080003;
+        public static final int abc_search_url_text_holo=0x7f080005;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
+        public static final int ocNoColor=0x7f080004;
+        public static final int ocOkColor=0x7f080003;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1097,7 +1099,7 @@ containing a value of this type.
         public static final int KW2=0x7f060043;
         public static final int KW3Checksum=0x7f060046;
         public static final int VINLayout=0x7f060041;
-        public static final int action_about=0x7f06005e;
+        public static final int action_about=0x7f06006a;
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1109,7 +1111,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f06005f;
+        public static final int action_settings=0x7f06006b;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1141,22 +1143,33 @@ containing a value of this type.
         public static final int image=0x7f060027;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
+        public static final int markaVal=0x7f06005d;
         public static final int middle=0x7f060012;
+        public static final int modelVal=0x7f06005e;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
         public static final int nrKWTxt=0x7f06004e;
         public static final int nrKWTxtVal=0x7f06004f;
+        public static final int ocVal=0x7f060060;
         public static final int pager=0x7f06005c;
+        public static final int paliwoVal=0x7f060069;
+        public static final int podrodzajVal=0x7f060067;
+        public static final int pojemnoscVal=0x7f060068;
         public static final int polozenieTxt=0x7f060052;
         public static final int polozenieTxtVal=0x7f060053;
         public static final int progressBar=0x7f06003d;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
+        public static final int przebiegVal=0x7f06005f;
+        public static final int przegladVal=0x7f060061;
         public static final int radio=0x7f06002f;
         public static final int refreshBtn=0x7f06004b;
         public static final int rejCap=0x7f06003f;
+        public static final int rejVal=0x7f060062;
         public static final int rejestracjaLayout=0x7f06003e;
+        public static final int rodzajVal=0x7f060066;
+        public static final int rokVal=0x7f060064;
         public static final int scrollView1=0x7f06003c;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
@@ -1168,13 +1181,13 @@ containing a value of this type.
         public static final int search_plate=0x7f060036;
         public static final int search_src_text=0x7f060037;
         public static final int search_voice_btn=0x7f06003b;
-        public static final int section_label=0x7f06005d;
         public static final int sendBtn=0x7f06004c;
         public static final int shortcut=0x7f06002e;
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
         public static final int split_action_bar=0x7f06001e;
+        public static final int statusVal=0x7f060065;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
         public static final int title=0x7f06002b;
@@ -1184,6 +1197,7 @@ containing a value of this type.
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
         public static final int vinCap=0x7f060042;
+        public static final int vinVal=0x7f060063;
         public static final int withText=0x7f06000c;
         public static final int wlascicielTxt=0x7f060050;
         public static final int wlascicielTxtVal=0x7f060051;
@@ -1243,9 +1257,10 @@ containing a value of this type.
         public static final int activity_main=0x7f030018;
         public static final int activity_results=0x7f030019;
         public static final int activity_test=0x7f03001a;
-        public static final int fragment_results=0x7f03001b;
-        public static final int fragment_test=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int fragment_ogolne=0x7f03001b;
+        public static final int fragment_results=0x7f03001c;
+        public static final int fragment_tech=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int main=0x7f0e0000;
@@ -1296,53 +1311,73 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
         public static final int aboutContentMsg=0x7f0b0026;
         public static final int action_about=0x7f0b000e;
-        public static final int action_settings=0x7f0b002e;
+        public static final int action_settings=0x7f0b002f;
         public static final int app_name=0x7f0b000d;
         public static final int captchaTxtStr=0x7f0b0013;
-        public static final int dataString=0x7f0b0029;
+        public static final int comma=0x7f0b0042;
+        public static final int dataCap=0x7f0b0029;
         public static final int dataZamkStr=0x7f0b001e;
         public static final int dataZamkTxtStr=0x7f0b001d;
         public static final int dataZapisStr=0x7f0b001c;
         public static final int dataZapisTxtStr=0x7f0b001b;
         public static final int errorMsg=0x7f0b0025;
-        public static final int k1str=0x7f0b000f;
-        public static final int k2str=0x7f0b0010;
+        public static final int hello_blank_fragment=0x7f0b0040;
         public static final int k3chksumstr=0x7f0b0011;
+        public static final int markaVal=0x7f0b0034;
+        public static final int modelVal=0x7f0b0035;
         public static final int nkwstr=0x7f0b0012;
+        public static final int ocCap=0x7f0b0032;
+        public static final int paliwoVal=0x7f0b003f;
+        public static final int podrodzajVal=0x7f0b003c;
+        public static final int pojemnoscVal=0x7f0b003e;
         public static final int polozenieTxtStr=0x7f0b0019;
         public static final int polozenieTxtVal=0x7f0b001a;
-        public static final int pref_default_display_name=0x7f0b0034;
-        public static final int pref_description_social_recommendations=0x7f0b0032;
+        public static final int pref_default_display_name=0x7f0b0048;
+        public static final int pref_description_social_recommendations=0x7f0b0046;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f0b0036;
+        public static final int pref_header_data_sync=0x7f0b004a;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f0b0030;
+        public static final int pref_header_general=0x7f0b0044;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f0b0039;
-        public static final int pref_ringtone_silent=0x7f0b003c;
-        public static final int pref_title_add_friends_to_messages=0x7f0b0035;
-        public static final int pref_title_display_name=0x7f0b0033;
-        public static final int pref_title_new_message_notifications=0x7f0b003a;
-        public static final int pref_title_ringtone=0x7f0b003b;
-        public static final int pref_title_social_recommendations=0x7f0b0031;
-        public static final int pref_title_sync_frequency=0x7f0b0037;
-        public static final int pref_title_system_sync_settings=0x7f0b0038;
-        public static final int pref_title_vibrate=0x7f0b003d;
-        public static final int rejString=0x7f0b0027;
+        public static final int pref_header_notifications=0x7f0b004d;
+        public static final int pref_ringtone_silent=0x7f0b0050;
+        public static final int pref_title_add_friends_to_messages=0x7f0b0049;
+        public static final int pref_title_display_name=0x7f0b0047;
+        public static final int pref_title_new_message_notifications=0x7f0b004e;
+        public static final int pref_title_ringtone=0x7f0b004f;
+        public static final int pref_title_social_recommendations=0x7f0b0045;
+        public static final int pref_title_sync_frequency=0x7f0b004b;
+        public static final int pref_title_system_sync_settings=0x7f0b004c;
+        public static final int pref_title_vibrate=0x7f0b0051;
+        public static final int przebiegCap=0x7f0b0030;
+        public static final int przebiegVal=0x7f0b0031;
+        public static final int przegladCap=0x7f0b0033;
+        public static final int refresh=0x7f0b0041;
+        public static final int rejCap=0x7f0b0027;
+        public static final int rejVal=0x7f0b000f;
+        public static final int rodzajVal=0x7f0b003b;
+        public static final int rokCap=0x7f0b0038;
+        public static final int rokVal=0x7f0b0039;
         public static final int sendBtnStr=0x7f0b0014;
+        public static final int silnikCap=0x7f0b003d;
+        public static final int statusCap=0x7f0b0036;
+        public static final int statusVal=0x7f0b0037;
         public static final int title_activity_results=0x7f0b0015;
-        public static final int title_activity_settings=0x7f0b002f;
+        public static final int title_activity_settings=0x7f0b0043;
         public static final int title_activity_test=0x7f0b002a;
         public static final int title_section1=0x7f0b002b;
         public static final int title_section2=0x7f0b002c;
         public static final int title_section3=0x7f0b002d;
+        public static final int title_section4=0x7f0b002e;
+        public static final int typCap=0x7f0b003a;
         public static final int typStr=0x7f0b0020;
         public static final int typTxtStr=0x7f0b001f;
-        public static final int vinString=0x7f0b0028;
+        public static final int vinCap=0x7f0b0028;
+        public static final int vinVal=0x7f0b0010;
         public static final int wlascicielStr=0x7f0b0017;
         public static final int wlascicielTxtStr=0x7f0b0018;
         public static final int wrongCaptchaMsg=0x7f0b0023;

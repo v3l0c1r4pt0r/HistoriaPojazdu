@@ -1,9 +1,5 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -148,9 +144,19 @@ public class MainActivity extends Activity {
     
     public void sendRequest(View view)
     {
-    	final Intent intent = new Intent(this, ResultsActivity.class);
+    	final Intent intent = new Intent(this, ResultActivity.class);
+    	final String[] values = new String[7];
+    	values[0] = "0";
+    	values[1] = "1";
+    	values[2] = "2";
+    	values[3] = "3";
+    	values[4] = "4";
+    	values[5] = "5";
+    	values[6] = "6";
+    	intent.putExtra(resolvedData, values);
+    	startActivity(intent);
     	
-    	//Set progress
+    	/*//Set progress
     	final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
     	pb.setProgress(0);
     	pb.setVisibility(ProgressBar.VISIBLE);
@@ -341,7 +347,7 @@ public class MainActivity extends Activity {
 					});
 				}
 			}
-		}).start();
+		}).start();*/
     }
     
     public void countChecksum(String KW1, String KW2)

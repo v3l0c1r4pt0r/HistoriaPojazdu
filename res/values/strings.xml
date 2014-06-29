@@ -3,8 +3,8 @@
 
     <string name="app_name">Historia Pojazdu</string>
     <string name="action_about">O programie</string>
-    <string name="k1str">ERA79E4</string>
-    <string name="k2str">VF36E9HZC21703430</string>
+    <string name="rejVal">ERA79E4</string>
+    <string name="vinVal">VF36E9HZC21703430</string>
     <string name="k3chksumstr">21.10.2008</string>
     <string name="nkwstr">Numer Księgi Wieczystej:</string>
     <string name="captchaTxtStr">CAPTCHA:</string>
@@ -27,13 +27,33 @@
     <string name="wrongKwNumberMsg">Podana księga nie istnieje. Upewnij się, że wprowadzony numer jest poprawny.</string>
     <string name="errorMsg">Błąd!</string>
     <string name="aboutContentMsg">Historia Pojazdu\nCopyright by v3l0c1r4pt0r</string>
-    <string name="rejString">Nr rejestracyjny:</string>
-    <string name="vinString">VIN:</string>
-    <string name="dataString">Data pierwszej rej.:</string>
-    <string name="title_activity_test">TestActivity</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="action_settings">Settings</string>
+    <string name="rejCap">Nr rejestracyjny:</string>
+    <string name="vinCap">VIN:</string>
+    <string name="dataCap">Data pierwszej rej.:</string>
+    <string name="title_activity_test">Wyniki</string>
+    <string name="title_section1">Ogólne</string>
+    <string name="title_section2">Techniczne</string>
+    <string name="title_section3">Dokumenty</string>
+    <string name="title_section4">Oś czasu</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="przebiegCap">Przebieg:</string>
+    <string name="przebiegVal">nieznany</string>
+    <string name="ocCap">OC</string>
+    <string name="przegladCap">Przegląd</string>
+    <string name="markaVal">PEUGEOT</string>
+    <string name="modelVal">407</string>
+    <string name="statusCap">Status:</string>
+    <string name="statusVal">zarejestrowany</string>
+    <string name="rokCap">Rok produkcji:</string>
+    <string name="rokVal">2008</string>
+    <string name="typCap">Typ:</string>
+    <string name="rodzajVal">samochód osobowy</string>
+    <string name="podrodzajVal">kombi</string>
+    <string name="silnikCap">Silnik:</string>
+    <string name="pojemnoscVal">1560 cm³</string>
+    <string name="paliwoVal">olej napędowy</string>
+    <string name="hello_blank_fragment">Jestem fragmentem</string>
+    <string name="refresh">Odśwież</string>
+    <string name="comma">, </string>
 
 </resources>

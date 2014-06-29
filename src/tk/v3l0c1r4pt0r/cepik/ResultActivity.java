@@ -8,18 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-public class TestActivity extends ActionBarActivity implements
-		ActionBar.TabListener {
+public class ResultActivity extends ActionBarActivity implements
+		ActionBar.TabListener, TechFragment.OnFragmentInteractionListener, OgolneFragment.OnFragmentInteractionListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -129,13 +125,21 @@ public class TestActivity extends ActionBarActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a PlaceholderFragment (defined as a static inner class
 			// below).
+			switch(position)
+			{
+			case 0:
+				return OgolneFragment.newInstance("", "");//FIXME: can pass data here
+			case 1:
+				return TechFragment.newInstance("", "");
+			default:
 			return PlaceholderFragment.newInstance(position + 1);
+			}
 		}
 
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
-			return 3;
+			// Show 4 total pages.
+			return 4;
 		}
 
 		@Override
@@ -148,6 +152,8 @@ public class TestActivity extends ActionBarActivity implements
 				return getString(R.string.title_section2).toUpperCase(l);
 			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
+			case 3:
+				return getString(R.string.title_section4).toUpperCase(l);
 			}
 			return null;
 		}
@@ -177,7 +183,7 @@ public class TestActivity extends ActionBarActivity implements
 		public PlaceholderFragment() {
 		}
 
-		@Override
+		/*@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_test, container,
@@ -187,7 +193,13 @@ public class TestActivity extends ActionBarActivity implements
 			textView.setText(Integer.toString(getArguments().getInt(
 					ARG_SECTION_NUMBER)));
 			return rootView;
-		}
+		}*/
+	}
+
+	@Override
+	public void onFragmentInteraction(Uri uri) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

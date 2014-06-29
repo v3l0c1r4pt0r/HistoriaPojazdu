@@ -37,7 +37,7 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="tk.v3l0c1r4pt0r.cepik.TestActivity"
+            android:name="tk.v3l0c1r4pt0r.cepik.ResultActivity"
             android:label="@string/title_activity_test"
             android:parentActivityName="tk.v3l0c1r4pt0r.cepik.MainActivity" >
             <meta-data

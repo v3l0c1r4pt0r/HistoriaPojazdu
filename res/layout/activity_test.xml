@@ -3,4 +3,4 @@
     android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tk.v3l0c1r4pt0r.cepik.TestActivity" />
+    tools:context="tk.v3l0c1r4pt0r.cepik.ResultActivity" />

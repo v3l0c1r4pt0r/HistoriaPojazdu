@@ -32,19 +32,18 @@
 			        android:id="@+id/rejCap"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/rejString"
+			        android:text="@string/rejCap"
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 			
 			    <EditText
 			        android:id="@+id/KW1"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:capitalize="characters"
 			        android:ems="10"
 			        android:inputType="text|textCapCharacters|textNoSuggestions"
 			        android:maxLength="8"
 			        android:singleLine="true"
-			        android:text="@string/k1str" />
+			        android:text="@string/rejVal" />
 		    </LinearLayout>
             
             <LinearLayout
@@ -57,7 +56,7 @@
 			        android:id="@+id/vinCap"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/vinString"
+			        android:text="@string/vinCap"
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 			
 			    <EditText
@@ -68,7 +67,7 @@
 			        android:inputType="textCapCharacters"
 			        android:maxLength="17"
 			        android:singleLine="true"
-			        android:text="@string/k2str" />
+			        android:text="@string/vinVal" />
 		    </LinearLayout>
             
             <LinearLayout
@@ -81,7 +80,7 @@
 			        android:id="@+id/dataCap"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/dataString"
+			        android:text="@string/dataCap"
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 			    <EditText
@@ -133,7 +132,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:src="@android:drawable/ic_popup_sync"
-		        android:onClick="reloadImage" />
+		        android:onClick="reloadImage"
+		        android:contentDescription="@string/refresh" />
 
 		    <Button
 		        android:id="@+id/sendBtn"

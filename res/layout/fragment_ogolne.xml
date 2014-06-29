@@ -1,0 +1,194 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="tk.v3l0c1r4pt0r.cepik.OgolneFragment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal" >
+
+	    <TextView
+	        android:id="@+id/markaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+	        android:text="@string/markaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    <TextView
+	        android:id="@+id/modelVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+	        android:text="@string/modelVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/przebiegCap" />
+
+    <TextView
+        android:id="@+id/przebiegVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/przebiegVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" >
+        
+        <TextView
+            android:id="@+id/ocVal"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/ocCap"
+            android:textColor="@color/ocOkColor"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <TextView
+            android:id="@+id/przegladVal"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/przegladCap"
+            android:textColor="@color/ocOkColor"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rejCap" />
+
+    <TextView
+        android:id="@+id/rejVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rejVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/vinCap" />
+
+    <TextView
+        android:id="@+id/vinVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vinVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rokCap" />
+
+    <TextView
+        android:id="@+id/rokVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rokVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/statusCap" />
+
+    <TextView
+        android:id="@+id/statusVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/statusVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/typCap" />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+	    <TextView
+	        android:id="@+id/rodzajVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+	        android:text="@string/rodzajVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/comma"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <TextView
+	        android:id="@+id/podrodzajVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+	        android:text="@string/podrodzajVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/silnikCap" />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+	    <TextView
+	        android:id="@+id/pojemnoscVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/pojemnoscVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/comma"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <TextView
+	        android:id="@+id/paliwoVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/paliwoVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>
