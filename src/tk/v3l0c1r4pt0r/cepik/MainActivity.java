@@ -14,6 +14,7 @@ import tk.v3l0c1r4pt0r.cepik.ResultsActivity.PlaceholderFragment;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.R;
 import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;

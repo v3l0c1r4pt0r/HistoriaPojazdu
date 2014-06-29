@@ -42,7 +42,7 @@ public class ResultActivity extends ActionBarActivity implements
 
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);//FIXME: może coś innego??
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.

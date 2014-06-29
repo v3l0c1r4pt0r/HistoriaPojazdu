@@ -1,5 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import android.R;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;

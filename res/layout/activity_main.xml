@@ -96,7 +96,7 @@
 		    <ImageView
 		        android:id="@+id/captchaImage"
 		        android:layout_width="match_parent"
-		        android:layout_height="100dp"
+		        android:layout_height="54px"
 		        android:scaleType="fitCenter"
 		        android:src="@drawable/loading" />
 		    
