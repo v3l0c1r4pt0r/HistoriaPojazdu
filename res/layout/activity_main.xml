@@ -1,0 +1,159 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/progressBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <LinearLayout
+                android:id="@+id/rejestracjaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+	    		<TextView
+			        android:id="@+id/rejCap"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/rejString"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			    <EditText
+			        android:id="@+id/KW1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:capitalize="characters"
+			        android:ems="10"
+			        android:inputType="text|textCapCharacters|textNoSuggestions"
+			        android:maxLength="8"
+			        android:singleLine="true"
+			        android:text="@string/k1str" />
+		    </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/VINLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+			    <TextView
+			        android:id="@+id/vinCap"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/vinString"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			    <EditText
+			        android:id="@+id/KW2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:inputType="textCapCharacters"
+			        android:maxLength="17"
+			        android:singleLine="true"
+			        android:text="@string/k2str" />
+		    </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/dataLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+		
+			    <TextView
+			        android:id="@+id/dataCap"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/dataString"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+			    <EditText
+			        android:id="@+id/KW3Checksum"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:maxLength="10"
+			        android:singleLine="true"
+			        android:text="@string/k3chksumstr" />
+		    </LinearLayout>
+
+		    <ImageView
+		        android:id="@+id/captchaImage"
+		        android:layout_width="match_parent"
+		        android:layout_height="100dp"
+		        android:scaleType="fitCenter"
+		        android:src="@drawable/loading" />
+		    
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal" >
+
+			    <TextView
+			        android:id="@+id/captchaCap"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/captchaTxtStr"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			    <EditText
+			        android:id="@+id/captchaTxt"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:inputType="textNoSuggestions"
+			        android:singleLine="true" />
+		    </LinearLayout>
+		    
+            <LinearLayout
+                android:id="@+id/buttonsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+		
+		    <ImageButton
+		        android:id="@+id/refreshBtn"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@android:drawable/ic_popup_sync"
+		        android:onClick="reloadImage" />
+
+		    <Button
+		        android:id="@+id/sendBtn"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:onClick="sendRequest"
+		        android:text="@string/sendBtnStr" />
+		    </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/scrollView1"
+        android:visibility="invisible" />
+
+</RelativeLayout>

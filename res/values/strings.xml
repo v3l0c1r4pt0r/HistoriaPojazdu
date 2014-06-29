@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Historia Pojazdu</string>
+    <string name="action_about">O programie</string>
+    <string name="k1str">ERA79E4</string>
+    <string name="k2str">VF36E9HZC21703430</string>
+    <string name="k3chksumstr">21.10.2008</string>
+    <string name="nkwstr">Numer Księgi Wieczystej:</string>
+    <string name="captchaTxtStr">CAPTCHA:</string>
+    <string name="sendBtnStr">Sprawdź</string>
+    <string name="title_activity_results">Wyniki</string>
+    <string name="KWNrStr">----/--------/-</string>
+    <string name="wlascicielStr">-</string>
+    <string name="wlascicielTxtStr">Właściciel / użytkownik wieczysty / uprawniony</string>
+    <string name="polozenieTxtStr">Położenie</string>
+    <string name="polozenieTxtVal">-</string>
+    <string name="dataZapisTxtStr">Data zapisania księgi wieczystej</string>
+    <string name="dataZapisStr">------</string>
+    <string name="dataZamkTxtStr">Data zamknięcia księgi wieczystej</string>
+    <string name="dataZamkStr">------</string>
+    <string name="typTxtStr">Typ księgi wieczystej</string>
+    <string name="typStr">-</string>
+    <string name="wydzialTxtStr">Oznaczenie wydziału prowadzącego księgę wieczystą</string>
+    <string name="wydzialStr">-</string>
+    <string name="wrongCaptchaMsg">Wprowadzona CAPTCHA była błędna. Spróbuj ponownie!</string>
+    <string name="wrongKwNumberMsg">Podana księga nie istnieje. Upewnij się, że wprowadzony numer jest poprawny.</string>
+    <string name="errorMsg">Błąd!</string>
+    <string name="aboutContentMsg">Historia Pojazdu\nCopyright by v3l0c1r4pt0r</string>
+    <string name="rejString">Nr rejestracyjny:</string>
+    <string name="vinString">VIN:</string>
+    <string name="dataString">Data pierwszej rej.:</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
