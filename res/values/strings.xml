@@ -8,7 +8,8 @@
     <string name="rejestracjaVal">21.10.2008</string>
     <string name="nkwstr">Numer Księgi Wieczystej:</string>
     <string name="captchaTxtStr">CAPTCHA:</string>
-    <string name="sendBtnStr">Sprawdź</string>
+    <string name="captcha">CAPTCHA</string>
+    <string name="sendCap">Sprawdź</string>
     <string name="title_activity_results">Wyniki</string>
     <string name="KWNrStr">----/--------/-</string>
     <string name="wlascicielStr">-</string>
