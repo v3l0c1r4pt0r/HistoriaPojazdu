@@ -1,14 +1,54 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tk.v3l0c1r4pt0r.cepik.DokFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-</FrameLayout>
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rejestracjaCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/rejestracjaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rejestracjaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/dowodCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/dowodVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/dowodVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/kartaCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/kartaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/kartaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    </LinearLayout>
+
+</ScrollView>

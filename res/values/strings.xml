@@ -5,7 +5,7 @@
     <string name="action_about">O programie</string>
     <string name="rejVal">ERA79E4</string>
     <string name="vinVal">VF36E9HZC21703430</string>
-    <string name="k3chksumstr">21.10.2008</string>
+    <string name="rejestracjaVal">21.10.2008</string>
     <string name="nkwstr">Numer Księgi Wieczystej:</string>
     <string name="captchaTxtStr">CAPTCHA:</string>
     <string name="sendBtnStr">Sprawdź</string>
@@ -70,6 +70,11 @@
     <string name="dmcVal">2127 kg</string>
     <string name="osieCap">Liczba osi:</string>
     <string name="osieVal">2</string>
+    <string name="rejestracjaCap">Data pierwszej rejestracji:</string>
+    <string name="dowodCap">Data wydania dowodu rejestracyjnego:</string>
+    <string name="dowodVal">05.12.2009</string>
+    <string name="kartaCap">Data wydania karty pojazdu:</string>
+    <string name="kartaVal">22.10.2008</string>
     <string name="refresh">Odśwież</string>
     <string name="comma">, </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

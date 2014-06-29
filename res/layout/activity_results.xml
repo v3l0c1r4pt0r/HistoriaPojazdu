@@ -5,152 +5,206 @@
     android:layout_height="match_parent"
     tools:context="tk.v3l0c1r4pt0r.ksiegiwieczyste.ResultsActivity"
     tools:ignore="MergeRootFrame" >
+   
+    
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <TabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="vertical" >
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/nrKWTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:text="@string/nkwstr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/nrKWTxtVal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/KWNrStr"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/wlascicielTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:singleLine="false"
-                android:text="@string/wlascicielTxtStr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/wlascicielTxtVal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/wlascicielStr"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/polozenieTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:singleLine="false"
-                android:text="@string/polozenieTxtStr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/polozenieTxtVal"
+            <TabWidget
+                android:id="@android:id/tabs"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/polozenieTxtVal"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/dataZapisTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:singleLine="false"
-                android:text="@string/dataZapisTxtStr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TabWidget>
 
-            <TextView
-                android:id="@+id/dataZapisTxtVal"
+            <FrameLayout
+                android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/dataZapisStr"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/dataZamkTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:singleLine="false"
-                android:text="@string/dataZamkTxtStr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/dataZamkTxtVal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/dataZamkStr"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/typTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:singleLine="false"
-                android:text="@string/typTxtStr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/typTxtVal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/typStr"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                <LinearLayout
+                    android:id="@+id/tab4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/wydzialTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:singleLine="false"
-                android:text="@string/wydzialTxtStr"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/wydzialTxtVal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/wydzialStr"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+				    <ScrollView
+				        android:id="@+id/scrollView1"
+				        android:layout_width="match_parent"
+				        android:layout_height="match_parent"
+				        android:scrollbars="vertical" >
+				
+				        <LinearLayout
+				            android:layout_width="match_parent"
+				            android:layout_height="match_parent"
+				            android:orientation="vertical" >
+				
+				            <TextView
+				                android:id="@+id/nrKWTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/nkwstr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/nrKWTxtVal"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/KWNrStr"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				            <TextView
+				                android:id="@+id/wlascicielTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:singleLine="false"
+				                android:text="@string/wlascicielTxtStr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/wlascicielTxtVal"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/wlascicielStr"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				            <TextView
+				                android:id="@+id/polozenieTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:singleLine="false"
+				                android:text="@string/polozenieTxtStr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/polozenieTxtVal"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/polozenieTxtVal"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				            <TextView
+				                android:id="@+id/dataZapisTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:singleLine="false"
+				                android:text="@string/dataZapisTxtStr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/dataZapisTxtVal"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/dataZapisStr"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				            <TextView
+				                android:id="@+id/dataZamkTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:singleLine="false"
+				                android:text="@string/dataZamkTxtStr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/dataZamkTxtVal"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/dataZamkStr"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				            <TextView
+				                android:id="@+id/typTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:singleLine="false"
+				                android:text="@string/typTxtStr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/typTxtVal"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/typStr"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				            <TextView
+				                android:id="@+id/wydzialTxt"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="20dp"
+				                android:paddingRight="10dp"
+				                android:singleLine="false"
+				                android:text="@string/wydzialTxtStr"
+				                android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				            <TextView
+				                android:id="@+id/wydzialTxtVal"
+				                android:layout_width="match_parent"
+				                android:layout_height="wrap_content"
+				                android:paddingLeft="10dp"
+				                android:paddingRight="10dp"
+				                android:text="@string/wydzialStr"
+				                android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+				        </LinearLayout>
+				    </ScrollView>
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
-
-    </ScrollView>
+    </TabHost>
 
 </FrameLayout>

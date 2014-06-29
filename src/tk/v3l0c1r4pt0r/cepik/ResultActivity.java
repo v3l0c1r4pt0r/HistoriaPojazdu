@@ -134,6 +134,8 @@ public class ResultActivity extends ActionBarActivity implements
 				return OgolneFragment.newInstance("", "");//FIXME: can pass data here
 			case 1:
 				return TechFragment.newInstance("", "");
+			case 2:
+				return DokFragment.newInstance("", "");
 				//TODO: reszta
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
