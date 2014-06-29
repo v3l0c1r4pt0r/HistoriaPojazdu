@@ -1,13 +1,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="tk.v3l0c1r4pt0r.cepik.OgolneFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="tk.v3l0c1r4pt0r.cepik.OgolneFragment" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"

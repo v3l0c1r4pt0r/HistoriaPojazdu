@@ -15,7 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ResultActivity extends ActionBarActivity implements
-		ActionBar.TabListener, TechFragment.OnFragmentInteractionListener, OgolneFragment.OnFragmentInteractionListener {
+		ActionBar.TabListener, 
+		TechFragment.OnFragmentInteractionListener, 
+		OgolneFragment.OnFragmentInteractionListener, 
+		DokFragment.OnFragmentInteractionListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -131,6 +134,7 @@ public class ResultActivity extends ActionBarActivity implements
 				return OgolneFragment.newInstance("", "");//FIXME: can pass data here
 			case 1:
 				return TechFragment.newInstance("", "");
+				//TODO: reszta
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
 			}

@@ -50,10 +50,28 @@
     <string name="rodzajVal">samochód osobowy</string>
     <string name="podrodzajVal">kombi</string>
     <string name="silnikCap">Silnik:</string>
+    <string name="pojemnoscCap">Pojemność silnika:</string>
     <string name="pojemnoscVal">1560 cm³</string>
+    <string name="paliwoCap">Paliwo:</string>
     <string name="paliwoVal">olej napędowy</string>
-    <string name="hello_blank_fragment">Jestem fragmentem</string>
+    <string name="mocCap">Moc silnika:</string>
+    <string name="mocVal">80 kW</string>
+    <string name="miejscaCap">Liczba miejsc:</string>
+    <string name="miejscaVal">5</string>
+    <string name="siedząceCap">W tym siedzących:</string>
+    <string name="siedząceVal">5</string>
+    <string name="masaCap">Masa własna pojazdu:</string>
+    <string name="masaVal">1492 kg</string>
+    <string name="przyczepaHamCap">Maksymalna masa całkowita przyczepy z hamulcem:</string>
+    <string name="przyczepaHamVal">1300 kg</string>
+    <string name="przyczepaBezCap">Maksymalna masa całkowita przyczepy bez hamulca:</string>
+    <string name="przyczepaBezVal">750 kg</string>
+    <string name="dmcCap">Dopuszczalna masa całkowita:</string>
+    <string name="dmcVal">2127 kg</string>
+    <string name="osieCap">Liczba osi:</string>
+    <string name="osieVal">2</string>
     <string name="refresh">Odśwież</string>
     <string name="comma">, </string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

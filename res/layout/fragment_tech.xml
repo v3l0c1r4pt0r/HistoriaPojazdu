@@ -1,14 +1,161 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tk.v3l0c1r4pt0r.cepik.TechFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-</FrameLayout>
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/pojemnoscCap" />
+	
+	    <TextView
+	        android:id="@+id/pojemnoscVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/pojemnoscVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/mocCap" />
+	
+	    <TextView
+	        android:id="@+id/mocVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/mocVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/paliwoCap" />
+	
+	    <TextView
+	        android:id="@+id/paliwoVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/paliwoVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    <LinearLayout
+	        android:baselineAligned="false"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_marginTop="10dp"
+	        android:layout_marginBottom="10dp" >
+	        
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:orientation="vertical" >
+
+			    <TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/miejscaCap" />
+			
+			    <TextView
+			        android:id="@+id/miejscaVal"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/miejscaVal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    	</LinearLayout>
+	        
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:orientation="vertical" >
+
+			    <TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/siedząceCap" />
+			
+			    <TextView
+			        android:id="@+id/siedząceVal"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/siedząceVal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    	</LinearLayout>
+	    
+	    </LinearLayout>
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/masaCap" />
+	
+	    <TextView
+	        android:id="@+id/masaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/masaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/przyczepaHamCap" />
+	
+	    <TextView
+	        android:id="@+id/przyczepaHamVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/przyczepaHamVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/przyczepaBezCap" />
+	
+	    <TextView
+	        android:id="@+id/przyczepaBezVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/przyczepaBezVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/dmcCap" />
+	
+	    <TextView
+	        android:id="@+id/dmcVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/dmcVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/osieCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/osieVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/osieVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    </LinearLayout>
+
+</ScrollView>
