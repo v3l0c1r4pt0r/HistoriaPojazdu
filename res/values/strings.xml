@@ -3,6 +3,7 @@
 
     <string name="app_name">Historia Pojazdu</string>
     <string name="action_about">O programie</string>
+    <string name="action_download">Pobierz PDF</string>
     <string name="rejVal">ERA79E4</string>
     <string name="vinVal">VF36E9HZC21703430</string>
     <string name="rejestracjaVal">21.10.2008</string>

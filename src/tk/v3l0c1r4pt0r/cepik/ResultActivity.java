@@ -8,6 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.R.string;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -80,7 +85,7 @@ public class ResultActivity extends ActionBarActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.test, menu);
+		getMenuInflater().inflate(R.menu.results, menu);
 		return true;
 	}
 
@@ -90,11 +95,31 @@ public class ResultActivity extends ActionBarActivity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch(id)
+		{
+		case R.id.action_about:
+			ResultActivity.menuShowAbout(this);
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+    
+    public static void menuShowAbout(Activity act)
+    {
+		//create dialog with author's data
+		AlertDialog.Builder builder = new AlertDialog.Builder(act);
+		builder.setMessage(R.string.aboutContentMsg)
+	       .setTitle(R.string.action_about);
+		builder.setPositiveButton(string.ok, new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//just close
+			}
+		});
+		AlertDialog dialog = builder.create();
+		dialog.show();
+    }
 
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
