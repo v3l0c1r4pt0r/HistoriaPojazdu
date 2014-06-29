@@ -18,7 +18,8 @@ public class ResultActivity extends ActionBarActivity implements
 		ActionBar.TabListener, 
 		TechFragment.OnFragmentInteractionListener, 
 		OgolneFragment.OnFragmentInteractionListener, 
-		DokFragment.OnFragmentInteractionListener {
+		DokFragment.OnFragmentInteractionListener, 
+		OsFragment.OnFragmentInteractionListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -136,7 +137,8 @@ public class ResultActivity extends ActionBarActivity implements
 				return TechFragment.newInstance("", "");
 			case 2:
 				return DokFragment.newInstance("", "");
-				//TODO: reszta
+			case 3:
+				return OsFragment.newInstance("", "");
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
 			}
