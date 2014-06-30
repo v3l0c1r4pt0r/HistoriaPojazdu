@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,8 +26,6 @@ public class WebService {
 
 		try {
 			urlConnection.connect();
-			Map<String, List<String>> map = urlConnection.getHeaderFields();
-//			cookie = urlConnection.getHeaderField("Set-Cookie");
 			List<String> cookies = urlConnection.getHeaderFields().get("Set-Cookie");
 			cookie = "";
 			for(String c : cookies)
@@ -56,7 +53,6 @@ public class WebService {
 		try {
 			urlConnection.connect();
 			InputStream is = urlConnection.getInputStream();
-			String s = "";
 			int len = 0;
 			while ((len = is.read(buffer)) != -1) 
 			{
@@ -79,6 +75,13 @@ public class WebService {
 		byte[] response = getResponse(new URL(captchaUrl));
 		Bitmap bmp = BitmapFactory.decodeByteArray(response, 0, response.length);
 		return bmp;
+	}
+	
+	public CarReport getReport(String rej, String vin, String dataRej, String captcha) throws MalformedURLException, IOException
+	{
+		String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml";
+		byte[] response = getResponse(new URL(target));//FIXME: umożliwić budowanie POSTa
+		return new CarReport(rej, response.toString());
 	}
 
 }

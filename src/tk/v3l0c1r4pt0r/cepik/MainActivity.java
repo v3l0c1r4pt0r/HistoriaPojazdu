@@ -435,66 +435,6 @@ public class MainActivity extends Activity {
 				}
 			}
 		}).start();
-    	/*final Handler handler = new Handler();
-    	
-    	//Set progress
-    	final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-    	pb.setProgress(0);
-    	pb.setVisibility(ProgressBar.VISIBLE);
-    	
-		Button btn = (Button) findViewById(R.id.sendBtn);
-		btn.setEnabled(false);
-		EditText et = (EditText) findViewById(R.id.captchaTxt);
-		et.setText("");
-    	
-		new Thread(new Runnable()
-		{
-			@Override
-			public void run() {
-						final Bitmap bmp;
-						try {
-					    	pb.setProgress(pb.getMax()*5/100);
-							bmp = decaptcha.getImage();
-					    	pb.setProgress(pb.getMax()*50/100);
-							
-							final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-							final Button btn = (Button) findViewById(R.id.sendBtn);
-							iv.post(new Runnable() {
-								
-								@Override
-								public void run() {
-							    	pb.setProgress(pb.getMax());
-									iv.setImageBitmap(bmp);
-									btn.setEnabled(true);
-							    	pb.setVisibility(ProgressBar.INVISIBLE);
-								}
-							});
-						} catch (IOException e) {
-							//possible connection problem
-							handler.post(new Runnable() {
-								
-								@Override
-								public void run() {
-									final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-									iv.setImageResource(R.drawable.noconnection);
-									ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-									pb.setVisibility(ProgressBar.INVISIBLE);
-								}
-							});
-						} catch (ParserConfigurationException e) {
-							handler.post(new Runnable() {
-								
-								@Override
-								public void run() {
-									final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-									iv.setImageResource(R.drawable.error);
-									ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-									pb.setVisibility(ProgressBar.INVISIBLE);
-								}
-							});
-						}
-			}
-		}).start();*/
     }
     
     private String stringDeHTML(String str)
