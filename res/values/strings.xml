@@ -42,6 +42,7 @@
     <string name="przebiegVal">nieznany</string>
     <string name="ocCap">OC</string>
     <string name="przegladCap">Przegląd</string>
+    <string name="kradzionyCap">Pojazd kradziony!</string>
     <string name="markaVal">-</string>
     <string name="typVal">-</string>
     <string name="modelVal">-</string>

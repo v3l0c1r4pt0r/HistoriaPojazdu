@@ -458,15 +458,4 @@ public class MainActivity extends Activity {
 		}).start();
     }
     
-    private String stringDeHTML(String str)
-    {
-    	Pattern pattern = Pattern.compile("\\<[/a-zA-Z]*\\>");
-    	str = pattern.matcher(str).replaceAll("");
-    	pattern = Pattern.compile("\\&Oacute\\;");//12567
-    	str = pattern.matcher(str).replaceAll("Ó");
-    	pattern = Pattern.compile("\\&quot\\;");//39164
-    	str = pattern.matcher(str).replaceAll("'");
-    	return str;
-    }
-    
 }

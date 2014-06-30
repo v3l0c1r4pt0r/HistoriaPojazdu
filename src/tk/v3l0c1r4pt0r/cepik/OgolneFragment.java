@@ -87,6 +87,27 @@ public class OgolneFragment extends Fragment {
 		
 		tv = (TextView) getView().findViewById(R.id.przebiegVal);
 		tv.setText(cr.getPrzebieg());
+		
+		tv = (TextView) getView().findViewById(R.id.rokVal);
+		tv.setText(cr.getRokProdukcji());
+		
+		tv = (TextView) getView().findViewById(R.id.rodzajVal);
+		tv.setText(cr.getRodzaj());
+		
+		tv = (TextView) getView().findViewById(R.id.podrodzajVal);
+		tv.setText(cr.getPodrodzaj());
+		
+		tv = (TextView) getView().findViewById(R.id.pojemnoscVal);
+		tv.setText(cr.getPojemnoscSilnika());
+		
+		tv = (TextView) getView().findViewById(R.id.paliwoVal);
+		tv.setText(cr.getRodzajPaliwa());
+		
+		tv = (TextView) getView().findViewById(R.id.kradzionyVal);
+		if(cr.getKradziony())
+			tv.setVisibility(TextView.VISIBLE);
+		else
+			tv.setVisibility(TextView.GONE);
     }
 
 	// TODO: Rename method, update argument and hook method into UI event

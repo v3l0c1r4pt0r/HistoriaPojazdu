@@ -2,12 +2,11 @@ package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.Serializable;
 import java.util.InputMismatchException;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
-import android.R.bool;
 
 public class CarReport implements Serializable {
 	
@@ -42,12 +41,16 @@ public class CarReport implements Serializable {
 		return przebieg;
 	}
 
-	public bool getOc() {
+	public boolean getOc() {
 		return oc;
 	}
 
-	public bool getPrzeglad() {
+	public boolean getPrzeglad() {
 		return przeglad;
+	}
+
+	public boolean getKradziony() {
+		return kradziony;
 	}
 
 	public String getNrRejestracyjny() {
@@ -131,8 +134,9 @@ public class CarReport implements Serializable {
 	String model;
 	
 	String przebieg;
-	bool oc;
-	bool przeglad;
+	boolean oc;
+	boolean przeglad;
+	boolean kradziony;
 	
 	String nrRejestracyjny;
 	String vin;
@@ -182,11 +186,52 @@ public class CarReport implements Serializable {
     		this.typ = doc.getElementById("typ").html();
     		this.model = doc.getElementById("model").html();
     		this.przebieg = doc.getElementById("aktualnyStanLicznika").html();
+    		this.rokProdukcji = doc.getElementById("rokProdukcji").html();
+    		this.rodzaj = stringDeHTML(doc.getElementById("rodzaj").html().toLowerCase());
+    		this.podrodzaj = stringDeHTML(doc.getElementById("podrodzaj").html().toLowerCase());
+    		this.pojemnoscSilnika = stringDeHTML(doc.getElementById("pojemnosc").html());
+    		this.rodzajPaliwa = stringDeHTML(doc.getElementById("paliwo").html().toLowerCase());
     	}
     	catch(NullPointerException e)
     	{
 			throw new EntryNotFoundException();
     	}
+    	try
+    	{
+    		String stolen = doc.getElementsByClass("stolen").html();
+    		if(stolen.indexOf("kradziony") != -1)
+    		{
+    			kradziony = true;
+    		}
+    		else
+    			kradziony = false;
+    	}
+    	catch(NullPointerException e)
+    	{
+    		kradziony = false;
+    	}
 	}
+    
+    private String stringDeHTML(String str)
+    {
+    	Pattern pattern = Pattern.compile("\\<[/a-zA-Z]*\\>");
+    	str = pattern.matcher(str).replaceAll("");
+    	
+    	pattern = Pattern.compile("\\&Oacute\\;");
+    	str = pattern.matcher(str).replaceAll("Ó");
+    	
+    	pattern = Pattern.compile("\\&oacute\\;");
+    	str = pattern.matcher(str).replaceAll("ó");
+    	
+    	pattern = Pattern.compile("\\&quot\\;");
+    	str = pattern.matcher(str).replaceAll("'");
+    	
+    	pattern = Pattern.compile("\\&nbsp\\;");
+    	str = pattern.matcher(str).replaceAll(" ");
+    	
+    	pattern = Pattern.compile("\\&sup3\\;");
+    	str = pattern.matcher(str).replaceAll("³");
+    	return str;
+    }
 
 }
