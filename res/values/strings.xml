@@ -43,6 +43,7 @@
     <string name="ocCap">OC</string>
     <string name="przegladCap">Przegląd</string>
     <string name="markaVal">-</string>
+    <string name="typVal">-</string>
     <string name="modelVal">-</string>
     <string name="statusCap">Status:</string>
     <string name="statusVal">-</string>

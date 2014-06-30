@@ -30,6 +30,10 @@ public class CarReport implements Serializable {
 		return marka;
 	}
 
+	public String getTyp() {
+		return typ;
+	}
+
 	public String getModel() {
 		return model;
 	}
@@ -177,6 +181,7 @@ public class CarReport implements Serializable {
     		this.marka = doc.getElementById("marka").html();
     		this.typ = doc.getElementById("typ").html();
     		this.model = doc.getElementById("model").html();
+    		this.przebieg = doc.getElementById("aktualnyStanLicznika").html();
     	}
     	catch(NullPointerException e)
     	{

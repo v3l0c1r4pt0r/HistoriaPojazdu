@@ -79,8 +79,14 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.markaVal);
 		tv.setText(cr.getMarka());
 		
+		tv = (TextView) getView().findViewById(R.id.typVal);
+		tv.setText(cr.getTyp());
+		
 		tv = (TextView) getView().findViewById(R.id.modelVal);
 		tv.setText(cr.getModel());
+		
+		tv = (TextView) getView().findViewById(R.id.przebiegVal);
+		tv.setText(cr.getPrzebieg());
     }
 
 	// TODO: Rename method, update argument and hook method into UI event
