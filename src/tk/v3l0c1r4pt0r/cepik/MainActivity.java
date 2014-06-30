@@ -36,6 +36,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -138,6 +139,9 @@ public class MainActivity extends Activity {
     public void sendRequest(View view)
     {
     	final Intent intent = new Intent(this, ResultActivity.class);
+    	
+    	Button btn = (Button) findViewById(R.id.sendBtn);
+    	btn.setEnabled(false);
 
     	final String nrRejestracyjny = ((EditText)findViewById(R.id.rejVal)).getText().toString();
     	final String vin = ((EditText)findViewById(R.id.vinVal)).getText().toString();
@@ -170,6 +174,10 @@ public class MainActivity extends Activity {
 					@Override
 					public void run() {
 				    	intent.putExtra(resolvedData, report);
+				    	
+				    	Button btn = (Button) findViewById(R.id.sendBtn);
+				    	btn.setEnabled(true);
+				    	
 				    	startActivity(intent);
 					}
 				});
@@ -420,8 +428,11 @@ public class MainActivity extends Activity {
 		
 		//ustaw progress na 0, wyłącz przycisk odświeżania
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-		final Button btn = (Button) findViewById(R.id.sendBtn);
-		btn.setEnabled(true);
+		final ImageButton refreshBtn = (ImageButton) findViewById(R.id.refreshBtn);
+		refreshBtn.setEnabled(false);
+    	
+    	final Button sendBtn = (Button) findViewById(R.id.sendBtn);
+    	sendBtn.setEnabled(false);
     	pb.setProgress(0);
     	pb.setVisibility(ProgressBar.VISIBLE);
     	
@@ -439,7 +450,6 @@ public class MainActivity extends Activity {
 					final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
 					//TODO: wyłapać błąd wczytywania
 					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-					final Button btn = (Button) findViewById(R.id.sendBtn);
 					iv.post(new Runnable() {
 						
 						@Override
@@ -447,7 +457,8 @@ public class MainActivity extends Activity {
 					    	pb.setProgress(pb.getMax());
 							iv.setImageBitmap(captcha);
 							iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
-							btn.setEnabled(true);
+							refreshBtn.setEnabled(true);
+					    	sendBtn.setEnabled(true);
 					    	pb.setVisibility(ProgressBar.INVISIBLE);
 						}
 					});
