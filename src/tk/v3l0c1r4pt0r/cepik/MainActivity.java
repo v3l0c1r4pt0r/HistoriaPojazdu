@@ -416,6 +416,7 @@ public class MainActivity extends Activity {
 					}
 					
 					final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
+					//TODO: wyłapać błąd wczytywania
 					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
 					final Button btn = (Button) findViewById(R.id.sendBtn);
 					iv.post(new Runnable() {
