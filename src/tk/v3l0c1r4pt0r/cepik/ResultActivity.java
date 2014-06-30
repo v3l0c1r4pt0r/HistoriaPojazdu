@@ -166,10 +166,7 @@ public class ResultActivity extends ActionBarActivity implements
 			switch(position)
 			{
 			case 0:
-				OgolneFragment ogolne = OgolneFragment.newInstance("", "");
-//				TextView tv = null;
-//				tv = (TextView) findViewById(R.id.rejVal);
-//				tv.setText(report.getNrRejestracyjny());
+				OgolneFragment ogolne = OgolneFragment.newInstance(report);
 				return ogolne;//FIXME: can pass data here
 			case 1:
 				return TechFragment.newInstance("", "");

@@ -36,7 +36,7 @@
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 			
 			    <EditText
-			        android:id="@+id/KW1"
+			        android:id="@+id/rejVal"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:ems="10"
@@ -60,7 +60,7 @@
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 			
 			    <EditText
-			        android:id="@+id/KW2"
+			        android:id="@+id/vinVal"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:ems="10"
@@ -84,7 +84,7 @@
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 			    <EditText
-			        android:id="@+id/KW3Checksum"
+			        android:id="@+id/rejestracjaVal"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:ems="10"
@@ -116,7 +116,7 @@
 			        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 			    <EditText
-			        android:id="@+id/captchaTxt"
+			        android:id="@+id/captchaVal"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:ems="10"

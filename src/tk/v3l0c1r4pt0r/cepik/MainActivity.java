@@ -81,8 +81,8 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void afterTextChanged(Editable s) {
-			EditText kw1 = (EditText) findViewById(R.id.KW1);
-			EditText kw2 = (EditText) findViewById(R.id.KW2);
+			EditText kw1 = (EditText) findViewById(R.id.rejVal);
+			EditText kw2 = (EditText) findViewById(R.id.vinVal);
 			String kw1Str = kw1.getText().toString();
 			String kw2Str = kw2.getText().toString();
 			if(kw1Str.length() == 4 && kw2Str.length() == 8)
@@ -96,8 +96,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         //Add event listeners
-        EditText kw1 = (EditText) findViewById(R.id.KW1);
-        EditText kw2 = (EditText) findViewById(R.id.KW2);
+        EditText kw1 = (EditText) findViewById(R.id.rejVal);
+        EditText kw2 = (EditText) findViewById(R.id.vinVal);
         TextWatcher tw1 = new MyTextWatcher(/*kw1*/);
         TextWatcher tw2 = new MyTextWatcher(/*kw2*/);
 		kw1.addTextChangedListener(tw1);
@@ -148,10 +148,10 @@ public class MainActivity extends Activity {
     {
     	final Intent intent = new Intent(this, ResultActivity.class);
 
-    	final String nrRejestracyjny = getString(R.string.rejVal);
-    	final String vin = getString(R.string.vinVal);
-    	final String dataRejestracji = getString(R.string.rejestracjaVal);
-    	final String captcha = getString(R.string.rejVal);
+    	final String nrRejestracyjny = ((EditText)findViewById(R.id.rejVal)).getText().toString();
+    	final String vin = ((EditText)findViewById(R.id.vinVal)).getText().toString();
+    	final String dataRejestracji = ((EditText)findViewById(R.id.rejestracjaVal)).getText().toString();
+    	final String captcha = ((EditText)findViewById(R.id.captchaVal)).getText().toString();
     	
     	//pobieramy w nowym wątku
     	new Thread(new Runnable()
@@ -411,7 +411,7 @@ public class MainActivity extends Activity {
     		suma += Integer.parseInt(lancuch.substring(i,i+1)) * waga[i];
     	}
     	
-    	EditText edit = (EditText) findViewById(R.id.KW3Checksum);
+    	EditText edit = (EditText) findViewById(R.id.rejestracjaVal);
     	StringBuilder sb = new StringBuilder();
     	sb.append(suma % 10);
     	edit.setText(sb.toString());
