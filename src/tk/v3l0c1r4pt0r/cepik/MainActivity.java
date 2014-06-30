@@ -13,6 +13,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.xml.sax.SAXException;
 
+import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.ResultsActivity.PlaceholderFragment;
 import android.media.Image;
 import android.os.Bundle;
@@ -40,16 +41,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	
-	public class EntryNotFoundException extends Exception
-	{
-
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -1777986521521918105L;
-		
-	}
 
 	public final static String resolvedData = "tk.v3l0c1r4pt0r.ksiegiwieczyste.resolvedData";
 	
@@ -167,6 +158,10 @@ public class MainActivity extends Activity {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (EntryNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					//FIXME: zamienić na info o braku pojazdu w bazie
 				}
 		    	View v = (View) findViewById(R.id.scrollView1);
 		    	final CarReport report = rep;

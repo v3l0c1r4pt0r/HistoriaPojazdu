@@ -1,10 +1,25 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.Serializable;
+import java.util.InputMismatchException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import android.R.bool;
 
 public class CarReport implements Serializable {
+	
+	public class EntryNotFoundException extends Exception
+	{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -1777986521521918105L;
+		
+	}
 	
 	/**
 	 * 
@@ -108,6 +123,7 @@ public class CarReport implements Serializable {
 	}
 
 	String marka;
+	String typ;//TODO: obsłużyć w GUI!
 	String model;
 	
 	String przebieg;
@@ -149,10 +165,23 @@ public class CarReport implements Serializable {
 		this.dataRejestracji = dataRejestracji;
 	}
 	
-	public CarReport(String nrRejestracyjny, String siteResponse)
+	public CarReport(String nrRejestracyjny, String siteResponse) throws EntryNotFoundException
 	{
 		this.nrRejestracyjny = nrRejestracyjny;
 		//TODO: wypełnić na podstawie odpowiedzi serwera
+		Document doc = Jsoup.parse(siteResponse);
+    	final String[] values = new String[7];
+		
+    	try
+    	{
+    		this.marka = doc.getElementById("marka").html();
+    		this.typ = doc.getElementById("typ").html();
+    		this.model = doc.getElementById("model").html();
+    	}
+    	catch(NullPointerException e)
+    	{
+			throw new EntryNotFoundException();
+    	}
 	}
 
 }

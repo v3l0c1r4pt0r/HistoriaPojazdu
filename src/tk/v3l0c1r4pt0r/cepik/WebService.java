@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -77,11 +78,11 @@ public class WebService {
 		return bmp;
 	}
 	
-	public CarReport getReport(String rej, String vin, String dataRej, String captcha) throws MalformedURLException, IOException
+	public CarReport getReport(String rej, String vin, String dataRej, String captcha) throws MalformedURLException, IOException, EntryNotFoundException
 	{
 		String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml";
 		byte[] response = getResponse(new URL(target));//FIXME: umożliwić budowanie POSTa
-		return new CarReport(rej, response.toString());
+		return new CarReport(rej, new String(response));
 	}
 
 }

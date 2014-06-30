@@ -71,8 +71,16 @@ public class OgolneFragment extends Fragment {
 		
 		CarReport cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
 
-		TextView tv = (TextView) getView().findViewById(R.id.rejVal);
+		TextView tv = null;
+		
+		tv = (TextView) getView().findViewById(R.id.rejVal);
 		tv.setText(cr.getNrRejestracyjny());
+		
+		tv = (TextView) getView().findViewById(R.id.markaVal);
+		tv.setText(cr.getMarka());
+		
+		tv = (TextView) getView().findViewById(R.id.modelVal);
+		tv.setText(cr.getModel());
     }
 
 	// TODO: Rename method, update argument and hook method into UI event
