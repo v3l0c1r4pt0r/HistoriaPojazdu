@@ -1,9 +1,11 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.http.client.ClientProtocolException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -50,6 +52,8 @@ public class MainActivity extends Activity {
 	public final static String resolvedData = "tk.v3l0c1r4pt0r.ksiegiwieczyste.resolvedData";
 	
 	private Decaptcha decaptcha = null;
+	
+	private WebService cepik = null;
 	
 //	private final String[] values = new String[7];
 	
@@ -102,6 +106,42 @@ public class MainActivity extends Activity {
 		{
 			decaptcha = new Decaptcha();
 			reloadImage(findViewById(R.id.refreshBtn));
+		}
+		if(cepik==null)
+		{
+			//ustaw progress na 0, wyłącz przycisk odświeżania
+			final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+			final Button btn = (Button) findViewById(R.id.sendBtn);
+			btn.setEnabled(true);
+	    	pb.setProgress(0);
+	    	pb.setVisibility(ProgressBar.VISIBLE);
+	    	
+	    	//pobieramy w nowym wątku
+	    	new Thread(new Runnable()
+			{
+				@Override
+				public void run() {
+					try {
+						cepik = new WebService();	//ustawia ciastko
+						
+						final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
+						final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
+						final Button btn = (Button) findViewById(R.id.sendBtn);
+						iv.post(new Runnable() {
+							
+							@Override
+							public void run() {
+						    	pb.setProgress(pb.getMax());
+								iv.setImageBitmap(captcha);
+								btn.setEnabled(true);
+						    	pb.setVisibility(ProgressBar.INVISIBLE);
+							}
+						});
+					} catch (IOException e) {
+						e.printStackTrace();//FIXME: obsłużyć
+					}
+				}
+			}).start();
 		}
     }
 
