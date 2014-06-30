@@ -1,6 +1,7 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -36,6 +37,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
@@ -145,16 +147,40 @@ public class MainActivity extends Activity {
     public void sendRequest(View view)
     {
     	final Intent intent = new Intent(this, ResultActivity.class);
-    	final String[] values = new String[7];
-    	values[0] = "0";
-    	values[1] = "1";
-    	values[2] = "2";
-    	values[3] = "3";
-    	values[4] = "4";
-    	values[5] = "5";
-    	values[6] = "6";
-    	intent.putExtra(resolvedData, values);
-    	startActivity(intent);
+
+    	final String nrRejestracyjny = getString(R.string.rejVal);
+    	final String vin = getString(R.string.vinVal);
+    	final String dataRejestracji = getString(R.string.rejestracjaVal);
+    	final String captcha = getString(R.string.rejVal);
+    	
+    	//pobieramy w nowym wątku
+    	new Thread(new Runnable()
+		{
+			@Override
+			public void run() {
+		    	CarReport rep = null;
+		    	try {
+					rep = cepik.getReport(nrRejestracyjny, vin, dataRejestracji, captcha);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    	View v = (View) findViewById(R.id.scrollView1);
+		    	final CarReport report = rep;
+				v.post(new Runnable() {
+					
+					@Override
+					public void run() {
+				    	intent.putExtra(resolvedData, report);
+				    	startActivity(intent);
+					}
+				});
+			}
+		}).start();
+    	
     	
     	/*//Set progress
     	final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);

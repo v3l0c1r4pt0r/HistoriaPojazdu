@@ -12,12 +12,14 @@ import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ResultActivity extends ActionBarActivity implements
 		ActionBar.TabListener, 
@@ -25,6 +27,8 @@ public class ResultActivity extends ActionBarActivity implements
 		OgolneFragment.OnFragmentInteractionListener, 
 		DokFragment.OnFragmentInteractionListener, 
 		OsFragment.OnFragmentInteractionListener {
+	
+	private CarReport report = null;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -44,6 +48,10 @@ public class ResultActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test);
+		
+		//pobierz wartość z poprzedniej aktywności
+		Intent intent = getIntent();
+		report = (CarReport) intent.getSerializableExtra(MainActivity.resolvedData);
 
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -101,6 +109,7 @@ public class ResultActivity extends ActionBarActivity implements
 			ResultActivity.menuShowAbout(this);
 			break;
 		}
+		//TODO: download PDF
 		return super.onOptionsItemSelected(item);
 	}
     
@@ -157,7 +166,11 @@ public class ResultActivity extends ActionBarActivity implements
 			switch(position)
 			{
 			case 0:
-				return OgolneFragment.newInstance("", "");//FIXME: can pass data here
+				OgolneFragment ogolne = OgolneFragment.newInstance("", "");
+//				TextView tv = null;
+//				tv = (TextView) findViewById(R.id.rejVal);
+//				tv.setText(report.getNrRejestracyjny());
+				return ogolne;//FIXME: can pass data here
 			case 1:
 				return TechFragment.newInstance("", "");
 			case 2:

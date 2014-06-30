@@ -1,9 +1,16 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import java.io.Serializable;
+
 import android.R.bool;
 
-public class CarReport {
+public class CarReport implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2593232509120742403L;
+
 	public String getMarka() {
 		return marka;
 	}
