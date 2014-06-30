@@ -2,4 +2,6 @@
 <resources>
     <color name="ocOkColor">#00FF00</color>
     <color name="ocNoColor">#FF0000</color>
+    <color name="captchaBg">#FFFFFF</color>
+    <color name="captchaErr">#00000000</color>
 </resources>

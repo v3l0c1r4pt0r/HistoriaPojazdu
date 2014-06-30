@@ -1,5 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -44,14 +45,24 @@ public class WebService {
 	    }
 	}
 	
-	private InputStream getResponse(URL url) throws IOException
+	private byte[] getResponse(URL url) throws IOException
 	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
 
 		try {
 			urlConnection.connect();
+			InputStream is = urlConnection.getInputStream();
+			String s = "";
+			int len = 0;
+			while ((len = is.read(buffer)) != -1) 
+			{
+				baos.write(buffer, 0, len);
+			}
+			
 		}
 		catch(IOException e)
 		{
@@ -60,13 +71,13 @@ public class WebService {
 	    finally {
 	    	urlConnection.disconnect();
 	    }
-		return urlConnection.getInputStream();
+		return baos.toByteArray();
 	}
 	
 	public Bitmap getCaptcha() throws MalformedURLException, IOException
 	{
-		InputStream is = getResponse(new URL(captchaUrl));
-		Bitmap bmp = BitmapFactory.decodeStream(is);
+		byte[] response = getResponse(new URL(captchaUrl));
+		Bitmap bmp = BitmapFactory.decodeByteArray(response, 0, response.length);
 		return bmp;
 	}
 

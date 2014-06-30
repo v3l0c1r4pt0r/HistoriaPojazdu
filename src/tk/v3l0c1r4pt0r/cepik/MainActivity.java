@@ -133,6 +133,7 @@ public class MainActivity extends Activity {
 							public void run() {
 						    	pb.setProgress(pb.getMax());
 								iv.setImageBitmap(captcha);
+								iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
 								btn.setEnabled(true);
 						    	pb.setVisibility(ProgressBar.INVISIBLE);
 							}
