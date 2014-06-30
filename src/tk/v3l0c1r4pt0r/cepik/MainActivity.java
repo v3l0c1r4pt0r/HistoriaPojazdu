@@ -100,50 +100,9 @@ public class MainActivity extends Activity {
         TextWatcher tw2 = new MyTextWatcher(/*kw2*/);
 		kw1.addTextChangedListener(tw1);
 		kw2.addTextChangedListener(tw2);
-		
-		//download CAPTCHA
-		if(decaptcha==null)
-		{
-			decaptcha = new Decaptcha();
-			reloadImage(findViewById(R.id.refreshBtn));
-		}
-		if(cepik==null)
-		{
-			//ustaw progress na 0, wyłącz przycisk odświeżania
-			final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-			final Button btn = (Button) findViewById(R.id.sendBtn);
-			btn.setEnabled(true);
-	    	pb.setProgress(0);
-	    	pb.setVisibility(ProgressBar.VISIBLE);
-	    	
-	    	//pobieramy w nowym wątku
-	    	new Thread(new Runnable()
-			{
-				@Override
-				public void run() {
-					try {
-						cepik = new WebService();	//ustawia ciastko
-						
-						final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
-						final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-						final Button btn = (Button) findViewById(R.id.sendBtn);
-						iv.post(new Runnable() {
-							
-							@Override
-							public void run() {
-						    	pb.setProgress(pb.getMax());
-								iv.setImageBitmap(captcha);
-								iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
-								btn.setEnabled(true);
-						    	pb.setVisibility(ProgressBar.INVISIBLE);
-							}
-						});
-					} catch (IOException e) {
-						e.printStackTrace();//FIXME: obsłużyć
-					}
-				}
-			}).start();
-		}
+
+		final Button btn = (Button) findViewById(R.id.sendBtn);
+		reloadImage(btn);
     }
 
 
@@ -434,8 +393,47 @@ public class MainActivity extends Activity {
     
     public void reloadImage(View view)
     {
-    	//FIXME: exception!
-    	return;
+    	//ustawia tło na czarne
+		final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
+		iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
+		
+		//ustaw progress na 0, wyłącz przycisk odświeżania
+		final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+		final Button btn = (Button) findViewById(R.id.sendBtn);
+		btn.setEnabled(true);
+    	pb.setProgress(0);
+    	pb.setVisibility(ProgressBar.VISIBLE);
+    	
+    	//pobieramy w nowym wątku
+    	new Thread(new Runnable()
+		{
+			@Override
+			public void run() {
+				try {
+					if(cepik==null)
+					{
+						cepik = new WebService();	//ustawia ciastko
+					}
+					
+					final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
+					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
+					final Button btn = (Button) findViewById(R.id.sendBtn);
+					iv.post(new Runnable() {
+						
+						@Override
+						public void run() {
+					    	pb.setProgress(pb.getMax());
+							iv.setImageBitmap(captcha);
+							iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
+							btn.setEnabled(true);
+					    	pb.setVisibility(ProgressBar.INVISIBLE);
+						}
+					});
+				} catch (IOException e) {
+					e.printStackTrace();//FIXME: obsłużyć
+				}
+			}
+		}).start();
     	/*final Handler handler = new Handler();
     	
     	//Set progress
