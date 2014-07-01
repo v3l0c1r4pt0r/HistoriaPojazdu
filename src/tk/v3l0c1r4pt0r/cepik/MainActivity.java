@@ -74,12 +74,12 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void afterTextChanged(Editable s) {
-			EditText kw1 = (EditText) findViewById(R.id.rejVal);
-			EditText kw2 = (EditText) findViewById(R.id.vinVal);
-			String kw1Str = kw1.getText().toString();
-			String kw2Str = kw2.getText().toString();
-			if(kw1Str.length() == 4 && kw2Str.length() == 8)
-				countChecksum(kw1Str, kw2Str);
+//			EditText kw1 = (EditText) findViewById(R.id.rejVal);
+//			EditText kw2 = (EditText) findViewById(R.id.vinVal);
+//			String kw1Str = kw1.getText().toString();
+//			String kw2Str = kw2.getText().toString();
+//			if(kw1Str.length() == 4 && kw2Str.length() == 8)
+//				countChecksum(kw1Str, kw2Str);
 		}
 	};
 	
@@ -183,47 +183,6 @@ public class MainActivity extends Activity {
 				});
 			}
 		}).start();
-    }
-    
-    public void countChecksum(String KW1, String KW2)
-    {
-    	int dlugoscMax    = 12;
-    	int pierwszaCyfra =  4;
-    	String dobreLitery   = "ABCDEFGHIJKLMNOPRSTUWYZ";
-    	int[] waga          = {1,3,7,1, 3,7,1,3, 7,1,3,7};		// wagi dla kolejnych znakow lancucha
-    	int[] litery        = {0,1,3};							// Ktore znaki w lancucu musza byc dobrymi literami
-    	int suma = 0;
-    	int indeks;
-    	
-    	//count checksum
-    	String lancuch = (KW1 + KW2);
-    	lancuch = lancuch.toUpperCase();
-
-    	//Suma dla 3 liter
-    	for(int x = 0; x < litery.length; x++) {
-    		indeks = dobreLitery.indexOf( lancuch.substring(litery[x],litery[x]+1) );
-    		suma  += (indeks + 1) * waga[litery[x]];
-    	}
-    	// Suma dla cyfry na 2 pozycji ze skorygowana waga
-    	try
-    	{
-    		Integer.parseInt(lancuch.substring(2,3));
-    		suma += Integer.parseInt(lancuch.substring(2,3)) * waga[2];
-    	}
-    	catch(NumberFormatException nfe)
-    	{
-    		indeks = dobreLitery.indexOf(lancuch.substring(2,3));
-    		suma  += (indeks + 1) * waga[2];
-    	}
-    	// Suma dla 8 pozostalych cyfr
-    	for (int i = pierwszaCyfra; i < dlugoscMax; i++) {
-    		suma += Integer.parseInt(lancuch.substring(i,i+1)) * waga[i];
-    	}
-    	
-    	EditText edit = (EditText) findViewById(R.id.rejestracjaVal);
-    	StringBuilder sb = new StringBuilder();
-    	sb.append(suma % 10);
-    	edit.setText(sb.toString());
     }
     
     public void reloadImage(View view)
