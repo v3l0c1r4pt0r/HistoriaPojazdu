@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
 	
 	private WebService cepik = null;
 	
-	private Drawable normalETBg = null;
+	private Drawable normalDateBg = null;
 	
 //	private final String[] values = new String[7];
 	
@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
 				date.setBackgroundDrawable(getResources().getDrawable(R.drawable.textfield_wrong_holo_dark));
 			}
 			else
-				date.setBackgroundDrawable(normalETBg);
+				date.setBackgroundDrawable(normalDateBg);
 		}
 	};
 	
@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 
 		final Button btn = (Button) findViewById(R.id.sendBtn);
 		reloadImage(btn);
-		normalETBg = dateVal.getBackground();
+		normalDateBg = dateVal.getBackground();
     }
 
 
