@@ -2,6 +2,7 @@ package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -163,7 +164,6 @@ public class MainActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (EntryNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					//FIXME: zamienić na info o braku pojazdu w bazie
 				}
@@ -183,200 +183,6 @@ public class MainActivity extends Activity {
 				});
 			}
 		}).start();
-    	
-    	
-    	/*//Set progress
-    	final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-    	pb.setProgress(0);
-    	pb.setVisibility(ProgressBar.VISIBLE);
-    	
-    	//Download data
-    	final Map<String,String> request = new HashMap<String, String>();
-    	
-    	//KW1
-    	EditText et = (EditText) findViewById(R.id.KW1);
-    	request.put("nrKW1", et.getText().toString().toUpperCase());
-    	
-    	//KW2
-    	et = (EditText) findViewById(R.id.KW2);
-    	request.put("nrKW2", et.getText().toString());
-    	
-    	//KW3
-    	et = (EditText) findViewById(R.id.KW3Checksum);
-    	request.put("nrKW3", et.getText().toString());
-    	
-    	pb.setProgress(pb.getMax()*10/100);
-    	
-    	request.put("recaptcha_challenge_field", decaptcha.getChallenge());
-    	
-    	pb.setProgress(pb.getMax()*25/100);
-    	
-    	//CAPTCHA
-    	et = (EditText) findViewById(R.id.captchaTxt);
-    	request.put("recaptcha_response_field", et.getText().toString());
-    	
-    	request.put("t_action", "szukaj");
-    	
-    	final StringBuilder sb = new StringBuilder();
-    	EditText edit = (EditText) findViewById(R.id.KW1);
-    	sb.append(edit.getText().toString());
-    	edit = (EditText) findViewById(R.id.KW2);
-    	sb.append("/" + edit.getText().toString());
-    	edit = (EditText) findViewById(R.id.KW3Checksum);
-    	sb.append("/" + edit.getText().toString());
-    	final String KWnumber = sb.toString();
-    	
-    	final Handler handler = new Handler();
-    	
-    	final Activity activity = this;
-    	pb.setProgress(pb.getMax()*35/100);
-    	
-    	new Thread(new Runnable()
-		{
-			@Override
-			public void run() {
-		    	try {
-					String response = decaptcha.downloadText("http://ekw.ms.gov.pl/pdcbdkw/pdcbdkw.html",request);
-			    	pb.setProgress(pb.getMax()*50/100);
-					//get values from response
-					Document doc = Jsoup.parse(response);
-					Elements wyniki = doc.getElementById("formArea").getElementsByClass("opis");
-			    	final String[] values = new String[7];
-					
-			    	values[0] = wyniki.get(0).getElementsByClass("poleWartosc").html();
-					if(!wyniki.get(0).getElementsByClass("poleWartosc").html().equalsIgnoreCase(KWnumber))//numer
-					{
-						if(wyniki.html().indexOf("Nie znaleziono księgi")==-1)
-							throw new InputMismatchException();
-						else
-							throw new EntryNotFoundException();
-					}
-					
-			    	values[1] = wyniki.get(6).getElementsByClass("poleWartosc").html();//wlasciciel
-			    	values[2] = wyniki.get(5).getElementsByClass("poleWartosc").html();//polozenie
-			    	values[3] = wyniki.get(3).getElementsByClass("poleWartosc").html();//data_zapis
-			    	values[4] = wyniki.get(4).getElementsByClass("poleWartosc").html();//data_zamkn
-			    	values[5] = wyniki.get(1).getElementsByClass("poleWartosc").html();//typ
-			    	values[6] = wyniki.get(2).getElementsByClass("poleWartosc").html();//wydzial
-			    	
-			    	//clean strings
-			    	values[1] = stringDeHTML(values[1]);
-			    	values[2] = stringDeHTML(values[2]);
-			    	values[5] = stringDeHTML(values[5]);//41937
-			    	values[6] = stringDeHTML(values[6]);
-			    	pb.setProgress(pb.getMax()*60/100);
-			    	handler.post(new Runnable() {
-						
-						@Override
-						public void run() {
-					    	intent.putExtra(resolvedData, values);
-					    	pb.setVisibility(ProgressBar.INVISIBLE);
-					    	pb.setProgress(pb.getMax()*1);
-					    	startActivity(intent);
-							
-						}
-					});
-			    	//wait until values are used?
-//			    	try {
-//						values.wait();
-//					} catch (InterruptedException e) {
-//					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (IndexOutOfBoundsException e)
-				{
-					//kw user looked for did not exist,
-					//display error to the user
-					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-					final Button btn = (Button) findViewById(R.id.sendBtn);
-					handler.post(new Runnable() {
-						
-						@Override
-						public void run() {
-							iv.setImageResource(R.drawable.error);
-							btn.setEnabled(false);
-							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-							pb.setVisibility(ProgressBar.INVISIBLE);
-							AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-							builder.setMessage(R.string.wrongKwNumberMsg)
-						       .setTitle(R.string.errorMsg);
-							builder.setPositiveButton(string.ok, new OnClickListener() {
-								
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									//just close
-								}
-							});
-							AlertDialog dialog = builder.create();
-							dialog.show();
-							reloadImage(findViewById(R.id.refreshBtn));
-							EditText te = (EditText)findViewById(R.id.captchaTxt);
-							te.setText("");
-						}
-					});
-				} catch (InputMismatchException e) {
-					//wrong captcha entered,
-					//display error
-					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-					final Button btn = (Button) findViewById(R.id.sendBtn);
-					handler.post(new Runnable() {
-						
-						@Override
-						public void run() {
-							iv.setImageResource(R.drawable.error);
-							btn.setEnabled(false);
-							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-							pb.setVisibility(ProgressBar.INVISIBLE);
-							AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-							builder.setMessage(R.string.wrongCaptchaMsg)
-						       .setTitle(R.string.errorMsg);
-							builder.setPositiveButton(string.ok, new OnClickListener() {
-								
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									//just close
-								}
-							});
-							AlertDialog dialog = builder.create();
-							dialog.show();
-							reloadImage(findViewById(R.id.refreshBtn));
-							EditText te = (EditText)findViewById(R.id.captchaTxt);
-							te.setText("");
-						}
-					});
-				} catch (EntryNotFoundException e) {
-					//kw user looked for did not exist,
-					//display error to the user
-					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-					final Button btn = (Button) findViewById(R.id.sendBtn);
-					handler.post(new Runnable() {
-						
-						@Override
-						public void run() {
-							iv.setImageResource(R.drawable.error);
-							btn.setEnabled(false);
-							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-							pb.setVisibility(ProgressBar.INVISIBLE);
-							AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-							builder.setMessage(R.string.wrongKwNumberMsg)
-						       .setTitle(R.string.errorMsg);
-							builder.setPositiveButton(string.ok, new OnClickListener() {
-								
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									//just close
-								}
-							});
-							AlertDialog dialog = builder.create();
-							dialog.show();
-							reloadImage(findViewById(R.id.refreshBtn));
-							EditText te = (EditText)findViewById(R.id.captchaTxt);
-							te.setText("");
-						}
-					});
-				}
-			}
-		}).start();*/
     }
     
     public void countChecksum(String KW1, String KW2)
@@ -424,17 +230,20 @@ public class MainActivity extends Activity {
     {
     	//ustawia tło na czarne
 		final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
-		iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
+		iv.setImageResource(R.drawable.loading);
+		iv.setBackgroundColor(getResources().getColor(R.color.captchaErr));
 		
 		//ustaw progress na 0, wyłącz przycisk odświeżania
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
 		final ImageButton refreshBtn = (ImageButton) findViewById(R.id.refreshBtn);
-		refreshBtn.setEnabled(false);
+//		refreshBtn.setEnabled(false);
     	
     	final Button sendBtn = (Button) findViewById(R.id.sendBtn);
     	sendBtn.setEnabled(false);
     	pb.setProgress(0);
     	pb.setVisibility(ProgressBar.VISIBLE);
+    	
+    	final Activity thisActivity = this;
     	
     	//pobieramy w nowym wątku
     	new Thread(new Runnable()
@@ -448,7 +257,6 @@ public class MainActivity extends Activity {
 					}
 					
 					final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
-					//TODO: wyłapać błąd wczytywania
 					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
 					iv.post(new Runnable() {
 						
@@ -457,13 +265,36 @@ public class MainActivity extends Activity {
 					    	pb.setProgress(pb.getMax());
 							iv.setImageBitmap(captcha);
 							iv.setBackgroundColor(getResources().getColor(R.color.captchaBg));
-							refreshBtn.setEnabled(true);
+//							refreshBtn.setEnabled(true);
 					    	sendBtn.setEnabled(true);
 					    	pb.setVisibility(ProgressBar.INVISIBLE);
 						}
 					});
-				} catch (IOException e) {
-					e.printStackTrace();//FIXME: obsłużyć
+				} catch (final IOException e)
+				{
+					iv.post(new Runnable() {
+						
+						@Override
+						public void run() {
+							iv.setImageResource(R.drawable.error);
+							iv.setBackgroundColor(getResources().getColor(R.color.captchaErr));
+//							refreshBtn.setEnabled(true);
+							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+							pb.setVisibility(ProgressBar.INVISIBLE);
+							AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
+							builder.setMessage(e.getLocalizedMessage())
+						       .setTitle(R.string.errorMsg);
+							builder.setPositiveButton(string.ok, new OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									//just close
+								}
+							});
+							AlertDialog dialog = builder.create();
+							dialog.show();
+						}
+					});
 				}
 			}
 		}).start();
