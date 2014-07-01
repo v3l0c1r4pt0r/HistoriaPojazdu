@@ -4,4 +4,6 @@
     <color name="ocNoColor">#FF0000</color>
     <color name="captchaBg">#FFFFFF</color>
     <color name="captchaErr">#00000000</color>
+    <color name="validData">#00000000</color>
+    <color name="invalidData">#880000</color>
 </resources>

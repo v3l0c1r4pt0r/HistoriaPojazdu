@@ -864,14 +864,16 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080007;
+        public static final int abc_search_url_text_holo=0x7f080009;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
         public static final int captchaBg=0x7f080005;
         public static final int captchaErr=0x7f080006;
+        public static final int invalidData=0x7f080008;
         public static final int ocNoColor=0x7f080004;
         public static final int ocOkColor=0x7f080003;
+        public static final int validData=0x7f080007;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1095,6 +1097,8 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020058;
         public static final int loading=0x7f020059;
         public static final int noconnection=0x7f02005a;
+        public static final int textfield_activated_holo_dark=0x7f02005b;
+        public static final int textfield_wrong_holo_dark=0x7f02005c;
     }
     public static final class id {
         public static final int VINLayout=0x7f060041;

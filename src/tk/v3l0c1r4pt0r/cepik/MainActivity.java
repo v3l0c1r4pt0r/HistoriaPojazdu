@@ -27,6 +27,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -50,6 +51,8 @@ public class MainActivity extends Activity {
 	
 	private WebService cepik = null;
 	
+	private Drawable normalETBg = null;
+	
 //	private final String[] values = new String[7];
 	
 	String cookieContent = "";
@@ -72,6 +75,7 @@ public class MainActivity extends Activity {
 				int after) {
 		}
 		
+		@SuppressWarnings("deprecation")
 		@Override
 		public void afterTextChanged(Editable s) {
 			EditText vin = (EditText) findViewById(R.id.vinVal);
@@ -98,7 +102,11 @@ public class MainActivity extends Activity {
 			{
 				//niepoprawny format daty
 				//TODO
+				//date.setBackgroundColor(getResources().getColor(R.color.invalidData));
+				date.setBackgroundDrawable(getResources().getDrawable(R.drawable.textfield_wrong_holo_dark));
 			}
+			else
+				date.setBackgroundDrawable(normalETBg);
 		}
 	};
 	
@@ -117,6 +125,7 @@ public class MainActivity extends Activity {
 
 		final Button btn = (Button) findViewById(R.id.sendBtn);
 		reloadImage(btn);
+		normalETBg = dateVal.getBackground();
     }
 
 
