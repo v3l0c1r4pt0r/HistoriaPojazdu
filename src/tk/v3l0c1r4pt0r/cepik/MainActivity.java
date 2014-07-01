@@ -74,12 +74,31 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void afterTextChanged(Editable s) {
-//			EditText kw1 = (EditText) findViewById(R.id.rejVal);
-//			EditText kw2 = (EditText) findViewById(R.id.vinVal);
-//			String kw1Str = kw1.getText().toString();
-//			String kw2Str = kw2.getText().toString();
-//			if(kw1Str.length() == 4 && kw2Str.length() == 8)
-//				countChecksum(kw1Str, kw2Str);
+			EditText vin = (EditText) findViewById(R.id.vinVal);
+			EditText date = (EditText) findViewById(R.id.rejestracjaVal);
+			
+			String vinStr = vin.getText().toString();
+			String dateStr = date.getText().toString();
+			
+			String dateNewStr = DataValidator.validateDate(dateStr);
+			int sel = date.getSelectionStart();
+			if(dateStr != dateNewStr)
+			{
+				date.setText(dateNewStr);
+				try
+				{
+					date.setSelection(sel-1, sel-1);
+				} catch (IndexOutOfBoundsException e)
+				{
+					//nie powinno się zdarzyć, ale jeśli się zdarzy to niech chociaż ktoś kto czyta logi wie
+					e.printStackTrace();
+				}
+			}
+			if(dateNewStr.length() == 10 && !DataValidator.validateDateFormat(dateNewStr))
+			{
+				//niepoprawny format daty
+				//TODO
+			}
 		}
 	};
 	
@@ -89,12 +108,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         //Add event listeners
-        EditText kw1 = (EditText) findViewById(R.id.rejVal);
-        EditText kw2 = (EditText) findViewById(R.id.vinVal);
+        EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
+        EditText vinVal = (EditText) findViewById(R.id.vinVal);
         TextWatcher tw1 = new MyTextWatcher(/*kw1*/);
         TextWatcher tw2 = new MyTextWatcher(/*kw2*/);
-		kw1.addTextChangedListener(tw1);
-		kw2.addTextChangedListener(tw2);
+		dateVal.addTextChangedListener(tw1);
+		vinVal.addTextChangedListener(tw2);
 
 		final Button btn = (Button) findViewById(R.id.sendBtn);
 		reloadImage(btn);
