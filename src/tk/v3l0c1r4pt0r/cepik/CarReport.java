@@ -229,7 +229,7 @@ public class CarReport implements Serializable {
     	}
     	catch(NullPointerException e)
     	{
-    		this.przebieg = "";
+    		this.przebieg = "nieznany";
     	}
     	try
     	{
@@ -289,6 +289,7 @@ public class CarReport implements Serializable {
     	}
     	try
     	{
+    		//FIXME: WTF?
 			this.status = stringDeHTML(doc.getElementsContainingOwnText("Status rejestracji").select("span").html()).toLowerCase();
     	}
     	catch(NullPointerException e)
