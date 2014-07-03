@@ -193,6 +193,9 @@ public class MainActivity extends Activity {
 				} catch (EntryNotFoundException e) {
 					e.printStackTrace();
 					//FIXME: zamienić na info o braku pojazdu w bazie
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 		    	View v = (View) findViewById(R.id.scrollView1);
 		    	final CarReport report = rep;

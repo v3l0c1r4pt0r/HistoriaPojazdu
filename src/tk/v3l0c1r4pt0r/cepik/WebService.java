@@ -78,11 +78,25 @@ public class WebService {
 		return bmp;
 	}
 	
-	public CarReport getReport(String rej, String vin, String dataRej, String captcha) throws MalformedURLException, IOException, EntryNotFoundException
+	public CarReport getReport(String nrRejestracyjny, String vin, String dataRejestracji, String captcha) throws Exception
 	{
-		String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml";
-		byte[] response = getResponse(new URL(target));//FIXME: umożliwić budowanie POSTa
-		return new CarReport(rej, new String(response));
+		if(
+    			nrRejestracyjny.length() == 0 ||
+    			vin.length() < 17 ||
+    			dataRejestracji.length() < 10 ||
+    			captcha.length() == 0
+    			)
+		{
+			//przykładowy raport
+			String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml";
+			byte[] response = getResponse(new URL(target));//FIXME: umożliwić budowanie POSTa
+			return new CarReport(nrRejestracyjny, new String(response));
+		}
+		else
+		{
+			//prawdziwy raport
+			throw new Exception("Not Implemented!");
+		}
 	}
 
 }
