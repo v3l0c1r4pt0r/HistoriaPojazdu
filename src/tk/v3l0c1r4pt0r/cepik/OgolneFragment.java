@@ -80,7 +80,14 @@ public class OgolneFragment extends Fragment {
 		tv.setText(cr.getMarka());
 		
 		tv = (TextView) getView().findViewById(R.id.typVal);
-		tv.setText(cr.getTyp());
+		String typ = cr.getTyp();
+		if(typ.length()>0)
+		{
+			tv.setText(typ);
+			tv.setVisibility(View.VISIBLE);
+		}
+		else
+			tv.setVisibility(View.INVISIBLE);
 		
 		tv = (TextView) getView().findViewById(R.id.modelVal);
 		tv.setText(cr.getModel());
@@ -105,6 +112,12 @@ public class OgolneFragment extends Fragment {
 		
 		tv = (TextView) getView().findViewById(R.id.paliwoVal);
 		tv.setText(cr.getRodzajPaliwa());
+		
+		tv = (TextView) getView().findViewById(R.id.vinVal);
+		tv.setText(cr.getVin());
+		
+		tv = (TextView) getView().findViewById(R.id.statusVal);
+		tv.setText(cr.getStatus());
 		
 		tv = (TextView) getView().findViewById(R.id.ocVal);
 		if(cr.getOc())

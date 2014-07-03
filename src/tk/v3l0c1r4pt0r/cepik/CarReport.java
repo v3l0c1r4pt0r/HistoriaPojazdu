@@ -187,25 +187,117 @@ public class CarReport implements Serializable {
     	try
     	{
     		this.marka = stringDeHTML(doc.getElementById("marka").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+			throw new EntryNotFoundException();
+    	}
+    	try
+    	{
     		this.typ = stringDeHTML(doc.getElementById("typ").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.typ = "";
+    	}
+    	try
+    	{
     		this.model = stringDeHTML(doc.getElementById("model").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.model = "";
+    	}
+    	try
+    	{
     		this.przebieg = stringDeHTML(doc.getElementById("aktualnyStanLicznika").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.przebieg = "";
+    	}
+    	try
+    	{
     		this.przebiegUnit = stringDeHTML(doc.getElementById("jednostkaLicznika").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.przebiegUnit = "";
+    	}
+    	try
+    	{
     		this.rokProdukcji = stringDeHTML(doc.getElementById("rokProdukcji").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.rokProdukcji = "";
+    	}
+    	try
+    	{
     		this.rodzaj = stringDeHTML(doc.getElementById("rodzaj").html().toLowerCase());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.rodzaj = "";
+    	}
+    	try
+    	{
     		this.podrodzaj = stringDeHTML(doc.getElementById("podrodzaj").html().toLowerCase());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.podrodzaj = "";
+    	}
+    	try
+    	{
     		this.pojemnoscSilnika = stringDeHTML(doc.getElementById("pojemnosc").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.pojemnoscSilnika = "";
+    	}
+    	try
+    	{
     		this.rodzajPaliwa = stringDeHTML(doc.getElementById("paliwo").html().toLowerCase());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.rodzajPaliwa = "";
+    	}
+    	try
+    	{
 			this.vin = stringDeHTML(doc.getElementsContainingOwnText("VIN").select("span").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.vin = "";
+    	}
+    	try
+    	{
+			this.status = stringDeHTML(doc.getElementsContainingOwnText("Status rejestracji").select("span").html());
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.status = "";
+    	}
 			
 			//TODO: przetestować działanie oc i przeglądu dla innych konfiguracji
 			
+    	try
+    	{
 			if(doc.getElementsContainingOwnText("Polisa OC").select("span")
 					.html().indexOf("brak informacji o aktualnej polisie")!=-1)
 				this.oc = false;
 			else
 				this.oc = true;
+    	}
+    	catch(NullPointerException e)
+    	{
+    		this.oc = false;
+    	}
 			
+    	try
+    	{
 			if(doc.getElementsContainingOwnText("Badanie techniczne").select("span")
 					.html().indexOf("aktualne") != -1)
 				this.przeglad = true;
@@ -214,7 +306,7 @@ public class CarReport implements Serializable {
     	}
     	catch(NullPointerException e)
     	{
-			throw new EntryNotFoundException();
+    		this.przeglad = false;
     	}
     	try
     	{
