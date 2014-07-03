@@ -18,12 +18,9 @@ import android.widget.TextView;
  * 
  */
 public class OgolneFragment extends Fragment {
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 	private static final String ARG_REPORT = "report";
 
-	// TODO: Rename and change types of parameters
-	private CarReport mParam1;
+	private CarReport cr;
 
 	private OnFragmentInteractionListener mListener;
 
@@ -31,15 +28,14 @@ public class OgolneFragment extends Fragment {
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
 	 * 
-	 * @param param1
+	 * @param cr
 	 *            Car data class
 	 * @return A new instance of fragment OgolneFragment.
 	 */
-	// TODO: Rename and change types and number of parameters
-	public static OgolneFragment newInstance(CarReport param1) {
+	public static OgolneFragment newInstance(CarReport cr) {
 		OgolneFragment fragment = new OgolneFragment();
 		Bundle args = new Bundle();
-		args.putSerializable(ARG_REPORT, param1);
+		args.putSerializable(ARG_REPORT, cr);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -52,7 +48,7 @@ public class OgolneFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			mParam1 = (CarReport) getArguments().getSerializable(ARG_REPORT);
+			cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
 		}
 	}
 
@@ -67,8 +63,6 @@ public class OgolneFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-		
-		CarReport cr = mParam1;
 
 		TextView tv = null;
 		TextView capTv = null;
@@ -150,7 +144,6 @@ public class OgolneFragment extends Fragment {
 			tv.setVisibility(TextView.GONE);
     }
 
-	// TODO: Rename method, update argument and hook method into UI event
 	public void onButtonPressed(Uri uri) {
 		if (mListener != null) {
 			mListener.onFragmentInteraction(uri);
@@ -184,7 +177,6 @@ public class OgolneFragment extends Fragment {
 	 * >Communicating with Other Fragments</a> for more information.
 	 */
 	public interface OnFragmentInteractionListener {
-		// TODO: Update argument type and name
 		public void onFragmentInteraction(Uri uri);
 	}
 
