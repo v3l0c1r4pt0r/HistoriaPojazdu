@@ -34,10 +34,10 @@
     <string name="vinCap">VIN:</string>
     <string name="dataCap">Data pierwszej rej.:</string>
     <string name="title_activity_test">Wyniki</string>
-    <string name="title_section1">Ogólne</string>
-    <string name="title_section2">Techniczne</string>
-    <string name="title_section3">Dokumenty</string>
-    <string name="title_section4">Oś czasu</string>
+    <string name="title_ogolne">Ogólne</string>
+    <string name="title_techniczne">Techniczne</string>
+    <string name="title_dokumenty">Dokumenty</string>
+    <string name="title_os">Oś czasu</string>
     <string name="action_settings">Ustawienia</string>
     <string name="przebiegCap">Przebieg:</string>
     <string name="przebiegVal">nieznany</string>

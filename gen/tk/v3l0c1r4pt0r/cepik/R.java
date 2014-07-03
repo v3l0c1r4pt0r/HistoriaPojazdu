@@ -1423,10 +1423,10 @@ containing a value of this type.
         public static final int title_activity_results=0x7f0b0017;
         public static final int title_activity_settings=0x7f0b0060;
         public static final int title_activity_test=0x7f0b002d;
-        public static final int title_section1=0x7f0b002e;
-        public static final int title_section2=0x7f0b002f;
-        public static final int title_section3=0x7f0b0030;
-        public static final int title_section4=0x7f0b0031;
+        public static final int title_dokumenty=0x7f0b0030;
+        public static final int title_ogolne=0x7f0b002e;
+        public static final int title_os=0x7f0b0031;
+        public static final int title_techniczne=0x7f0b002f;
         public static final int typCap=0x7f0b0040;
         public static final int typStr=0x7f0b0022;
         public static final int typTxtStr=0x7f0b0021;
