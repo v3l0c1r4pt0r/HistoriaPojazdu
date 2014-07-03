@@ -101,8 +101,6 @@ public class MainActivity extends Activity {
 			if(dateNewStr.length() == 10 && !DataValidator.validateDateFormat(dateNewStr))
 			{
 				//niepoprawny format daty
-				//TODO
-				//date.setBackgroundColor(getResources().getColor(R.color.invalidData));
 				date.setBackgroundDrawable(getResources().getDrawable(R.drawable.textfield_wrong_holo_dark));
 			}
 			else
@@ -188,11 +186,35 @@ public class MainActivity extends Activity {
 		    	try {
 					rep = cepik.getReport(nrRejestracyjny, vin, dataRejestracji, captcha);
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					return;
+				} catch (final IOException e) {
+					View v = findViewById(R.id.scrollView1);
+					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
+					v.post(new Runnable() {
+						
+						@Override
+						public void run() {
+							iv.setImageResource(R.drawable.error);
+							iv.setBackgroundColor(getResources().getColor(R.color.captchaErr));
+//							refreshBtn.setEnabled(true);
+							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+							pb.setVisibility(ProgressBar.INVISIBLE);
+							AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
+							builder.setMessage(e.getLocalizedMessage())
+						       .setTitle(R.string.errorMsg);
+							builder.setPositiveButton(string.ok, new OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									//just close
+								}
+							});
+							AlertDialog dialog = builder.create();
+							dialog.show();
+						}
+					});
+					return;
 				} catch (final Exception e) {
 					if(
 							e instanceof EntryNotFoundException || 
@@ -241,7 +263,10 @@ public class MainActivity extends Activity {
 						return;
 					}
 					else 
+					{
 						e.printStackTrace();
+						return;
+					}
 				}
 		    	View v = (View) findViewById(R.id.scrollView1);
 		    	final CarReport report = rep;

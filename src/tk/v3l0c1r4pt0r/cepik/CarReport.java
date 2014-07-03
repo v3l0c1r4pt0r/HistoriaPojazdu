@@ -148,7 +148,7 @@ public class CarReport implements Serializable {
 	String model;
 	
 	String przebieg;
-	String przebiegUnit;//TODO:obsłużyć w GUI
+	String przebiegUnit;
 	boolean oc;
 	boolean przeglad;
 	boolean kradziony;
