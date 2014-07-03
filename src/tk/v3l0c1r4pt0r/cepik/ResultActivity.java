@@ -180,7 +180,8 @@ public class ResultActivity extends ActionBarActivity implements
 		@Override
 		public int getCount() {
 			// Show 4 total pages.
-			return 4;
+			return 3;
+			//ustawiony w zależności od liczby kart
 		}
 
 		@Override
