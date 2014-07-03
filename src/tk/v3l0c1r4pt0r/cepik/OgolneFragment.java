@@ -72,6 +72,7 @@ public class OgolneFragment extends Fragment {
 		CarReport cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
 
 		TextView tv = null;
+		TextView capTv = null;
 		
 		tv = (TextView) getView().findViewById(R.id.rejVal);
 		tv.setText(cr.getNrRejestracyjny());
@@ -115,9 +116,21 @@ public class OgolneFragment extends Fragment {
 		
 		tv = (TextView) getView().findViewById(R.id.vinVal);
 		tv.setText(cr.getVin());
-		
+
 		tv = (TextView) getView().findViewById(R.id.statusVal);
-		tv.setText(cr.getStatus());
+		capTv = (TextView) getView().findViewById(R.id.statusCap);
+		String status = cr.getStatus();
+		if(typ.length()>0)
+		{
+			tv.setText(status);
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			tv.setVisibility(View.INVISIBLE);
+			capTv.setVisibility(View.INVISIBLE);
+		}
 		
 		tv = (TextView) getView().findViewById(R.id.ocVal);
 		if(cr.getOc())

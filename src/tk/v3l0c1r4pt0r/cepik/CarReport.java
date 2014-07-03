@@ -274,7 +274,7 @@ public class CarReport implements Serializable {
     	}
     	try
     	{
-			this.status = stringDeHTML(doc.getElementsContainingOwnText("Status rejestracji").select("span").html());
+			this.status = stringDeHTML(doc.getElementsContainingOwnText("Status rejestracji").select("span").html()).toLowerCase();
     	}
     	catch(NullPointerException e)
     	{
