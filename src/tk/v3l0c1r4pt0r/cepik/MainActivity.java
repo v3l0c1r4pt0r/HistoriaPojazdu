@@ -78,10 +78,8 @@ public class MainActivity extends Activity {
 		@SuppressWarnings("deprecation")
 		@Override
 		public void afterTextChanged(Editable s) {
-			EditText vin = (EditText) findViewById(R.id.vinVal);
 			EditText date = (EditText) findViewById(R.id.rejestracjaVal);
 			
-			String vinStr = vin.getText().toString();
 			String dateStr = date.getText().toString();
 			
 			String dateNewStr = DataValidator.validateDate(dateStr);
