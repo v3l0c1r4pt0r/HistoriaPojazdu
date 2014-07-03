@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class ResultActivity extends ActionBarActivity implements
 		ActionBar.TabListener, 
@@ -166,8 +165,7 @@ public class ResultActivity extends ActionBarActivity implements
 			switch(position)
 			{
 			case 0:
-				OgolneFragment ogolne = OgolneFragment.newInstance(report);
-				return ogolne;//FIXME: can pass data here
+				return OgolneFragment.newInstance(report);
 			case 1:
 				return TechFragment.newInstance("", "");
 			case 2:
@@ -241,7 +239,6 @@ public class ResultActivity extends ActionBarActivity implements
 
 	@Override
 	public void onFragmentInteraction(Uri uri) {
-		// TODO Auto-generated method stub
 		
 	}
 
