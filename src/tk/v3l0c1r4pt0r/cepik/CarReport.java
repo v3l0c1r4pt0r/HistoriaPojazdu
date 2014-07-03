@@ -182,6 +182,7 @@ public class CarReport implements Serializable {
 	{
 		this.nrRejestracyjny = nrRejestracyjny;
 		//TODO: wypełnić na podstawie odpowiedzi serwera
+		//TODO: obsłużyć not found
 		Document doc = Jsoup.parse(siteResponse);
 		
     	try

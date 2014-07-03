@@ -88,7 +88,7 @@ public class OgolneFragment extends Fragment {
 			tv.setVisibility(View.VISIBLE);
 		}
 		else
-			tv.setVisibility(View.INVISIBLE);
+			tv.setVisibility(View.GONE);
 		
 		tv = (TextView) getView().findViewById(R.id.modelVal);
 		tv.setText(cr.getModel());
@@ -128,8 +128,8 @@ public class OgolneFragment extends Fragment {
 		}
 		else
 		{
-			tv.setVisibility(View.INVISIBLE);
-			capTv.setVisibility(View.INVISIBLE);
+			tv.setVisibility(View.GONE);
+			capTv.setVisibility(View.GONE);
 		}
 		
 		tv = (TextView) getView().findViewById(R.id.ocVal);
