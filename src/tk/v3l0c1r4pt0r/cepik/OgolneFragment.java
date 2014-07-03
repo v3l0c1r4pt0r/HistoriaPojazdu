@@ -113,7 +113,7 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.statusVal);
 		capTv = (TextView) getView().findViewById(R.id.statusCap);
 		String status = cr.getStatus();
-		if(typ.length()>0)
+		if(status.length()>0)
 		{
 			tv.setText(status);
 			tv.setVisibility(View.VISIBLE);
