@@ -1,6 +1,5 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-import tk.v3l0c1r4pt0r.cepik.OgolneFragment.OnFragmentInteractionListener;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
@@ -58,6 +58,63 @@ public class DokFragment extends Fragment {
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_dok, container, false);
 	}
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+		TextView tv = null;
+		TextView capTv = null;
+
+		//data pierwszej rejestracji
+		tv = (TextView) getView().findViewById(R.id.rejestracjaVal);
+		capTv = (TextView) getView().findViewById(R.id.rejestracjaCap);
+		String rejestracja = cr.getDataRejestracji();
+		if(rejestracja.length()>0)
+		{
+			tv.setText(rejestracja);
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			tv.setVisibility(View.GONE);
+			capTv.setVisibility(View.GONE);
+		}
+
+		//data wydania aktualnego dowodu
+		tv = (TextView) getView().findViewById(R.id.dowodVal);
+		capTv = (TextView) getView().findViewById(R.id.dowodCap);
+		String dowod = cr.getDataWydaniaDowodu();
+		if(dowod.length()>0)
+		{
+			tv.setText(dowod);
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			tv.setVisibility(View.GONE);
+			capTv.setVisibility(View.GONE);
+		}
+
+		//data wydania karty pojazdu
+		tv = (TextView) getView().findViewById(R.id.kartaVal);
+		capTv = (TextView) getView().findViewById(R.id.kartaCap);
+		String karta = cr.getDataWydaniaKartyPojazdu();
+		if(karta.length()>0)
+		{
+			tv.setText(karta);
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			tv.setVisibility(View.GONE);
+			capTv.setVisibility(View.GONE);
+		}
+    }
 
 	// TODO: Rename method, update argument and hook method into UI event
 	public void onButtonPressed(Uri uri) {

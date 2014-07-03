@@ -289,15 +289,45 @@ public class CarReport implements Serializable {
     	}
     	try
     	{
-    		//FIXME: WTF?
 			this.status = stringDeHTML(doc.getElementsContainingOwnText("Status rejestracji").select("span").html()).toLowerCase();
     	}
     	catch(NullPointerException e)
     	{
     		this.status = "";
     	}
+
+    	try
+    	{
+    		this.dataRejestracji = doc.getElementsContainingOwnText("Pierwsza rejestracja w Polsce").
+    				parents().parents().parents().
+    				get(0).getElementsByClass("date").
+    				get(0).getElementsByTag("p").
+    				html();
+		}
+		catch(NullPointerException e)
+		{
+			this.dataRejestracji = "";
+		}
+
+    	try
+    	{
+			this.dataWydaniaDowodu = doc.getElementById("dataWydaniaDowRej").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.dataWydaniaDowodu = "";
+		}
+
+    	try
+    	{
+			this.dataWydaniaKartyPojazdu = doc.getElementById("dataWydaniaKartyPojazdu").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.dataWydaniaKartyPojazdu = "";
+		}
 			
-		//TODO: przetestować działanie oc i przeglądu dla innych konfiguracji
+		//TODO: przetestować działanie przeglądu dla innych konfiguracji
 			
     	try
     	{

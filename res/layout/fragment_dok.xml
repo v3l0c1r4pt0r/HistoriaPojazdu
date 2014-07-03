@@ -11,6 +11,7 @@
         android:orientation="vertical" >
 
 	    <TextView
+	        android:id="@+id/rejestracjaCap"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/rejestracjaCap"
@@ -24,6 +25,7 @@
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	    <TextView
+	        android:id="@+id/dowodCap"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/dowodCap"
@@ -37,6 +39,7 @@
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	    <TextView
+	        android:id="@+id/kartaCap"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/kartaCap"
