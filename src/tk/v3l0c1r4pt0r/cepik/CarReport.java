@@ -20,6 +20,16 @@ public class CarReport implements Serializable {
 		
 	}
 	
+	public class WrongCaptchaException extends Exception
+	{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 998154090424975252L;
+		
+	}
+	
 	/**
 	 * 
 	 */
@@ -178,11 +188,19 @@ public class CarReport implements Serializable {
 		this.dataRejestracji = dataRejestracji;
 	}
 	
-	public CarReport(String nrRejestracyjny, String siteResponse) throws EntryNotFoundException
+	public CarReport(String nrRejestracyjny, String siteResponse) throws EntryNotFoundException, WrongCaptchaException
 	{
 		this.nrRejestracyjny = nrRejestracyjny;
 		//TODO: wypełnić na podstawie odpowiedzi serwera
 		//TODO: obsłużyć not found
+		if(siteResponse.indexOf("nieprawidłowy kod") != -1)
+		{
+			throw new WrongCaptchaException();
+		}
+		else if(siteResponse.indexOf("nie znaleziono") != -1)
+		{
+			throw new EntryNotFoundException();
+		}
 		Document doc = Jsoup.parse(siteResponse);
 		
     	try
@@ -191,7 +209,7 @@ public class CarReport implements Serializable {
     	}
     	catch(NullPointerException e)
     	{
-			throw new EntryNotFoundException();
+    		this.marka = "";
     	}
     	try
     	{

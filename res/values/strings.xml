@@ -26,8 +26,9 @@
     <string name="wydzialTxtStr">Oznaczenie wydziału prowadzącego księgę wieczystą</string>
     <string name="wydzialStr">-</string>
     <string name="wrongCaptchaMsg">Wprowadzona CAPTCHA była błędna. Spróbuj ponownie!</string>
-    <string name="wrongKwNumberMsg">Podana księga nie istnieje. Upewnij się, że wprowadzony numer jest poprawny.</string>
+    <string name="notFoundMsg">Nie znaleziono pojazdu o podanych danych. Sprawdź poprawność wprowadzonych danych i spróbuj ponownie.</string>
     <string name="errorMsg">Błąd!</string>
+    <string name="notfMsg">Nie znaleziono!</string>
     <string name="aboutContentMsg">Historia Pojazdu\nCopyright by v3l0c1r4pt0r</string>
     <string name="rejCap">Nr rejestracyjny:</string>
     <string name="vinCap">VIN:</string>

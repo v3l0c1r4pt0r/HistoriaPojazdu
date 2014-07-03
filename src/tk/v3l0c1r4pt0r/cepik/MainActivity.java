@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import org.xml.sax.SAXException;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
+import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
 import tk.v3l0c1r4pt0r.cepik.ResultsActivity.PlaceholderFragment;
 import android.media.Image;
 import android.os.Bundle;
@@ -168,8 +169,10 @@ public class MainActivity extends Activity {
     {
     	final Intent intent = new Intent(this, ResultActivity.class);
     	
-    	Button btn = (Button) findViewById(R.id.sendBtn);
+    	final Button btn = (Button) findViewById(R.id.sendBtn);
     	btn.setEnabled(false);
+    	
+    	final Activity thisActivity = this;
 
     	final String nrRejestracyjny = ((EditText)findViewById(R.id.rejVal)).getText().toString();
     	final String vin = ((EditText)findViewById(R.id.vinVal)).getText().toString();
@@ -190,12 +193,49 @@ public class MainActivity extends Activity {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (EntryNotFoundException e) {
-					e.printStackTrace();
-					//FIXME: zamienić na info o braku pojazdu w bazie
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (final Exception e) {
+					if(
+							e instanceof EntryNotFoundException || 
+							e instanceof WrongCaptchaException
+							)
+					{
+						View v = findViewById(R.id.scrollView1);
+						final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
+						v.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								iv.setImageResource(R.drawable.loading);
+								iv.setBackgroundColor(getResources().getColor(R.color.captchaErr));
+						    	Button btn = (Button) findViewById(R.id.sendBtn);
+						    	btn.setEnabled(true);
+								ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+								pb.setVisibility(ProgressBar.INVISIBLE);
+								AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
+								if(e instanceof WrongCaptchaException)
+									builder.setMessage(getResources().getString(R.string.wrongCaptchaMsg))
+								       .setTitle(R.string.errorMsg);
+								else if(e instanceof EntryNotFoundException)
+									builder.setMessage(getResources().getString(R.string.notFoundMsg))
+										.setTitle(R.string.notfMsg);
+								else 
+									e.printStackTrace();
+								builder.setPositiveButton(string.ok, new OnClickListener() {
+									
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										//just close
+									}
+								});
+								AlertDialog dialog = builder.create();
+								dialog.show();
+							}
+						});
+						reloadImage(btn);
+						return;
+					}
+					else 
+						e.printStackTrace();
 				}
 		    	View v = (View) findViewById(R.id.scrollView1);
 		    	final CarReport report = rep;
