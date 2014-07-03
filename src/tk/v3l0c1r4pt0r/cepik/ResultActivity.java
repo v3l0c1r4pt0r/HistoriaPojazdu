@@ -169,7 +169,7 @@ public class ResultActivity extends ActionBarActivity implements
 			case 1:
 				return TechFragment.newInstance("", "");
 			case 2:
-				return DokFragment.newInstance("", "");
+				return DokFragment.newInstance(report);
 			case 3:
 				return OsFragment.newInstance("", "");
 			default:

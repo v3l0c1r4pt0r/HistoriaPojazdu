@@ -1,5 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import tk.v3l0c1r4pt0r.cepik.OgolneFragment.OnFragmentInteractionListener;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,14 +18,9 @@ import android.view.ViewGroup;
  * 
  */
 public class DokFragment extends Fragment {
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
+	private static final String ARG_REPORT = "report";
 
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private CarReport cr;
 
 	private OnFragmentInteractionListener mListener;
 
@@ -32,18 +28,14 @@ public class DokFragment extends Fragment {
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
 	 * 
-	 * @param param1
-	 *            Parameter 1.
-	 * @param param2
-	 *            Parameter 2.
-	 * @return A new instance of fragment DokFragment.
+	 * @param cr
+	 *            Car data class
+	 * @return A new instance of fragment OgolneFragment.
 	 */
-	// TODO: Rename and change types and number of parameters
-	public static DokFragment newInstance(String param1, String param2) {
+	public static DokFragment newInstance(CarReport cr) {
 		DokFragment fragment = new DokFragment();
 		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
+		args.putSerializable(ARG_REPORT, cr);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -56,8 +48,7 @@ public class DokFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
+			cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
 		}
 	}
 
