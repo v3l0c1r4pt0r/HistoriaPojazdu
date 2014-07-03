@@ -88,6 +88,7 @@ public class MainActivity extends Activity {
 			int sel = date.getSelectionStart();
 			if(dateStr != dateNewStr)
 			{
+				//zabezpieczenie przed nieskończoną pętlą
 				date.setText(dateNewStr);
 				try
 				{
