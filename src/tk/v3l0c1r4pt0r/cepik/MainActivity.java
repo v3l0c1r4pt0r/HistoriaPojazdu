@@ -213,11 +213,17 @@ public class MainActivity extends Activity {
 								pb.setVisibility(ProgressBar.INVISIBLE);
 								AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
 								if(e instanceof WrongCaptchaException)
+								{
 									builder.setMessage(getResources().getString(R.string.wrongCaptchaMsg))
 								       .setTitle(R.string.errorMsg);
+									EditText et = (EditText) findViewById(R.id.captchaVal);
+									et.setText("");
+								}
 								else if(e instanceof EntryNotFoundException)
+								{
 									builder.setMessage(getResources().getString(R.string.notFoundMsg))
 										.setTitle(R.string.notfMsg);
+								}
 								else 
 									e.printStackTrace();
 								builder.setPositiveButton(string.ok, new OnClickListener() {
@@ -231,7 +237,7 @@ public class MainActivity extends Activity {
 								dialog.show();
 							}
 						});
-						reloadImage(btn);
+						//TODO: znaleźć sposób na odświeżenie obrazka be wywoływania reloadImage()
 						return;
 					}
 					else 
