@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.TextView;
 
 /**
@@ -69,7 +68,7 @@ public class OgolneFragment extends Fragment {
     {
         super.onActivityCreated(savedInstanceState);
 		
-		CarReport cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
+		CarReport cr = mParam1;
 
 		TextView tv = null;
 		TextView capTv = null;

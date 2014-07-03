@@ -2,24 +2,10 @@ package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.UnknownHostException;
-import java.util.regex.Pattern;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.apache.http.client.ClientProtocolException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.xml.sax.SAXException;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
-import tk.v3l0c1r4pt0r.cepik.ResultsActivity.PlaceholderFragment;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Handler;
 import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,28 +13,20 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
 	public final static String resolvedData = "tk.v3l0c1r4pt0r.ksiegiwieczyste.resolvedData";
-	
-	private Decaptcha decaptcha = null;
 	
 	private WebService cepik = null;
 	
@@ -295,8 +273,6 @@ public class MainActivity extends Activity {
 		
 		//ustaw progress na 0, wyłącz przycisk odświeżania
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-		final ImageButton refreshBtn = (ImageButton) findViewById(R.id.refreshBtn);
-//		refreshBtn.setEnabled(false);
     	
     	final Button sendBtn = (Button) findViewById(R.id.sendBtn);
     	sendBtn.setEnabled(false);

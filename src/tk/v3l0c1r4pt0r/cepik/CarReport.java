@@ -1,12 +1,10 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.Serializable;
-import java.util.InputMismatchException;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 public class CarReport implements Serializable {
 	
@@ -191,8 +189,6 @@ public class CarReport implements Serializable {
 	public CarReport(String nrRejestracyjny, String siteResponse) throws EntryNotFoundException, WrongCaptchaException
 	{
 		this.nrRejestracyjny = nrRejestracyjny;
-		//TODO: wypełnić na podstawie odpowiedzi serwera
-		//TODO: obsłużyć not found
 		if(siteResponse.indexOf("nieprawidłowy kod") != -1)
 		{
 			throw new WrongCaptchaException();
@@ -300,7 +296,7 @@ public class CarReport implements Serializable {
     		this.status = "";
     	}
 			
-			//TODO: przetestować działanie oc i przeglądu dla innych konfiguracji
+		//TODO: przetestować działanie oc i przeglądu dla innych konfiguracji
 			
     	try
     	{
