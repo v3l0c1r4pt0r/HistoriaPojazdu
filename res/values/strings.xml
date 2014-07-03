@@ -40,6 +40,7 @@
     <string name="action_settings">Ustawienia</string>
     <string name="przebiegCap">Przebieg:</string>
     <string name="przebiegVal">nieznany</string>
+    <string name="jednostkaVal"> km</string>
     <string name="ocCap">OC</string>
     <string name="przegladCap">Przegląd</string>
     <string name="kradzionyCap">Pojazd kradziony!</string>

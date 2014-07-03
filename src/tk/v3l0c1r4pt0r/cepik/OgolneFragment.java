@@ -88,6 +88,9 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.przebiegVal);
 		tv.setText(cr.getPrzebieg());
 		
+		tv = (TextView) getView().findViewById(R.id.jednostkaVal);
+		tv.setText(cr.getPrzebiegUnit());
+		
 		tv = (TextView) getView().findViewById(R.id.rokVal);
 		tv.setText(cr.getRokProdukcji());
 		
@@ -103,6 +106,18 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.paliwoVal);
 		tv.setText(cr.getRodzajPaliwa());
 		
+		tv = (TextView) getView().findViewById(R.id.ocVal);
+		if(cr.getOc())
+			tv.setTextColor(getResources().getColor(R.color.ocOkColor));
+		else
+			tv.setTextColor(getResources().getColor(R.color.ocNoColor));
+		
+		tv = (TextView) getView().findViewById(R.id.przegladVal);
+		if(cr.getPrzeglad())
+			tv.setTextColor(getResources().getColor(R.color.ocOkColor));
+		else
+			tv.setTextColor(getResources().getColor(R.color.ocNoColor));
+
 		tv = (TextView) getView().findViewById(R.id.kradzionyVal);
 		if(cr.getKradziony())
 			tv.setVisibility(TextView.VISIBLE);

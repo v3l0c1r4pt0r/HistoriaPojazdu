@@ -41,6 +41,10 @@ public class CarReport implements Serializable {
 		return przebieg;
 	}
 
+	public String getPrzebiegUnit() {
+		return przebiegUnit;
+	}
+
 	public boolean getOc() {
 		return oc;
 	}
@@ -179,19 +183,34 @@ public class CarReport implements Serializable {
 		this.nrRejestracyjny = nrRejestracyjny;
 		//TODO: wypełnić na podstawie odpowiedzi serwera
 		Document doc = Jsoup.parse(siteResponse);
-    	final String[] values = new String[7];
 		
     	try
     	{
-    		this.marka = doc.getElementById("marka").html();
-    		this.typ = doc.getElementById("typ").html();
-    		this.model = doc.getElementById("model").html();
-    		this.przebieg = doc.getElementById("aktualnyStanLicznika").html();
-    		this.rokProdukcji = doc.getElementById("rokProdukcji").html();
+    		this.marka = stringDeHTML(doc.getElementById("marka").html());
+    		this.typ = stringDeHTML(doc.getElementById("typ").html());
+    		this.model = stringDeHTML(doc.getElementById("model").html());
+    		this.przebieg = stringDeHTML(doc.getElementById("aktualnyStanLicznika").html());
+    		this.przebiegUnit = stringDeHTML(doc.getElementById("jednostkaLicznika").html());
+    		this.rokProdukcji = stringDeHTML(doc.getElementById("rokProdukcji").html());
     		this.rodzaj = stringDeHTML(doc.getElementById("rodzaj").html().toLowerCase());
     		this.podrodzaj = stringDeHTML(doc.getElementById("podrodzaj").html().toLowerCase());
     		this.pojemnoscSilnika = stringDeHTML(doc.getElementById("pojemnosc").html());
     		this.rodzajPaliwa = stringDeHTML(doc.getElementById("paliwo").html().toLowerCase());
+			this.vin = stringDeHTML(doc.getElementsContainingOwnText("VIN").select("span").html());
+			
+			//TODO: przetestować działanie oc i przeglądu dla innych konfiguracji
+			
+			if(doc.getElementsContainingOwnText("Polisa OC").select("span")
+					.html().indexOf("brak informacji o aktualnej polisie")!=-1)
+				this.oc = false;
+			else
+				this.oc = true;
+			
+			if(doc.getElementsContainingOwnText("Badanie techniczne").select("span")
+					.html().indexOf("aktualne") != -1)
+				this.przeglad = true;
+			else
+				this.przeglad = false;
     	}
     	catch(NullPointerException e)
     	{
