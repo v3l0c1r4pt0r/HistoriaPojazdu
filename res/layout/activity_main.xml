@@ -43,7 +43,11 @@
 			        android:inputType="text|textCapCharacters|textNoSuggestions"
 			        android:maxLength="8"
 			        android:singleLine="true"
-			        android:text="@string/rejVal" />
+			        android:text="@string/rejVal" >
+
+			        <requestFocus />
+
+			    </EditText>
 		    </LinearLayout>
             
             <LinearLayout
