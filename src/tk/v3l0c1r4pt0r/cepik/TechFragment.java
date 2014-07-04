@@ -89,6 +89,9 @@ public class TechFragment extends Fragment {
 
 		//DMC
 		vch.ChangeEntryState(R.id.dmcCap, R.id.dmcVal, cr.getDmc(), true);
+
+		//liczba osi
+		vch.ChangeEntryState(R.id.osieCap, R.id.osieVal, cr.getLiczbaOsi(), true);
 		
 		//TODO: dodać inne dane opcjonalne
     }
