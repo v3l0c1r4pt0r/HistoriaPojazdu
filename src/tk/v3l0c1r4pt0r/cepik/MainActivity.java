@@ -26,7 +26,8 @@ import android.widget.ProgressBar;
 
 public class MainActivity extends Activity {
 
-	public final static String resolvedData = "tk.v3l0c1r4pt0r.ksiegiwieczyste.resolvedData";
+	public final static String report = "tk.v3l0c1r4pt0r.HistoriaPojazdu.report";
+	public final static String downloader = "tk.v3l0c1r4pt0r.HistoriaPojazdu.downloader";
 	
 	private WebService cepik = null;
 	
@@ -251,7 +252,8 @@ public class MainActivity extends Activity {
 					
 					@Override
 					public void run() {
-				    	intent.putExtra(resolvedData, report);
+				    	intent.putExtra(MainActivity.report, report);
+				    	intent.putExtra(MainActivity.downloader, cepik);
 				    	
 				    	Button btn = (Button) findViewById(R.id.sendBtn);
 				    	btn.setEnabled(true);

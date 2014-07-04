@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,11 +20,16 @@ import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class WebService {
+public class WebService implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8796560971836763585L;
 	private String cookie;
 	private String javaxState;
 	private static String mainUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/index.xhtml";
+	private static String pdfUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/historiaPojazdu.xhtml";
 	private static String captchaUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/captcha";
 	private static String userAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0";
 	
@@ -154,7 +160,6 @@ public class WebService {
 		else
 		{
 			//prawdziwy raport
-			String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/index.xhtml";
 			String post = 
 					  "formularz=formularz&"
 					+ "rej="+nrRejestracyjny+"&"
@@ -163,7 +168,7 @@ public class WebService {
 					+ "captchaAnswer="+captcha+"&"
 					+ "btnSprawdz=Sprawd%C5%BA+pojazd+%C2%BB&"
 					+ "com.sun.faces.StatelessPostback=value";
-			byte[] response = getResponse(new URL(target), post);
+			byte[] response = getResponse(new URL(mainUrl), post);
 			String reportStr = new String(response);
 			//get javaxState
 			Document doc = Jsoup.parse(reportStr);
@@ -172,18 +177,16 @@ public class WebService {
 		}
 	}
 	
-	public String getReportPdf() throws MalformedURLException, IOException, ReportNotGeneratedException
+	public PdfDescriptor getReportPdf() throws MalformedURLException, IOException, ReportNotGeneratedException
 	{
 		if(javaxState != null && javaxState != "")
 		{
-			String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/index.xhtml";
 			String post = 
 					    "formularz=formularz&"
 					  + "javax.faces.ViewState="+javaxState+"&"
 					  + "pobierzRaportPdf=pobierzRaportPdf";
-			byte[] response = getResponse(new URL(target), post);
-			String reportStr = new String(response);
-			return reportStr;
+			byte[] response = getResponse(new URL(pdfUrl), post);
+			return new PdfDescriptor("raport.pdf",response);//TODO: weź nazwę z serwera
 		}
 		else
 			throw new ReportNotGeneratedException();

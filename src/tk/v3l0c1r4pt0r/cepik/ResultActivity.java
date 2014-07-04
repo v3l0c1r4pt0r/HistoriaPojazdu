@@ -1,7 +1,12 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Locale;
 
+import tk.v3l0c1r4pt0r.cepik.WebService.ReportNotGeneratedException;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,9 +22,11 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ResultActivity extends ActionBarActivity implements
 		ActionBar.TabListener, 
@@ -29,7 +36,9 @@ public class ResultActivity extends ActionBarActivity implements
 		OsFragment.OnFragmentInteractionListener {
 	
 	private CarReport report = null;
+	private WebService downloader = null;
 	private ActionBar actionBar = null;
+	private Activity thisActivity = null;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -50,9 +59,12 @@ public class ResultActivity extends ActionBarActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_results);
 		
+		thisActivity = this;
+		
 		//pobierz wartość z poprzedniej aktywności
 		Intent intent = getIntent();
-		report = (CarReport) intent.getSerializableExtra(MainActivity.resolvedData);
+		report = (CarReport) intent.getSerializableExtra(MainActivity.report);
+		downloader = (WebService) intent.getSerializableExtra(MainActivity.downloader);
 
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -120,6 +132,50 @@ public class ResultActivity extends ActionBarActivity implements
 			break;
 		case R.id.action_download:
 			//TODO: dodać instancję WebService do parametrów wywołania activity
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						PdfDescriptor pdf = downloader.getReportPdf();
+						File downloads = Environment.getExternalStoragePublicDirectory(
+								Environment.DIRECTORY_DOWNLOADS
+								);
+						final String filePath = downloads.getAbsolutePath() + "/" + pdf.getName();
+						File output = new File(filePath);
+						FileOutputStream fos = new FileOutputStream(output);
+						fos.write(pdf.getPdf());
+						fos.close();
+						//zapisałem, pokaż dymek ze ścieżką
+						thisActivity.findViewById(R.id.pager).post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast toast = Toast.makeText(
+										thisActivity, 
+										getString(R.string.downloadedMsg) + "\"" + filePath + "\"", 
+										Toast.LENGTH_LONG
+										);
+								toast.show();
+							}
+						});
+						//otwórz w domyślnej przeglądarce
+						Intent intent = new Intent();
+						intent.setAction(android.content.Intent.ACTION_VIEW);
+						intent.setDataAndType(Uri.fromFile(output), "application/pdf");
+						startActivity(intent);
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ReportNotGeneratedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
