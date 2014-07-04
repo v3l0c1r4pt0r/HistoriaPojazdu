@@ -81,6 +81,15 @@
     <string name="dowodVal">--.--.----</string>
     <string name="kartaCap">Data wydania karty pojazdu:</string>
     <string name="kartaVal">--.--.----</string>
+    <string name="homoCap">Świadectwo homologacji</string>
+    <string name="kategoriaCap">Kategoria:</string>
+    <string name="kategoriaVal">--</string>
+    <string name="wersjaCap">Wersja:</string>
+    <string name="wersjaVal">---</string>
+    <string name="numerCap">Numer:</string>
+    <string name="numerVal">-</string>
+    <string name="wariantCap">Wariant:</string>
+    <string name="wariantVal">--</string>
     <string name="refresh">Odśwież</string>
     <string name="comma">, </string>
     <string name="hello_blank_fragment">TODO: zaprojektować!</string>

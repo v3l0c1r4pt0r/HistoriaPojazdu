@@ -51,6 +51,70 @@
 	        android:layout_height="wrap_content"
 	        android:text="@string/kartaVal"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/homoCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/homoCap"
+	        android:gravity="center_horizontal"
+	        android:layout_marginTop="10dp" />
+
+	    <TextView
+	        android:id="@+id/kategoriaCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/kategoriaCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/kategoriaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/kategoriaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/wersjaCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/wersjaCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/wersjaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/wersjaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/numerCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/numerCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/numerVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/numerVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/wariantCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/wariantCap"
+	        android:layout_marginTop="10dp" />
+	
+	    <TextView
+	        android:id="@+id/wariantVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/wariantVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
 	    
 	    </LinearLayout>
 
