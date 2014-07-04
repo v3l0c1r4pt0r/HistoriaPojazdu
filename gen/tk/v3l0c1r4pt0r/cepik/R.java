@@ -1102,7 +1102,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int VINLayout=0x7f060041;
-        public static final int action_about=0x7f060073;
+        public static final int action_about=0x7f06007d;
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1111,11 +1111,11 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f060023;
         public static final int action_bar_title=0x7f060022;
         public static final int action_context_bar=0x7f06001d;
-        public static final int action_download=0x7f060074;
+        public static final int action_download=0x7f06007e;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060075;
+        public static final int action_settings=0x7f06007f;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1130,7 +1130,8 @@ containing a value of this type.
         public static final int default_activity_button=0x7f060028;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
-        public static final int dmcVal=0x7f060071;
+        public static final int dmcCap=0x7f060079;
+        public static final int dmcVal=0x7f06007a;
         public static final int dowodCap=0x7f06004f;
         public static final int dowodVal=0x7f060050;
         public static final int dropdown=0x7f06000f;
@@ -1153,10 +1154,13 @@ containing a value of this type.
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int markaVal=0x7f06005c;
-        public static final int masaVal=0x7f06006e;
+        public static final int masaCap=0x7f060073;
+        public static final int masaVal=0x7f060074;
         public static final int middle=0x7f060012;
-        public static final int miejscaVal=0x7f06006c;
-        public static final int mocVal=0x7f06006b;
+        public static final int miejscaCap=0x7f06006f;
+        public static final int miejscaVal=0x7f060070;
+        public static final int mocCap=0x7f06006c;
+        public static final int mocVal=0x7f06006d;
         public static final int modelVal=0x7f06005e;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
@@ -1164,18 +1168,23 @@ containing a value of this type.
         public static final int numerCap=0x7f060058;
         public static final int numerVal=0x7f060059;
         public static final int ocVal=0x7f060061;
-        public static final int osieVal=0x7f060072;
+        public static final int osieCap=0x7f06007b;
+        public static final int osieVal=0x7f06007c;
         public static final int pager=0x7f06004d;
+        public static final int paliwoCap=0x7f06006e;
         public static final int paliwoVal=0x7f06006a;
         public static final int podrodzajVal=0x7f060068;
+        public static final int pojemnoscCap=0x7f06006b;
         public static final int pojemnoscVal=0x7f060069;
         public static final int progressBar=0x7f06003d;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int przebiegVal=0x7f06005f;
         public static final int przegladVal=0x7f060062;
-        public static final int przyczepaBezVal=0x7f060070;
-        public static final int przyczepaHamVal=0x7f06006f;
+        public static final int przyczepaBezCap=0x7f060077;
+        public static final int przyczepaBezVal=0x7f060078;
+        public static final int przyczepaHamCap=0x7f060075;
+        public static final int przyczepaHamVal=0x7f060076;
         public static final int radio=0x7f06002f;
         public static final int refreshBtn=0x7f06004b;
         public static final int rejCap=0x7f06003f;
@@ -1201,7 +1210,8 @@ containing a value of this type.
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
-        public static final int siedząceVal=0x7f06006d;
+        public static final int siedzaceCap=0x7f060071;
+        public static final int siedzaceVal=0x7f060072;
         public static final int split_action_bar=0x7f06001e;
         public static final int statusCap=0x7f060065;
         public static final int statusVal=0x7f060066;
@@ -1404,8 +1414,8 @@ containing a value of this type.
         public static final int rokCap=0x7f0b0030;
         public static final int rokVal=0x7f0b0031;
         public static final int sendCap=0x7f0b0015;
-        public static final int siedząceCap=0x7f0b003e;
-        public static final int siedząceVal=0x7f0b003f;
+        public static final int siedzaceCap=0x7f0b003e;
+        public static final int siedzaceVal=0x7f0b003f;
         public static final int silnikCap=0x7f0b0035;
         public static final int statusCap=0x7f0b002e;
         public static final int statusVal=0x7f0b002f;

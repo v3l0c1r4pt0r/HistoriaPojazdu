@@ -167,7 +167,7 @@ public class ResultActivity extends ActionBarActivity implements
 			case 0:
 				return OgolneFragment.newInstance(report);
 			case 1:
-				return TechFragment.newInstance("", "");
+				return TechFragment.newInstance(report);
 			case 2:
 				return DokFragment.newInstance(report);
 			case 3:

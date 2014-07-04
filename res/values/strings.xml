@@ -50,8 +50,8 @@
     <string name="mocVal">-- kW</string>
     <string name="miejscaCap">Liczba miejsc:</string>
     <string name="miejscaVal">-</string>
-    <string name="siedząceCap">W tym siedzących:</string>
-    <string name="siedząceVal">-</string>
+    <string name="siedzaceCap">W tym siedzących:</string>
+    <string name="siedzaceVal">-</string>
     <string name="masaCap">Masa własna pojazdu:</string>
     <string name="masaVal">--- kg</string>
     <string name="przyczepaHamCap">Maksymalna masa całkowita przyczepy z hamulcem:</string>

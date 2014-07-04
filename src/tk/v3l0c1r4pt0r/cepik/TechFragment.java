@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
@@ -17,14 +18,9 @@ import android.view.ViewGroup;
  * 
  */
 public class TechFragment extends Fragment {
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
+	private static final String ARG_REPORT = "report";
 
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private CarReport cr;
 
 	private OnFragmentInteractionListener mListener;
 
@@ -32,18 +28,14 @@ public class TechFragment extends Fragment {
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
 	 * 
-	 * @param param1
-	 *            Parameter 1.
-	 * @param param2
-	 *            Parameter 2.
-	 * @return A new instance of fragment TechFragment.
+	 * @param cr
+	 *            Car data class
+	 * @return A new instance of fragment OgolneFragment.
 	 */
-	// TODO: Rename and change types and number of parameters
-	public static TechFragment newInstance(String param1, String param2) {
+	public static TechFragment newInstance(CarReport cr) {
 		TechFragment fragment = new TechFragment();
 		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
+		args.putSerializable(ARG_REPORT, cr);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -56,8 +48,7 @@ public class TechFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
+			cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
 		}
 	}
 
@@ -67,6 +58,31 @@ public class TechFragment extends Fragment {
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_tech, container, false);
 	}
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+		TextView tv = null;
+		TextView capTv = null;
+
+		//pojemnosc silnika
+		tv = (TextView) getView().findViewById(R.id.pojemnoscVal);
+		capTv = (TextView) getView().findViewById(R.id.pojemnoscCap);
+		String pojemnosc = cr.getPojemnoscSilnika();
+		if(pojemnosc.length()>0)
+		{
+			tv.setText(pojemnosc);
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			tv.setVisibility(View.GONE);
+			capTv.setVisibility(View.GONE);
+		}
+    }
 
 	// TODO: Rename method, update argument and hook method into UI event
 	public void onButtonPressed(Uri uri) {
