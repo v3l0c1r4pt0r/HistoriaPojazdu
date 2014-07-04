@@ -7,7 +7,6 @@
     <string name="rejVal"></string>
     <string name="vinVal"></string>
     <string name="rejestracjaVal"></string>
-    <string name="nkwstr">Numer Księgi Wieczystej:</string>
     <string name="captchaTxtStr">CAPTCHA:</string>
     <string name="captcha">CAPTCHA</string>
     <string name="sendCap">Sprawdź</string>
