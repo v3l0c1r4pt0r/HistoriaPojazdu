@@ -108,8 +108,6 @@ public class TechFragment extends Fragment {
 
 		//nacisk na oś
 		vch.ChangeEntryState(R.id.naciskNaOsCap, R.id.naciskNaOsVal, cr.getNaciskNaOs(), true);
-		
-		//TODO: dodać inne dane opcjonalne
     }
 
 	public void onButtonPressed(Uri uri) {
