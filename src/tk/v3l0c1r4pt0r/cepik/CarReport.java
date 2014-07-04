@@ -161,6 +161,30 @@ public class CarReport implements Serializable {
 	public String gethWariant() {
 		return hWariant;
 	}
+	
+	public String getEmisjaCo2() {
+		return emisjaCo2;
+	}
+
+	public String getZuzyciePaliwa() {
+		return zuzyciePaliwa;
+	}
+
+	public String getDopuszczalnaLadownosc() {
+		return dopuszczalnaLadownosc;
+	}
+
+	public String getRozstawOsi() {
+		return rozstawOsi;
+	}
+
+	public String getRozstawKol() {
+		return rozstawKol;
+	}
+
+	public String getNaciskNaOs() {
+		return naciskNaOs;
+	}
 
 	String marka;
 	String typ;
@@ -185,6 +209,7 @@ public class CarReport implements Serializable {
 	
 	String mocSilnika;
 	String emisjaCo2;//TODO
+
 	String zuzyciePaliwa;//TODO
 	String liczbaMiejsc;
 	String liczbaMiejscSiedzacych;
@@ -382,6 +407,123 @@ public class CarReport implements Serializable {
 		{
 			this.homologacja = false;
 		}
+
+    	//techniczne
+    	try
+    	{
+			this.mocSilnika = doc.getElementById("mocSilnika").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.mocSilnika = "";
+		}
+    	try
+    	{
+			this.emisjaCo2 = doc.getElementById("emisjaCO2").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.emisjaCo2 = "";
+		}
+    	try
+    	{
+			this.zuzyciePaliwa = doc.getElementById("srednieZuzyciePaliwa").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.zuzyciePaliwa = "";
+		}
+    	try
+    	{
+			this.liczbaMiejsc = doc.getElementById("liczbaMiejscOgolem").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.liczbaMiejsc = "";
+		}
+    	try
+    	{
+			this.liczbaMiejscSiedzacych = doc.getElementById("liczbaMiejscSiedzacych").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.liczbaMiejscSiedzacych = "";
+		}
+    	try
+    	{
+			this.masaWlasna = doc.getElementById("masaWlasna").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.masaWlasna = "";
+		}
+    	try
+    	{
+			this.masaPrzyczepyZHamulcem = doc.getElementById("maxMasaPrzyczepyZHamulcem").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.masaPrzyczepyZHamulcem = "";
+		}
+    	try
+    	{
+			this.masaPrzyczepyBezHamulca = doc.getElementById("maxMasaPrzyczepyBezHamulca").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.masaPrzyczepyBezHamulca = "";
+		}
+    	try
+    	{
+			this.dopuszczalnaLadownosc = doc.getElementById("dopuszczalnaLadownosc").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.dopuszczalnaLadownosc = "";
+		}
+    	try
+    	{
+			this.dmc = doc.getElementById("dopuszczalnaMasaCalkowita").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.dmc = "";
+		}
+    	try
+    	{
+			this.liczbaOsi = doc.getElementById("liczbaOsi").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.liczbaOsi = "";
+		}
+    	try
+    	{
+			this.rozstawOsi = doc.getElementById("rozstawOsi").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.rozstawOsi = "";
+		}
+    	try
+    	{
+			this.rozstawKol = doc.getElementById("rozstawKol").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.rozstawKol = "";
+		}
+    	try
+    	{
+    		Element el = doc.getElementById("maxNaciskNaOsEtykieta");
+    		String s = el.html();
+    		s.toString();
+			this.naciskNaOs = doc.getElementById("maxNaciskNaOs").html();
+    	}
+		catch(NullPointerException e)
+		{
+			this.naciskNaOs = "";
+		}
 			
 		//TODO: przetestować działanie przeglądu dla innych konfiguracji
 			
@@ -445,9 +587,6 @@ public class CarReport implements Serializable {
     	
     	pattern = Pattern.compile("\\&sup3\\;");
     	str = pattern.matcher(str).replaceAll("³");
-    	
-    	pattern = Pattern.compile("\\&#346\\;");
-    	str = pattern.matcher(str).replaceAll("Ś");
     	return str;
     }
 
