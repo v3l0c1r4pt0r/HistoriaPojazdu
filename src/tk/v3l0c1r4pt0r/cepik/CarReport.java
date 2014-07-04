@@ -208,16 +208,16 @@ public class CarReport implements Serializable {
 	String rodzajPaliwa;
 	
 	String mocSilnika;
-	String emisjaCo2;//TODO
+	String emisjaCo2;
 
-	String zuzyciePaliwa;//TODO
+	String zuzyciePaliwa;
 	String liczbaMiejsc;
 	String liczbaMiejscSiedzacych;
 	
 	String masaWlasna;
 	String masaPrzyczepyZHamulcem;
 	String masaPrzyczepyBezHamulca;
-	String dopuszczalnaLadownosc;//TODO
+	String dopuszczalnaLadownosc;
 	String dmc;
 	
 	String liczbaOsi;

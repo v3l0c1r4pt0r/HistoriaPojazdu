@@ -50,6 +50,8 @@
     <string name="mocVal">-- kW</string>
     <string name="emisjaCap">Emisja CO₂:</string>
     <string name="emisjaVal">- g/km</string>
+    <string name="zuzycieCap">Średnie zużycie paliwa na 100 km:</string>
+    <string name="zuzycieVal">- l</string>
     <string name="miejscaCap">Liczba miejsc:</string>
     <string name="miejscaVal">-</string>
     <string name="siedzaceCap">W tym siedzących:</string>
@@ -60,6 +62,8 @@
     <string name="przyczepaHamVal">--- kg</string>
     <string name="przyczepaBezCap">Maksymalna masa całkowita przyczepy bez hamulca:</string>
     <string name="przyczepaBezVal">--- kg</string>
+    <string name="ladownoscCap">Dopuszczalna ładowność:</string>
+    <string name="ladownoscVal">--- kg</string>
     <string name="dmcCap">Dopuszczalna masa całkowita:</string>
     <string name="dmcVal">--- kg</string>
     <string name="osieCap">Liczba osi:</string>

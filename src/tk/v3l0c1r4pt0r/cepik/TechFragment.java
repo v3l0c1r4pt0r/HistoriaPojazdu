@@ -70,9 +70,13 @@ public class TechFragment extends Fragment {
 
 		//moc silnika
 		vch.ChangeEntryState(R.id.mocCap, R.id.mocVal, cr.getMocSilnika(), true);
+		//TODO: dodać moc w KM w nawiasie
 
 		//emisja co2
 		vch.ChangeEntryState(R.id.emisjaCap, R.id.emisjaVal, cr.getEmisjaCo2(), true);
+
+		//srednie zuzycie
+		vch.ChangeEntryState(R.id.zuzycieCap, R.id.zuzycieVal, cr.getZuzyciePaliwa(), true);
 
 		//paliwo
 		vch.ChangeEntryState(R.id.paliwoCap, R.id.paliwoVal, cr.getRodzajPaliwa(), true);

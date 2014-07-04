@@ -50,6 +50,19 @@
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	    <TextView
+	        android:id="@+id/zuzycieCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/zuzycieCap" />
+	
+	    <TextView
+	        android:id="@+id/zuzycieVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/zuzycieVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
 	        android:id="@+id/paliwoCap"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
@@ -154,6 +167,19 @@
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	    <TextView
+	        android:id="@+id/ladownoscCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/ladownoscCap" />
+	
+	    <TextView
+	        android:id="@+id/ladownoscVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/ladownoscVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
 	        android:id="@+id/dmcCap"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
@@ -216,7 +242,7 @@
 	        android:id="@+id/naciskNaOsVal"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/naciskNaOsCap"
+	        android:text="@string/naciskNaOsVal"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     </LinearLayout>
