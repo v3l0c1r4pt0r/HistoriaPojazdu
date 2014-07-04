@@ -94,6 +94,9 @@ public class TechFragment extends Fragment {
 		//masa bez hamulca
 		vch.ChangeEntryState(R.id.przyczepaBezCap, R.id.przyczepaBezVal, cr.getMasaPrzyczepyBezHamulca(), true);
 
+		//dopuszczalna ładowność
+		vch.ChangeEntryState(R.id.ladownoscCap, R.id.ladownoscVal, cr.getDopuszczalnaLadownosc(), true);
+
 		//DMC
 		vch.ChangeEntryState(R.id.dmcCap, R.id.dmcVal, cr.getDmc(), true);
 

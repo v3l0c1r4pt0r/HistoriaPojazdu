@@ -131,7 +131,6 @@ public class ResultActivity extends ActionBarActivity implements
 			ResultActivity.menuShowAbout(this);
 			break;
 		case R.id.action_download:
-			//TODO: dodać instancję WebService do parametrów wywołania activity
 			new Thread(new Runnable() {
 				
 				@Override
