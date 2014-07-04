@@ -4,3 +4,4 @@
 - moc silnika też w koniach mechanicznych (przelicznik)
 - PILNE: usunąć dane przykładowe i zastąpić podkreśleniem błędnych pól przy walidacji
 - nazwa pliku PDF z serwera
+- zmienić błędy w popupach na toasty
