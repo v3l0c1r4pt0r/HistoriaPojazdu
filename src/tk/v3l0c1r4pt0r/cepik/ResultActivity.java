@@ -118,8 +118,10 @@ public class ResultActivity extends ActionBarActivity implements
 		case R.id.action_about:
 			ResultActivity.menuShowAbout(this);
 			break;
+		case R.id.action_download:
+			//TODO: dodać instancję WebService do parametrów wywołania activity
+			break;
 		}
-		//TODO: download PDF
 		return super.onOptionsItemSelected(item);
 	}
     
