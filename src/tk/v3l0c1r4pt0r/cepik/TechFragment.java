@@ -66,22 +66,14 @@ public class TechFragment extends Fragment {
 
 		TextView tv = null;
 		TextView capTv = null;
+		
+		ViewChangeHelper vch = new ViewChangeHelper(getView());
 
 		//pojemnosc silnika
-		tv = (TextView) getView().findViewById(R.id.pojemnoscVal);
-		capTv = (TextView) getView().findViewById(R.id.pojemnoscCap);
-		String pojemnosc = cr.getPojemnoscSilnika();
-		if(pojemnosc.length()>0)
-		{
-			tv.setText(pojemnosc);
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			tv.setVisibility(View.GONE);
-			capTv.setVisibility(View.GONE);
-		}
+		vch.ChangeEntryState(R.id.pojemnoscCap, R.id.pojemnoscVal, cr.getPojemnoscSilnika(), true);
+
+		//moc silnika
+		vch.ChangeEntryState(R.id.mocCap, R.id.mocVal, cr.getMocSilnika(), true);
     }
 
 	// TODO: Rename method, update argument and hook method into UI event

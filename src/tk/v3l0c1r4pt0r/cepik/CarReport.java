@@ -411,7 +411,7 @@ public class CarReport implements Serializable {
     	//techniczne
     	try
     	{
-			this.mocSilnika = doc.getElementById("mocSilnika").html();
+			this.mocSilnika = stringDeHTML(doc.getElementById("mocSilnika").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -419,7 +419,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.emisjaCo2 = doc.getElementById("emisjaCO2").html();
+			this.emisjaCo2 = stringDeHTML(doc.getElementById("emisjaCO2").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -427,7 +427,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.zuzyciePaliwa = doc.getElementById("srednieZuzyciePaliwa").html();
+			this.zuzyciePaliwa = stringDeHTML(doc.getElementById("srednieZuzyciePaliwa").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -435,7 +435,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.liczbaMiejsc = doc.getElementById("liczbaMiejscOgolem").html();
+			this.liczbaMiejsc = stringDeHTML(doc.getElementById("liczbaMiejscOgolem").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -443,7 +443,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.liczbaMiejscSiedzacych = doc.getElementById("liczbaMiejscSiedzacych").html();
+			this.liczbaMiejscSiedzacych = stringDeHTML(doc.getElementById("liczbaMiejscSiedzacych").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -451,7 +451,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.masaWlasna = doc.getElementById("masaWlasna").html();
+			this.masaWlasna = stringDeHTML(doc.getElementById("masaWlasna").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -459,7 +459,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.masaPrzyczepyZHamulcem = doc.getElementById("maxMasaPrzyczepyZHamulcem").html();
+			this.masaPrzyczepyZHamulcem = stringDeHTML(doc.getElementById("maxMasaPrzyczepyZHamulcem").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -467,7 +467,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.masaPrzyczepyBezHamulca = doc.getElementById("maxMasaPrzyczepyBezHamulca").html();
+			this.masaPrzyczepyBezHamulca = stringDeHTML(doc.getElementById("maxMasaPrzyczepyBezHamulca").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -475,7 +475,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.dopuszczalnaLadownosc = doc.getElementById("dopuszczalnaLadownosc").html();
+			this.dopuszczalnaLadownosc = stringDeHTML(doc.getElementById("dopuszczalnaLadownosc").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -483,7 +483,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.dmc = doc.getElementById("dopuszczalnaMasaCalkowita").html();
+			this.dmc = stringDeHTML(doc.getElementById("dopuszczalnaMasaCalkowita").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -491,7 +491,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.liczbaOsi = doc.getElementById("liczbaOsi").html();
+			this.liczbaOsi = stringDeHTML(doc.getElementById("liczbaOsi").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -499,7 +499,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.rozstawOsi = doc.getElementById("rozstawOsi").html();
+			this.rozstawOsi = stringDeHTML(doc.getElementById("rozstawOsi").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -507,7 +507,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-			this.rozstawKol = doc.getElementById("rozstawKol").html();
+			this.rozstawKol = stringDeHTML(doc.getElementById("rozstawKol").html());
     	}
 		catch(NullPointerException e)
 		{
@@ -515,10 +515,7 @@ public class CarReport implements Serializable {
 		}
     	try
     	{
-    		Element el = doc.getElementById("maxNaciskNaOsEtykieta");
-    		String s = el.html();
-    		s.toString();
-			this.naciskNaOs = doc.getElementById("maxNaciskNaOs").html();
+			this.naciskNaOs = stringDeHTML(doc.getElementById("maxNaciskNaOs").html());
     	}
 		catch(NullPointerException e)
 		{
