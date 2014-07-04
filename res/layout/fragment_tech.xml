@@ -37,6 +37,19 @@
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	    <TextView
+	        android:id="@+id/emisjaCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/emisjaCap" />
+	
+	    <TextView
+	        android:id="@+id/emisjaVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/emisjaVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
 	        android:id="@+id/paliwoCap"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
@@ -165,6 +178,45 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/osieVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/rozstawOsiCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rozstawOsiCap" />
+	
+	    <TextView
+	        android:id="@+id/rozstawOsiVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rozstawOsiVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/rozstawKolCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rozstawKolCap" />
+	
+	    <TextView
+	        android:id="@+id/rozstawKolVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rozstawKolVal"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/naciskNaOsCap"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/naciskNaOsCap" />
+	
+	    <TextView
+	        android:id="@+id/naciskNaOsVal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/naciskNaOsCap"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     </LinearLayout>

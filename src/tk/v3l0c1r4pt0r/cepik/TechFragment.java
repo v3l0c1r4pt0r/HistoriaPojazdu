@@ -71,6 +71,9 @@ public class TechFragment extends Fragment {
 		//moc silnika
 		vch.ChangeEntryState(R.id.mocCap, R.id.mocVal, cr.getMocSilnika(), true);
 
+		//emisja co2
+		vch.ChangeEntryState(R.id.emisjaCap, R.id.emisjaVal, cr.getEmisjaCo2(), true);
+
 		//paliwo
 		vch.ChangeEntryState(R.id.paliwoCap, R.id.paliwoVal, cr.getRodzajPaliwa(), true);
 
@@ -92,6 +95,15 @@ public class TechFragment extends Fragment {
 
 		//liczba osi
 		vch.ChangeEntryState(R.id.osieCap, R.id.osieVal, cr.getLiczbaOsi(), true);
+
+		//rozstaw osi
+		vch.ChangeEntryState(R.id.rozstawOsiCap, R.id.rozstawOsiVal, cr.getRozstawOsi(), true);
+
+		//rozstaw kół
+		vch.ChangeEntryState(R.id.rozstawKolCap, R.id.rozstawKolVal, cr.getRozstawKol(), true);
+
+		//nacisk na oś
+		vch.ChangeEntryState(R.id.naciskNaOsCap, R.id.naciskNaOsVal, cr.getNaciskNaOs(), true);
 		
 		//TODO: dodać inne dane opcjonalne
     }

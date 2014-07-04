@@ -48,6 +48,8 @@
     <string name="paliwoVal">-</string>
     <string name="mocCap">Moc silnika:</string>
     <string name="mocVal">-- kW</string>
+    <string name="emisjaCap">Emisja CO₂:</string>
+    <string name="emisjaVal">- g/km</string>
     <string name="miejscaCap">Liczba miejsc:</string>
     <string name="miejscaVal">-</string>
     <string name="siedzaceCap">W tym siedzących:</string>
@@ -62,6 +64,12 @@
     <string name="dmcVal">--- kg</string>
     <string name="osieCap">Liczba osi:</string>
     <string name="osieVal">-</string>
+    <string name="rozstawOsiCap">Rozstaw osi:</string>
+    <string name="rozstawOsiVal">-</string>
+    <string name="rozstawKolCap">Rozstaw kół:</string>
+    <string name="rozstawKolVal">-</string>
+    <string name="naciskNaOsCap">Maksymalny nacisk na oś:</string>
+    <string name="naciskNaOsVal">-</string>
     <string name="rejestracjaCap">Data pierwszej rejestracji:</string>
     <string name="dowodCap">Data wydania dowodu rejestracyjnego:</string>
     <string name="dowodVal">--.--.----</string>

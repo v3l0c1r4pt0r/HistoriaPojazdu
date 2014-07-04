@@ -221,9 +221,9 @@ public class CarReport implements Serializable {
 	String dmc;
 	
 	String liczbaOsi;
-	String rozstawOsi;//TODO
-	String rozstawKol;//TODO
-	String naciskNaOs;//TODO
+	String rozstawOsi;
+	String rozstawKol;
+	String naciskNaOs;
 	
 	String dataRejestracji;
 	String dataWydaniaDowodu;
