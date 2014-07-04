@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -28,6 +29,7 @@ public class ResultActivity extends ActionBarActivity implements
 		OsFragment.OnFragmentInteractionListener {
 	
 	private CarReport report = null;
+	private ActionBar actionBar = null;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -54,7 +56,9 @@ public class ResultActivity extends ActionBarActivity implements
 
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
+		this.actionBar = actionBar;
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		ActionBarUtils.setHasEmbeddedTabs(actionBar, false);
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
@@ -86,6 +90,13 @@ public class ResultActivity extends ActionBarActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+	}
+	
+	@Override
+	public void onConfigurationChanged (Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		ActionBarUtils.setHasEmbeddedTabs(actionBar, false);
 	}
 
 	@Override
@@ -181,7 +192,7 @@ public class ResultActivity extends ActionBarActivity implements
 		public int getCount() {
 			// Show 4 total pages.
 			return 3;
-			//ustawiony w zależności od liczby kart
+			//FIXME: ustawiony w zależności od liczby kart
 		}
 
 		@Override
