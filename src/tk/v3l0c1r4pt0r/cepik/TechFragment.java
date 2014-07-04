@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
@@ -63,9 +62,6 @@ public class TechFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
-		TextView tv = null;
-		TextView capTv = null;
 		
 		ViewChangeHelper vch = new ViewChangeHelper(getView());
 
@@ -74,9 +70,29 @@ public class TechFragment extends Fragment {
 
 		//moc silnika
 		vch.ChangeEntryState(R.id.mocCap, R.id.mocVal, cr.getMocSilnika(), true);
+
+		//paliwo
+		vch.ChangeEntryState(R.id.paliwoCap, R.id.paliwoVal, cr.getRodzajPaliwa(), true);
+
+		//liczby miejsc
+		vch.ChangeEntryState(R.id.miejscaCap, R.id.miejscaVal, cr.getLiczbaMiejsc(), true);
+		vch.ChangeEntryState(R.id.siedzaceCap, R.id.siedzaceVal, cr.getLiczbaMiejscSiedzacych(), true);
+
+		//masa własna
+		vch.ChangeEntryState(R.id.masaCap, R.id.masaVal, cr.getMasaWlasna(), true);
+
+		//masa z hamulcem
+		vch.ChangeEntryState(R.id.przyczepaHamCap, R.id.przyczepaHamVal, cr.getMasaPrzyczepyZHamulcem(), true);
+
+		//masa bez hamulca
+		vch.ChangeEntryState(R.id.przyczepaBezCap, R.id.przyczepaBezVal, cr.getMasaPrzyczepyBezHamulca(), true);
+
+		//DMC
+		vch.ChangeEntryState(R.id.dmcCap, R.id.dmcVal, cr.getDmc(), true);
+		
+		//TODO: dodać inne dane opcjonalne
     }
 
-	// TODO: Rename method, update argument and hook method into UI event
 	public void onButtonPressed(Uri uri) {
 		if (mListener != null) {
 			mListener.onFragmentInteraction(uri);
@@ -110,7 +126,6 @@ public class TechFragment extends Fragment {
 	 * >Communicating with Other Fragments</a> for more information.
 	 */
 	public interface OnFragmentInteractionListener {
-		// TODO: Update argument type and name
 		public void onFragmentInteraction(Uri uri);
 	}
 

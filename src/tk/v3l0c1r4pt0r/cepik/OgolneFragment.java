@@ -65,7 +65,6 @@ public class OgolneFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 		TextView tv = null;
-		TextView capTv = null;
 		
 		ViewChangeHelper vch = new ViewChangeHelper(getView());
 		
