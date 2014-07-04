@@ -30,6 +30,12 @@ public class ViewChangeHelper {
 				capTv.setVisibility(View.GONE);
 			}
 		}
+		else
+		{
+			tv.setText(value);
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
 	}
 
 }

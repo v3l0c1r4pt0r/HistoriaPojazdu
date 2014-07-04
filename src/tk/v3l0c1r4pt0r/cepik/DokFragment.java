@@ -66,73 +66,29 @@ public class DokFragment extends Fragment {
 
 		TextView tv = null;
 		TextView capTv = null;
+		
+		ViewChangeHelper vch = new ViewChangeHelper(getView());
 
 		//data pierwszej rejestracji
-		tv = (TextView) getView().findViewById(R.id.rejestracjaVal);
-		capTv = (TextView) getView().findViewById(R.id.rejestracjaCap);
-		String rejestracja = cr.getDataRejestracji();
-		if(rejestracja.length()>0)
-		{
-			tv.setText(rejestracja);
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			tv.setVisibility(View.GONE);
-			capTv.setVisibility(View.GONE);
-		}
+		vch.ChangeEntryState(R.id.rejestracjaCap, R.id.rejestracjaVal, cr.getDataRejestracji(), true);
 
 		//data wydania aktualnego dowodu
-		tv = (TextView) getView().findViewById(R.id.dowodVal);
-		capTv = (TextView) getView().findViewById(R.id.dowodCap);
-		String dowod = cr.getDataWydaniaDowodu();
-		if(dowod.length()>0)
-		{
-			tv.setText(dowod);
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			tv.setVisibility(View.GONE);
-			capTv.setVisibility(View.GONE);
-		}
+		vch.ChangeEntryState(R.id.dowodCap, R.id.dowodVal, cr.getDataWydaniaDowodu(), true);
 
 		//data wydania karty pojazdu
-		tv = (TextView) getView().findViewById(R.id.kartaVal);
-		capTv = (TextView) getView().findViewById(R.id.kartaCap);
-		String karta = cr.getDataWydaniaKartyPojazdu();
-		if(karta.length()>0)
-		{
-			tv.setText(karta);
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			tv.setVisibility(View.GONE);
-			capTv.setVisibility(View.GONE);
-		}
+		vch.ChangeEntryState(R.id.kartaCap, R.id.kartaVal, cr.getDataWydaniaKartyPojazdu(), true);
 		
 		//świadectwo homologacji
 		if(cr.isHomologacja())
 		{
 			//kategoria
-			tv = (TextView) getView().findViewById(R.id.kategoriaVal);
-			capTv = (TextView) getView().findViewById(R.id.kategoriaCap);
-			tv.setText(cr.gethKategoria());
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
+			vch.ChangeEntryState(R.id.kategoriaCap, R.id.kategoriaVal, cr.gethKategoria(), false);
 			
 			//wersja
-			tv = (TextView) getView().findViewById(R.id.wersjaVal);
-			capTv = (TextView) getView().findViewById(R.id.wersjaCap);
-			tv.setText(cr.gethWersja());
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
+			vch.ChangeEntryState(R.id.wersjaCap, R.id.wersjaVal, cr.gethWersja(), false);
 			
 			//numer
+			vch.ChangeEntryState(R.id.numerCap, R.id.numerVal, cr.gethNumer(), false);
 			tv = (TextView) getView().findViewById(R.id.numerVal);
 			capTv = (TextView) getView().findViewById(R.id.numerCap);
 			tv.setText(cr.gethNumer());
@@ -140,11 +96,7 @@ public class DokFragment extends Fragment {
 			capTv.setVisibility(View.VISIBLE);
 			
 			//wariant
-			tv = (TextView) getView().findViewById(R.id.wariantVal);
-			capTv = (TextView) getView().findViewById(R.id.wariantCap);
-			tv.setText(cr.gethWariant());
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
+			vch.ChangeEntryState(R.id.wariantCap, R.id.wariantVal, cr.gethWariant(), false);
 		}
 		else
 		{

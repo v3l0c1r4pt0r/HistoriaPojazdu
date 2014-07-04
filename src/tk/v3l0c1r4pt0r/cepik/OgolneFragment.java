@@ -67,6 +67,8 @@ public class OgolneFragment extends Fragment {
 		TextView tv = null;
 		TextView capTv = null;
 		
+		ViewChangeHelper vch = new ViewChangeHelper(getView());
+		
 		tv = (TextView) getView().findViewById(R.id.rejVal);
 		tv.setText(cr.getNrRejestracyjny());
 		
@@ -110,20 +112,7 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.vinVal);
 		tv.setText(cr.getVin());
 
-		tv = (TextView) getView().findViewById(R.id.statusVal);
-		capTv = (TextView) getView().findViewById(R.id.statusCap);
-		String status = cr.getStatus();
-		if(status.length()>0)
-		{
-			tv.setText(status);
-			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			tv.setVisibility(View.GONE);
-			capTv.setVisibility(View.GONE);
-		}
+		vch.ChangeEntryState(R.id.statusCap, R.id.statusVal, cr.getStatus(), true);
 		
 		tv = (TextView) getView().findViewById(R.id.ocVal);
 		if(cr.getOc())
