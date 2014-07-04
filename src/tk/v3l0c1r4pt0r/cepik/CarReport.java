@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class CarReport implements Serializable {
 	
@@ -140,6 +141,26 @@ public class CarReport implements Serializable {
 	public String getDataWydaniaKartyPojazdu() {
 		return dataWydaniaKartyPojazdu;
 	}
+	
+	public boolean isHomologacja() {
+		return homologacja;
+	}
+
+	public String gethKategoria() {
+		return hKategoria;
+	}
+
+	public String gethWersja() {
+		return hWersja;
+	}
+
+	public String gethNumer() {
+		return hNumer;
+	}
+
+	public String gethWariant() {
+		return hWariant;
+	}
 
 	String marka;
 	String typ;
@@ -176,6 +197,12 @@ public class CarReport implements Serializable {
 	String dataRejestracji;
 	String dataWydaniaDowodu;
 	String dataWydaniaKartyPojazdu;
+	
+	boolean homologacja;//TODO: do interfejsu
+	String hKategoria;
+	String hWersja;
+	String hNumer;
+	String hWariant;
 	
 	//TODO: oś czasu
 	
@@ -326,6 +353,25 @@ public class CarReport implements Serializable {
 		{
 			this.dataWydaniaKartyPojazdu = "";
 		}
+
+    	try
+    	{
+			Element el = doc.getElementsContainingOwnText("Świadectwo homologacji").parents().get(0);
+			if(el != null)
+			{
+				this.homologacja = true;
+				this.hKategoria = stringDeHTML(el.getElementById("dokumentyKategoria").html());
+				this.hWersja = stringDeHTML(el.getElementById("dokumentWersja").html());
+				this.hNumer = stringDeHTML(el.getElementById("dokumentNumer").html());
+				this.hWariant = stringDeHTML(el.getElementById("dokumentWariant").html());
+			}
+			else
+				this.homologacja = false;
+    	}
+		catch(NullPointerException e)
+		{
+			this.homologacja = false;
+		}
 			
 		//TODO: przetestować działanie przeglądu dla innych konfiguracji
 			
@@ -389,6 +435,9 @@ public class CarReport implements Serializable {
     	
     	pattern = Pattern.compile("\\&sup3\\;");
     	str = pattern.matcher(str).replaceAll("³");
+    	
+    	pattern = Pattern.compile("\\&#346\\;");
+    	str = pattern.matcher(str).replaceAll("Ś");
     	return str;
     }
 
