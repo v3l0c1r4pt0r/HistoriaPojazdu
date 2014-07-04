@@ -372,6 +372,10 @@ public class CarReport implements Serializable {
 		{
 			this.homologacja = false;
 		}
+		catch(IndexOutOfBoundsException e)
+		{
+			this.homologacja = false;
+		}
 			
 		//TODO: przetestować działanie przeglądu dla innych konfiguracji
 			

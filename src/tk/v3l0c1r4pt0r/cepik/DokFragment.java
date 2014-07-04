@@ -114,6 +114,54 @@ public class DokFragment extends Fragment {
 			tv.setVisibility(View.GONE);
 			capTv.setVisibility(View.GONE);
 		}
+		
+		//świadectwo homologacji
+		if(cr.isHomologacja())
+		{
+			//kategoria
+			tv = (TextView) getView().findViewById(R.id.kategoriaVal);
+			capTv = (TextView) getView().findViewById(R.id.kategoriaCap);
+			tv.setText(cr.gethKategoria());
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+			
+			//wersja
+			tv = (TextView) getView().findViewById(R.id.wersjaVal);
+			capTv = (TextView) getView().findViewById(R.id.wersjaCap);
+			tv.setText(cr.gethWersja());
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+			
+			//numer
+			tv = (TextView) getView().findViewById(R.id.numerVal);
+			capTv = (TextView) getView().findViewById(R.id.numerCap);
+			tv.setText(cr.gethNumer());
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+			
+			//wariant
+			tv = (TextView) getView().findViewById(R.id.wariantVal);
+			capTv = (TextView) getView().findViewById(R.id.wariantCap);
+			tv.setText(cr.gethWariant());
+			tv.setVisibility(View.VISIBLE);
+			capTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			((TextView) getView().findViewById(R.id.homoCap)).setVisibility(View.GONE);
+			
+			((TextView) getView().findViewById(R.id.kategoriaVal)).setVisibility(View.GONE);
+			((TextView) getView().findViewById(R.id.kategoriaCap)).setVisibility(View.GONE);
+			
+			((TextView) getView().findViewById(R.id.wersjaVal)).setVisibility(View.GONE);
+			((TextView) getView().findViewById(R.id.wersjaCap)).setVisibility(View.GONE);
+			
+			((TextView) getView().findViewById(R.id.numerVal)).setVisibility(View.GONE);
+			((TextView) getView().findViewById(R.id.numerCap)).setVisibility(View.GONE);
+			
+			((TextView) getView().findViewById(R.id.wariantVal)).setVisibility(View.GONE);
+			((TextView) getView().findViewById(R.id.wariantCap)).setVisibility(View.GONE);
+		}
     }
 
 	// TODO: Rename method, update argument and hook method into UI event
