@@ -197,9 +197,10 @@ public class ResultActivity extends ActionBarActivity implements
 								Toast toast = Toast.makeText(
 										thisActivity, 
 										getString(R.string.error) + e.getClass().getName(), 
-										Toast.LENGTH_LONG
+										Toast.LENGTH_SHORT
 										);
 								toast.show();
+								e.printStackTrace();
 							}
 						});
 					}

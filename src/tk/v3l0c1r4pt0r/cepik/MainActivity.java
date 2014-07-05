@@ -412,18 +412,12 @@ public class MainActivity extends Activity {
 //							refreshBtn.setEnabled(true);
 							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
 							pb.setVisibility(ProgressBar.INVISIBLE);
-							AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
-							builder.setMessage(e.getLocalizedMessage())
-						       .setTitle(R.string.errorMsg);
-							builder.setPositiveButton(string.ok, new OnClickListener() {
-								
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									//just close
-								}
-							});
-							AlertDialog dialog = builder.create();
-							dialog.show();
+							Toast toast = Toast.makeText(
+									thisActivity, 
+									e.getLocalizedMessage(), 
+									Toast.LENGTH_LONG
+									);
+							toast.show();
 						}
 					});
 				}
