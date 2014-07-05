@@ -163,15 +163,45 @@ public class ResultActivity extends ActionBarActivity implements
 						intent.setAction(android.content.Intent.ACTION_VIEW);
 						intent.setDataAndType(Uri.fromFile(output), "application/pdf");
 						startActivity(intent);
-					} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ReportNotGeneratedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					} catch (final MalformedURLException e) {
+						thisActivity.findViewById(R.id.pager).post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast toast = Toast.makeText(
+										thisActivity, 
+										e.getLocalizedMessage(), 
+										Toast.LENGTH_LONG
+										);
+								toast.show();
+							}
+						});
+					} catch (final IOException e) {
+						thisActivity.findViewById(R.id.pager).post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast toast = Toast.makeText(
+										thisActivity, 
+										e.getLocalizedMessage(), 
+										Toast.LENGTH_LONG
+										);
+								toast.show();
+							}
+						});
+					} catch (final ReportNotGeneratedException e) {
+						thisActivity.findViewById(R.id.pager).post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast toast = Toast.makeText(
+										thisActivity, 
+										getString(R.string.error) + e.getClass().getName(), 
+										Toast.LENGTH_LONG
+										);
+								toast.show();
+							}
+						});
 					}
 				}
 			}).start();
