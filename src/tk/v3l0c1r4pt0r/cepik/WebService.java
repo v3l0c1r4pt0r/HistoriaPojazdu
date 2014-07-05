@@ -214,6 +214,22 @@ public class WebService implements Serializable {
 		}
 		else if(vin.length() < 17)
 		{
+			/*//przykładowy raport
+			String post = 
+					  "formularz=formularz&"
+					+ "rej="+nrRejestracyjny+"&"
+					+ "vin="+vin+"&"
+					+ "data="+dataRejestracji+"&"
+					+ "captchaAnswer="+captcha+"&"
+					+ "btnSprawdz=Sprawd%C5%BA+pojazd+%C2%BB&"
+					+ "com.sun.faces.StatelessPostback=value";
+			byte[] response = getResponse(new URL("https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml"));
+			String reportStr = new String(response);
+			//get javaxState
+			CarReport cr = new CarReport(nrRejestracyjny, reportStr);
+			Document doc = Jsoup.parse(reportStr);
+			javaxState = doc.getElementById("javax.faces.ViewState").attributes().get("value");
+			return cr;*/
 			throw new InvalidInputException(Field.Vin);
 		}
 		else if(dataRejestracji.length() < 10)
