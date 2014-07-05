@@ -136,7 +136,7 @@ public class ResultActivity extends ActionBarActivity implements
 				@Override
 				public void run() {
 					try {
-						PdfDescriptor pdf = downloader.getReportPdf();
+						WebFile pdf = downloader.getReportPdf();
 						File downloads = Environment.getExternalStoragePublicDirectory(
 								Environment.DIRECTORY_DOWNLOADS
 								);

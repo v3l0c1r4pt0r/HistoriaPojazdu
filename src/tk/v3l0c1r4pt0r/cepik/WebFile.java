@@ -1,6 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-public class PdfDescriptor {
+public class WebFile {
 	
 	private byte[] pdf;
 	private String name;
@@ -13,7 +13,7 @@ public class PdfDescriptor {
 		return name;
 	}
 	
-	public PdfDescriptor(String pdfName, byte[] pdf) {
+	public WebFile(String pdfName, byte[] pdf) {
 		this.name = pdfName;
 		this.pdf = pdf;
 	}

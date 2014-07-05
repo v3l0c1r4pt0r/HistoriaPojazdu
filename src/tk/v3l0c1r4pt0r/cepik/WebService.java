@@ -203,7 +203,7 @@ public class WebService implements Serializable {
 		}
 	}
 	
-	public PdfDescriptor getReportPdf() throws MalformedURLException, IOException, ReportNotGeneratedException
+	public WebFile getReportPdf() throws MalformedURLException, IOException, ReportNotGeneratedException
 	{
 		if(javaxState != null && javaxState != "")
 		{
@@ -212,7 +212,7 @@ public class WebService implements Serializable {
 					  + "javax.faces.ViewState="+javaxState+"&"
 					  + "pobierzRaportPdf=pobierzRaportPdf";
 			byte[] response = getResponse(new URL(pdfUrl), post);
-			return new PdfDescriptor("raport.pdf",response);//TODO: weź nazwę z serwera
+			return new WebFile("raport.pdf",response);//TODO: weź nazwę z serwera
 		}
 		else
 			throw new ReportNotGeneratedException();
