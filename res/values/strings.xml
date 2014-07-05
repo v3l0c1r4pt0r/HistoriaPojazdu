@@ -26,6 +26,7 @@
     <string name="wrongCaptchaMsg">Wprowadzona CAPTCHA była błędna. Spróbuj ponownie!</string>
     <string name="notFoundMsg">Nie znaleziono pojazdu o podanych danych. Sprawdź poprawność wprowadzonych danych i spróbuj ponownie.</string>
     <string name="errorMsg">Błąd!</string>
+    <string name="error">Błąd: </string>
     <string name="notfMsg">Nie znaleziono!</string>
     <string name="aboutContentMsg">Historia Pojazdu\nCopyright by v3l0c1r4pt0r</string>
     <string name="downloadedMsg">Raport został zapisany jako </string>

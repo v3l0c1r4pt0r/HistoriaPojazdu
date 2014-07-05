@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -233,30 +234,34 @@ public class MainActivity extends Activity {
 						    	btn.setEnabled(true);
 								ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
 								pb.setVisibility(ProgressBar.INVISIBLE);
-								AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
 								if(e instanceof WrongCaptchaException)
 								{
-									builder.setMessage(getResources().getString(R.string.wrongCaptchaMsg))
-								       .setTitle(R.string.errorMsg);
-									EditText et = (EditText) findViewById(R.id.captchaVal);
-									et.setText("");
+									Toast toast = Toast.makeText(
+											thisActivity, 
+											getString(R.string.wrongCaptchaMsg), 
+											Toast.LENGTH_SHORT
+											);
+									toast.show();
 								}
 								else if(e instanceof EntryNotFoundException)
 								{
-									builder.setMessage(getResources().getString(R.string.notFoundMsg))
-										.setTitle(R.string.notfMsg);
+									Toast toast = Toast.makeText(
+											thisActivity, 
+											getString(R.string.notFoundMsg), 
+											Toast.LENGTH_SHORT
+											);
+									toast.show();
 								}
 								else 
+								{
+									Toast toast = Toast.makeText(
+											thisActivity, 
+											getString(R.string.error)+e.getClass().getName(), 
+											Toast.LENGTH_SHORT
+											);
+									toast.show();
 									e.printStackTrace();
-								builder.setPositiveButton(string.ok, new OnClickListener() {
-									
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										//just close
-									}
-								});
-								AlertDialog dialog = builder.create();
-								dialog.show();
+								}
 								reloadImage(view);
 							}
 						});
