@@ -1,5 +1,7 @@
 - dodać oś czasu
 - sprawdzić czy działa oznaczanie braku wykonanego przeglądu (nie wiem jak)
 - moc silnika też w koniach mechanicznych (przelicznik)
-- nazwa pliku PDF z serwera
+- PILNE: nazwa pliku PDF z serwera
 - BARDZO PILNE: przejrzeć wszystkie TODO w kodzie i poprawić wszystkie istotne
+- PILNE: unable to resolve host na toasta
+- PILNE: wyjątki przy pobieraniu pdf?

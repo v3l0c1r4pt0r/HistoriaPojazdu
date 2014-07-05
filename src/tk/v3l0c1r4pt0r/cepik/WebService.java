@@ -155,6 +155,48 @@ public class WebService implements Serializable {
 		return baos.toByteArray();
 	}
 	
+	private WebFile getResponseAsFile(URL url, String postData) throws IOException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		urlConnection.setRequestProperty("User-Agent", userAgent);
+		urlConnection.setRequestProperty("Cookie", cookie);
+		urlConnection.setRequestMethod("POST");
+		urlConnection.setDoInput(true);
+		urlConnection.setDoOutput(true);
+
+		OutputStream os = urlConnection.getOutputStream();
+		BufferedWriter writer = new BufferedWriter(
+		        new OutputStreamWriter(os, "UTF-8"));
+		writer.write(postData);
+		writer.flush();
+		writer.close();
+		os.close();
+		
+		String fileName;
+
+		try {
+			urlConnection.connect();
+			InputStream is = urlConnection.getInputStream();
+			int len = 0;
+			while ((len = is.read(buffer)) != -1) 
+			{
+				baos.write(buffer, 0, len);
+			}
+			String disposition = urlConnection.getHeaderField("Content-Disposition");
+			fileName = disposition.substring(disposition.indexOf("filename=")+9);
+		}
+		catch(IOException e)
+		{
+			throw e;
+		}
+	    finally {
+	    	urlConnection.disconnect();
+	    }
+		return new WebFile(fileName,baos.toByteArray());
+	}
+	
 	public Bitmap getCaptcha() throws MalformedURLException, IOException
 	{
 		byte[] response = getResponse(new URL(captchaUrl));
@@ -211,8 +253,8 @@ public class WebService implements Serializable {
 					    "formularz=formularz&"
 					  + "javax.faces.ViewState="+javaxState+"&"
 					  + "pobierzRaportPdf=pobierzRaportPdf";
-			byte[] response = getResponse(new URL(pdfUrl), post);
-			return new WebFile("raport.pdf",response);//TODO: weź nazwę z serwera
+			WebFile response = getResponseAsFile(new URL(pdfUrl), post);
+			return response;
 		}
 		else
 			throw new ReportNotGeneratedException();
