@@ -43,6 +43,16 @@ public class WebService implements Serializable {
 		
 	}
 	
+	public class InvalidInputException extends Exception
+	{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 2215118885828047337L;
+		
+	}
+	
 	public WebService() throws IOException
 	{
 		URL url = new URL(mainUrl);
@@ -142,7 +152,8 @@ public class WebService implements Serializable {
 	}
 	
 	public CarReport getReport(String nrRejestracyjny, String vin, String dataRejestracji, String captcha) 
-			throws MalformedURLException, IOException, EntryNotFoundException, WrongCaptchaException
+			throws MalformedURLException, IOException, EntryNotFoundException, WrongCaptchaException, 
+			InvalidInputException
 	{
 		if(
     			nrRejestracyjny.length() == 0 ||
@@ -151,11 +162,7 @@ public class WebService implements Serializable {
     			captcha.length() == 0
     			)
 		{
-			//przykładowy raport
-			//TODO: skasować
-			String target = "https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml";
-			byte[] response = getResponse(new URL(target));
-			return new CarReport(nrRejestracyjny, new String(response));
+			throw new InvalidInputException();
 		}
 		else
 		{

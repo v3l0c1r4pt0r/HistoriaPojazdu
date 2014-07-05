@@ -32,6 +32,8 @@ public class MainActivity extends Activity {
 	private WebService cepik = null;
 	
 	private Drawable normalDateBg = null;
+	private Drawable normalVinBg = null;
+	private Drawable normalRejBg = null;
 	
 //	private final String[] values = new String[7];
 	
@@ -95,6 +97,7 @@ public class MainActivity extends Activity {
         //Add event listeners
         EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
         EditText vinVal = (EditText) findViewById(R.id.vinVal);
+        EditText rejVal = (EditText) findViewById(R.id.rejVal);
         TextWatcher tw1 = new MyTextWatcher(/*kw1*/);
         TextWatcher tw2 = new MyTextWatcher(/*kw2*/);
 		dateVal.addTextChangedListener(tw1);
@@ -103,6 +106,8 @@ public class MainActivity extends Activity {
 		final Button btn = (Button) findViewById(R.id.sendBtn);
 		reloadImage(btn);
 		normalDateBg = dateVal.getBackground();
+		normalRejBg = rejVal.getBackground();
+		normalVinBg = vinVal.getBackground();
     }
 
     @Override
@@ -175,9 +180,10 @@ public class MainActivity extends Activity {
 						public void run() {
 							iv.setImageResource(R.drawable.error);
 							iv.setBackgroundColor(getResources().getColor(R.color.captchaErr));
-//							refreshBtn.setEnabled(true);
+							
 							ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
 							pb.setVisibility(ProgressBar.INVISIBLE);
+							
 							AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
 							builder.setMessage(e.getLocalizedMessage())
 						       .setTitle(R.string.errorMsg);
@@ -243,6 +249,7 @@ public class MainActivity extends Activity {
 					else 
 					{
 						e.printStackTrace();
+						//TODO: brak danych
 						return;
 					}
 				}
