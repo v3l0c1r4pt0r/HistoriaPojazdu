@@ -317,7 +317,14 @@ public class MainActivity extends Activity {
 						default:
 							break;
 						}
-						//TODO: odblokować 'Sprawdź'
+						final Button sendBtn = (Button) findViewById(R.id.sendBtn);
+						sendBtn.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								sendBtn.setEnabled(true);
+							}
+						});
 						return;
 					}
 					else 
