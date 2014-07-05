@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
+import tk.v3l0c1r4pt0r.cepik.WebService.InvalidInputException;
 import android.os.Bundle;
 import android.R.string;
 import android.app.Activity;
@@ -34,6 +35,7 @@ public class MainActivity extends Activity {
 	private Drawable normalDateBg = null;
 	private Drawable normalVinBg = null;
 	private Drawable normalRejBg = null;
+	private Drawable normalCaptchaBg = null;
 	
 //	private final String[] values = new String[7];
 	
@@ -86,6 +88,13 @@ public class MainActivity extends Activity {
 			}
 			else
 				date.setBackgroundDrawable(normalDateBg);
+			EditText rej = (EditText) findViewById(R.id.rejVal);
+			EditText vin = (EditText) findViewById(R.id.vinVal);
+			EditText captcha = (EditText) findViewById(R.id.captchaVal);
+			rej.setBackgroundDrawable(normalRejBg);
+			vin.setBackgroundDrawable(normalVinBg);
+			captcha.setBackgroundDrawable(normalCaptchaBg);
+			
 		}
 	};
 	
@@ -98,16 +107,22 @@ public class MainActivity extends Activity {
         EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
         EditText vinVal = (EditText) findViewById(R.id.vinVal);
         EditText rejVal = (EditText) findViewById(R.id.rejVal);
-        TextWatcher tw1 = new MyTextWatcher(/*kw1*/);
-        TextWatcher tw2 = new MyTextWatcher(/*kw2*/);
+        EditText captchaVal = (EditText) findViewById(R.id.captchaVal);
+        TextWatcher tw1 = new MyTextWatcher(/*data*/);
+        TextWatcher tw2 = new MyTextWatcher(/*vin*/);
+        TextWatcher tw3 = new MyTextWatcher(/*rej*/);
+        TextWatcher tw4 = new MyTextWatcher(/*captcha*/);
 		dateVal.addTextChangedListener(tw1);
 		vinVal.addTextChangedListener(tw2);
+		rejVal.addTextChangedListener(tw3);
+		captchaVal.addTextChangedListener(tw4);
 
 		final Button btn = (Button) findViewById(R.id.sendBtn);
 		reloadImage(btn);
 		normalDateBg = dateVal.getBackground();
 		normalRejBg = rejVal.getBackground();
 		normalVinBg = vinVal.getBackground();
+		normalCaptchaBg = captchaVal.getBackground();
     }
 
     @Override
@@ -163,6 +178,7 @@ public class MainActivity extends Activity {
     	//pobieramy w nowym wątku
     	new Thread(new Runnable()
 		{
+			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 		    	CarReport rep = null;
@@ -246,10 +262,67 @@ public class MainActivity extends Activity {
 						//TODO: znaleźć sposób na odświeżenie obrazka be wywoływania reloadImage()
 						return;
 					}
+					else if(e instanceof InvalidInputException)
+					{
+						switch(((InvalidInputException) e).field)
+						{
+						case Rej:
+							final EditText rejVal = (EditText) findViewById(R.id.rejVal);
+							rejVal.post(new Runnable() {
+								
+								@Override
+								public void run() {
+									rejVal.setBackgroundDrawable(
+											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											);
+								}
+							});
+							break;
+						case Vin:
+							final EditText vinVal = (EditText) findViewById(R.id.vinVal);
+							vinVal.post(new Runnable() {
+								
+								@Override
+								public void run() {
+									vinVal.setBackgroundDrawable(
+											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											);
+								}
+							});
+							break;
+						case Date:
+							final EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
+							dateVal.post(new Runnable() {
+								
+								@Override
+								public void run() {
+									dateVal.setBackgroundDrawable(
+											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											);
+								}
+							});
+							break;
+						case Captcha:
+							final EditText captchaVal = (EditText) findViewById(R.id.captchaVal);
+							captchaVal.post(new Runnable() {
+								
+								@Override
+								public void run() {
+									captchaVal.setBackgroundDrawable(
+											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											);
+								}
+							});
+							break;
+						default:
+							break;
+						}
+						//TODO: odblokować 'Sprawdź'
+						return;
+					}
 					else 
 					{
 						e.printStackTrace();
-						//TODO: brak danych
 						return;
 					}
 				}
@@ -312,6 +385,7 @@ public class MainActivity extends Activity {
 //							refreshBtn.setEnabled(true);
 					    	sendBtn.setEnabled(true);
 					    	pb.setVisibility(ProgressBar.INVISIBLE);
+					    	//TODO: wyczyścić captchaVal
 						}
 					});
 				} catch (final IOException e)
