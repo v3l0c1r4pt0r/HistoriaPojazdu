@@ -33,6 +33,11 @@ public class WebService implements Serializable {
 	private static String captchaUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/captcha";
 	private static String userAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0";
 	
+	public enum Field
+	{
+		Rej, Vin, Date, Captcha
+	}
+	
 	public class ReportNotGeneratedException extends Exception
 	{
 
@@ -50,6 +55,12 @@ public class WebService implements Serializable {
 		 * 
 		 */
 		private static final long serialVersionUID = 2215118885828047337L;
+		public Field field;
+		
+		public InvalidInputException(Field f)
+		{
+			this.field = f;
+		}
 		
 	}
 	
@@ -155,14 +166,21 @@ public class WebService implements Serializable {
 			throws MalformedURLException, IOException, EntryNotFoundException, WrongCaptchaException, 
 			InvalidInputException
 	{
-		if(
-    			nrRejestracyjny.length() == 0 ||
-    			vin.length() < 17 ||
-    			dataRejestracji.length() < 10 ||
-    			captcha.length() == 0
-    			)
+		if(nrRejestracyjny.length() == 0)
 		{
-			throw new InvalidInputException();
+			throw new InvalidInputException(Field.Rej);
+		}
+		else if(vin.length() < 17)
+		{
+			throw new InvalidInputException(Field.Vin);
+		}
+		else if(dataRejestracji.length() < 10)
+		{
+			throw new InvalidInputException(Field.Date);
+		}
+		else if(captcha.length() == 0)
+		{
+			throw new InvalidInputException(Field.Captcha);
 		}
 		else
 		{
