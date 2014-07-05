@@ -196,9 +196,10 @@ public class WebService implements Serializable {
 			byte[] response = getResponse(new URL(mainUrl), post);
 			String reportStr = new String(response);
 			//get javaxState
+			CarReport cr = new CarReport(nrRejestracyjny, reportStr);
 			Document doc = Jsoup.parse(reportStr);
 			javaxState = doc.getElementById("javax.faces.ViewState").attributes().get("value");
-			return new CarReport(nrRejestracyjny, reportStr);
+			return cr;
 		}
 	}
 	

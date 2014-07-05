@@ -2,7 +2,6 @@
 - dodać oś czasu
 - sprawdzić czy działa oznaczanie braku wykonanego przeglądu (nie wiem jak)
 - moc silnika też w koniach mechanicznych (przelicznik)
-- PILNE: usunąć dane przykładowe i zastąpić podkreśleniem błędnych pól przy walidacji
 - nazwa pliku PDF z serwera
 - zmienić błędy w popupach na toasty
 - BARDZO PILNE: przejrzeć wszystkie TODO w kodzie i poprawić wszystkie istotne

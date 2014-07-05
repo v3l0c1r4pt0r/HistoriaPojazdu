@@ -161,7 +161,7 @@ public class MainActivity extends Activity {
 		dialog.show();
     }
     
-    public void sendRequest(View view)
+    public void sendRequest(final View view)
     {
     	final Intent intent = new Intent(this, ResultActivity.class);
     	
@@ -257,9 +257,9 @@ public class MainActivity extends Activity {
 								});
 								AlertDialog dialog = builder.create();
 								dialog.show();
+								reloadImage(view);
 							}
 						});
-						//TODO: znaleźć sposób na odświeżenie obrazka be wywoływania reloadImage()
 						return;
 					}
 					else if(e instanceof InvalidInputException)
@@ -392,7 +392,8 @@ public class MainActivity extends Activity {
 //							refreshBtn.setEnabled(true);
 					    	sendBtn.setEnabled(true);
 					    	pb.setVisibility(ProgressBar.INVISIBLE);
-					    	//TODO: wyczyścić captchaVal
+					    	EditText captchaVal = (EditText) findViewById(R.id.captchaVal);
+					    	captchaVal.setText("");
 						}
 					});
 				} catch (final IOException e)
