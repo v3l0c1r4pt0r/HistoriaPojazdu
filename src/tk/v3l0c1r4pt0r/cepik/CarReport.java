@@ -257,86 +257,16 @@ public class CarReport implements Serializable {
 		}
 		Document doc = Jsoup.parse(siteResponse);
 		
-    	try
-    	{
-    		this.marka = stringDeHTML(doc.getElementById("marka").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.marka = "";
-    	}
-    	try
-    	{
-    		this.typ = stringDeHTML(doc.getElementById("typ").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.typ = "";
-    	}
-    	try
-    	{
-    		this.model = stringDeHTML(doc.getElementById("model").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.model = "";
-    	}
-    	try
-    	{
-    		this.przebieg = stringDeHTML(doc.getElementById("aktualnyStanLicznika").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.przebieg = "nieznany";
-    	}
-    	try
-    	{
-    		this.przebiegUnit = stringDeHTML(doc.getElementById("jednostkaLicznika").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.przebiegUnit = "";
-    	}
-    	try
-    	{
-    		this.rokProdukcji = stringDeHTML(doc.getElementById("rokProdukcji").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.rokProdukcji = "";
-    	}
-    	try
-    	{
-    		this.rodzaj = stringDeHTML(doc.getElementById("rodzaj").html().toLowerCase());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.rodzaj = "";
-    	}
-    	try
-    	{
-    		this.podrodzaj = stringDeHTML(doc.getElementById("podrodzaj").html().toLowerCase());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.podrodzaj = "";
-    	}
-    	try
-    	{
-    		this.pojemnoscSilnika = stringDeHTML(doc.getElementById("pojemnosc").html());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.pojemnoscSilnika = "";
-    	}
-    	try
-    	{
-    		this.rodzajPaliwa = stringDeHTML(doc.getElementById("paliwo").html().toLowerCase());
-    	}
-    	catch(NullPointerException e)
-    	{
-    		this.rodzajPaliwa = "";
-    	}
+    	this.marka = setById("marka", doc);
+    	this.typ = setById("typ", doc);
+    	this.model = setById("model", doc);
+    	this.przebieg = setById("aktualnyStanLicznika", doc);
+    	this.przebiegUnit = setById("jednostkaLicznika", doc);
+    	this.rokProdukcji = setById("rokProdukcji", doc);
+    	this.rodzaj = setById("rodzaj", doc).toLowerCase();
+    	this.podrodzaj = setById("podrodzaj", doc).toLowerCase();
+    	this.pojemnoscSilnika = setById("pojemnosc", doc);
+    	this.rodzajPaliwa = setById("paliwo", doc).toLowerCase();
     	try
     	{
 			this.vin = stringDeHTML(doc.getElementsContainingOwnText("VIN").select("span").html());
@@ -367,23 +297,9 @@ public class CarReport implements Serializable {
 			this.dataRejestracji = "";
 		}
 
-    	try
-    	{
-			this.dataWydaniaDowodu = doc.getElementById("dataWydaniaDowRej").html();
-    	}
-		catch(NullPointerException e)
-		{
-			this.dataWydaniaDowodu = "";
-		}
 
-    	try
-    	{
-			this.dataWydaniaKartyPojazdu = doc.getElementById("dataWydaniaKartyPojazdu").html();
-    	}
-		catch(NullPointerException e)
-		{
-			this.dataWydaniaKartyPojazdu = "";
-		}
+    	this.dataWydaniaDowodu = setById("dataWydaniaDowRej", doc);
+    	this.dataWydaniaKartyPojazdu = setById("dataWydaniaKartyPojazdu", doc);
 
     	try
     	{
@@ -409,118 +325,20 @@ public class CarReport implements Serializable {
 		}
 
     	//techniczne
-    	try
-    	{
-			this.mocSilnika = stringDeHTML(doc.getElementById("mocSilnika").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.mocSilnika = "";
-		}
-    	try
-    	{
-			this.emisjaCo2 = stringDeHTML(doc.getElementById("emisjaCO2").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.emisjaCo2 = "";
-		}
-    	try
-    	{
-			this.zuzyciePaliwa = stringDeHTML(doc.getElementById("srednieZuzyciePaliwa").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.zuzyciePaliwa = "";
-		}
-    	try
-    	{
-			this.liczbaMiejsc = stringDeHTML(doc.getElementById("liczbaMiejscOgolem").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.liczbaMiejsc = "";
-		}
-    	try
-    	{
-			this.liczbaMiejscSiedzacych = stringDeHTML(doc.getElementById("liczbaMiejscSiedzacych").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.liczbaMiejscSiedzacych = "";
-		}
-    	try
-    	{
-			this.masaWlasna = stringDeHTML(doc.getElementById("masaWlasna").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.masaWlasna = "";
-		}
-    	try
-    	{
-			this.masaPrzyczepyZHamulcem = stringDeHTML(doc.getElementById("maxMasaPrzyczepyZHamulcem").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.masaPrzyczepyZHamulcem = "";
-		}
-    	try
-    	{
-			this.masaPrzyczepyBezHamulca = stringDeHTML(doc.getElementById("maxMasaPrzyczepyBezHamulca").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.masaPrzyczepyBezHamulca = "";
-		}
-    	try
-    	{
-			this.dopuszczalnaLadownosc = stringDeHTML(doc.getElementById("dopuszczalnaLadownosc").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.dopuszczalnaLadownosc = "";
-		}
-    	try
-    	{
-			this.dmc = stringDeHTML(doc.getElementById("dopuszczalnaMasaCalkowita").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.dmc = "";
-		}
-    	try
-    	{
-			this.liczbaOsi = stringDeHTML(doc.getElementById("liczbaOsi").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.liczbaOsi = "";
-		}
-    	try
-    	{
-			this.rozstawOsi = stringDeHTML(doc.getElementById("rozstawOsi").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.rozstawOsi = "";
-		}
-    	try
-    	{
-			this.rozstawKol = stringDeHTML(doc.getElementById("rozstawKol").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.rozstawKol = "";
-		}
-    	try
-    	{
-			this.naciskNaOs = stringDeHTML(doc.getElementById("maxNaciskNaOs").html());
-    	}
-		catch(NullPointerException e)
-		{
-			this.naciskNaOs = "";
-		}
+    	this.mocSilnika = setById("mocSilnika", doc);
+    	this.emisjaCo2 = setById("emisjaCO2", doc);
+    	this.zuzyciePaliwa = setById("srednieZuzyciePaliwa", doc);
+    	this.liczbaMiejsc = setById("liczbaMiejscOgolem", doc);
+    	this.liczbaMiejscSiedzacych = setById("liczbaMiejscSiedzacych", doc);
+    	this.masaWlasna = setById("masaWlasna", doc);
+    	this.masaPrzyczepyZHamulcem = setById("maxMasaPrzyczepyZHamulcem", doc);
+    	this.masaPrzyczepyBezHamulca = setById("maxMasaPrzyczepyBezHamulca", doc);
+    	this.dopuszczalnaLadownosc = setById("dopuszczalnaLadownosc", doc);
+    	this.dmc = setById("dopuszczalnaMasaCalkowita", doc);
+    	this.liczbaOsi = setById("liczbaOsi", doc);
+    	this.rozstawOsi = setById("rozstawOsi", doc);
+    	this.rozstawKol = setById("rozstawKol", doc);
+    	this.naciskNaOs = setById("maxNaciskNaOs", doc);
 			
 		//TODO: przetestować działanie przeglądu dla innych konfiguracji
 			
@@ -563,6 +381,20 @@ public class CarReport implements Serializable {
     	{
     		kradziony = false;
     	}
+	}
+	
+	private String setById(String id, Document doc)
+	{
+		String result;
+    	try
+    	{
+			result = stringDeHTML(doc.getElementById(id).html());
+    	}
+		catch(NullPointerException e)
+		{
+			result = "";
+		}
+    	return result;
 	}
     
     private String stringDeHTML(String str)
