@@ -48,7 +48,11 @@
         </activity>
         <activity
             android:name="tk.v3l0c1r4pt0r.cepik.HelpActivity"
-            android:label="@string/title_activity_help" >
+            android:label="@string/title_activity_help"
+            android:parentActivityName="tk.v3l0c1r4pt0r.cepik.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tk.v3l0c1r4pt0r.cepik.MainActivity" />
         </activity>
     </application>
 

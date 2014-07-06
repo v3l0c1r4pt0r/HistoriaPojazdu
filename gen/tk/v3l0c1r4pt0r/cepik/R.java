@@ -1103,7 +1103,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int VINLayout=0x7f060042;
-        public static final int action_about=0x7f06008d;
+        public static final int action_about=0x7f06008e;
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1113,7 +1113,7 @@ containing a value of this type.
         public static final int action_bar_title=0x7f060022;
         public static final int action_context_bar=0x7f06001d;
         public static final int action_download=0x7f06008f;
-        public static final int action_help=0x7f06008e;
+        public static final int action_help=0x7f06008d;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
