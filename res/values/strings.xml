@@ -7,6 +7,7 @@
     <string name="action_about">O programie</string>
     <string name="action_download">Pobierz PDF</string>
     <string name="action_settings">Ustawienia</string>
+    <string name="action_help">Pomoc</string>
 
     <!-- inputs -->
     <string name="rejVal"></string>

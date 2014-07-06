@@ -141,6 +141,10 @@ public class MainActivity extends Activity {
     		//create dialog with author's data
 			MainActivity.menuShowAbout(this);
     		break;
+    	case R.id.action_help:
+    		Intent intent = new Intent(this, HelpActivity.class);
+    		startActivity(intent);
+    		break;
     	}
     	return super.onOptionsItemSelected(item);
     }
