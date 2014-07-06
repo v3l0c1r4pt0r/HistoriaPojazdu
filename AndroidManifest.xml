@@ -9,7 +9,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -44,6 +45,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="tk.v3l0c1r4pt0r.cepik.MainActivity" />
+        </activity>
+        <activity
+            android:name="tk.v3l0c1r4pt0r.cepik.HelpActivity"
+            android:label="@string/title_activity_help" >
         </activity>
     </application>
 
