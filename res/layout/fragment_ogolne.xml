@@ -40,6 +40,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/przebiegCap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/przebiegCap" />
@@ -109,6 +110,7 @@
 		android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/rejCap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/rejCap" />
@@ -121,6 +123,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/vinCap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/vinCap" />
@@ -133,6 +136,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/rokCap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/rokCap" />

@@ -68,8 +68,7 @@ public class OgolneFragment extends Fragment {
 		
 		ViewChangeHelper vch = new ViewChangeHelper(getView());
 		
-		tv = (TextView) getView().findViewById(R.id.rejVal);
-		tv.setText(cr.getNrRejestracyjny());
+		vch.ChangeEntryState(R.id.rejCap, R.id.rejVal, cr.getNrRejestracyjny(), true);
 		
 		tv = (TextView) getView().findViewById(R.id.markaVal);
 		tv.setText(cr.getMarka());
@@ -87,14 +86,14 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.modelVal);
 		tv.setText(cr.getModel());
 		
-		tv = (TextView) getView().findViewById(R.id.przebiegVal);
-		tv.setText(cr.getPrzebieg());
+		//przebieg
+		vch.ChangeEntryState(R.id.przebiegCap, R.id.przebiegVal, cr.getPrzebieg(), false);
 		
 		tv = (TextView) getView().findViewById(R.id.jednostkaVal);
 		tv.setText(cr.getPrzebiegUnit());
 		
-		tv = (TextView) getView().findViewById(R.id.rokVal);
-		tv.setText(cr.getRokProdukcji());
+		//rok produkcji
+		vch.ChangeEntryState(R.id.rokCap, R.id.rokVal, cr.getRokProdukcji(), true);
 		
 		tv = (TextView) getView().findViewById(R.id.rodzajVal);
 		tv.setText(cr.getRodzaj());
@@ -108,8 +107,7 @@ public class OgolneFragment extends Fragment {
 		tv = (TextView) getView().findViewById(R.id.paliwoVal);
 		tv.setText(cr.getRodzajPaliwa());
 		
-		tv = (TextView) getView().findViewById(R.id.vinVal);
-		tv.setText(cr.getVin());
+		vch.ChangeEntryState(R.id.vinCap, R.id.vinVal, cr.getVin(), true);
 
 		vch.ChangeEntryState(R.id.statusCap, R.id.statusVal, cr.getStatus(), true);
 		
