@@ -279,7 +279,7 @@ public class ResultActivity extends ActionBarActivity implements
 		@Override
 		public int getCount() {
 			// Show 4 total pages.
-			return 3;
+			return 4;
 			//FIXME: ustawiony w zależności od liczby kart
 		}
 

@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -6,13 +6,79 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tk.v3l0c1r4pt0r.cepik.OsFragment" >
+    tools:context="tk.v3l0c1r4pt0r.cepik.OsFragment"
+    android:orientation="vertical" >
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <TableLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:background="#555"
+    	android:padding="1dp"
+    	android:stretchColumns="0,2" >
 
-</FrameLayout>
+    	<TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:background="@android:color/background_dark" >
+
+    	    <TextView
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="wrap_content"
+    	        android:padding="3dp"
+    	        android:textStyle="bold"
+    	        android:text="Data" />
+    	    
+    	    <View 
+    	        android:background="#555"
+				android:layout_width="1dp"
+				android:layout_height="fill_parent" />
+
+    	    <TextView
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="wrap_content"
+    	        android:layout_weight="1"
+    	        android:padding="3dp"
+    	        android:textStyle="bold"
+    	        android:text="Zdarzenie" />
+
+    	</TableRow>
+    	
+    	<TableRow 
+    	    android:background="#555" >
+    	    <View android:layout_height="1dp"/>
+    	</TableRow>
+
+    	<TableRow
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:background="@android:color/background_dark" >
+
+    	    <TextView
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="wrap_content"
+    	        android:padding="3dp"
+    	        android:text="1890" />
+    	    
+    	    <View 
+    	        android:background="#555"
+				android:layout_width="1dp"
+				android:layout_height="fill_parent" />
+
+    	    <TextView
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="wrap_content"
+    	        android:layout_weight="1"
+    	        android:padding="3dp"
+    	        android:text="Rok produkcji" />
+
+    	</TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Podsumowanie" />
+
+</LinearLayout>
