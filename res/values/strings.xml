@@ -34,7 +34,6 @@
     <!-- tabs -->
     <string name="title_activity_results">Wyniki</string>
     <string name="title_activity_test">Wyniki</string>
-    <string name="title_activity_help">Pomoc</string>
     <string name="title_ogolne">Ogólne</string>
     <string name="title_techniczne">Techniczne</string>
     <string name="title_dokumenty">Dokumenty</string>
