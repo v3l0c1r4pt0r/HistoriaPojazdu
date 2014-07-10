@@ -78,7 +78,7 @@ public class WebService implements Serializable {
 		URL url = new URL(mainUrl);
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
-		trustAllHosts();
+		trustAllHosts();//FIXME
 		try {
 			urlConnection.connect();
 			List<String> cookies = urlConnection.getHeaderFields().get("Set-Cookie");
@@ -104,6 +104,7 @@ public class WebService implements Serializable {
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
+		trustAllHosts();//FIXME
 
 		try {
 			urlConnection.connect();
@@ -135,6 +136,7 @@ public class WebService implements Serializable {
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
+		trustAllHosts();//FIXME
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -174,6 +176,7 @@ public class WebService implements Serializable {
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
+		trustAllHosts();//FIXME
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
