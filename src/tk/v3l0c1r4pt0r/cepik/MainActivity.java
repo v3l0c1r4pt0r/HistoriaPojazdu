@@ -331,12 +331,21 @@ public class MainActivity extends Activity {
 					}
 					else 
 					{
-						Toast toast = Toast.makeText(
-								thisActivity, 
-								getString(R.string.error) + e.getClass().getName(), 
-								Toast.LENGTH_SHORT
-								);
-						toast.show();
+						View v = findViewById(R.id.scrollView1);
+						v.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast toast = Toast.makeText(
+										thisActivity, 
+										getString(R.string.error) + e.getClass().getName() +
+										(e.getLocalizedMessage().length() > 0 ? 
+												getString(R.string.errorMore) + e.getLocalizedMessage() : ""), 
+										Toast.LENGTH_SHORT
+										);
+								toast.show();
+							}
+						});
 						e.printStackTrace();
 						return;
 					}
@@ -425,12 +434,20 @@ public class MainActivity extends Activity {
 					});
 				} catch (final Exception e)
 				{
-					Toast toast = Toast.makeText(
-							thisActivity, 
-							getString(R.string.error) + e.getClass().getName(), 
-							Toast.LENGTH_SHORT
-							);
-					toast.show();
+					iv.post(new Runnable() {
+						
+						@Override
+						public void run() {
+							Toast toast = Toast.makeText(
+									thisActivity, 
+									getString(R.string.error) + e.getClass().getName() +
+									(e.getLocalizedMessage().length() > 0 ? 
+											getString(R.string.errorMore) + e.getLocalizedMessage() : ""), 
+									Toast.LENGTH_SHORT
+									);
+							toast.show();
+						}
+					});
 					e.printStackTrace();
 				}
 			}
