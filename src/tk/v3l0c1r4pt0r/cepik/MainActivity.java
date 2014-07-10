@@ -1,7 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
