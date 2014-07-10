@@ -185,9 +185,6 @@ public class MainActivity extends Activity {
 		    	CarReport rep = null;
 		    	try {
 					rep = cepik.getReport(nrRejestracyjny, vin, dataRejestracji, captcha);
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-					return;
 				} catch (final IOException e) {
 					View v = findViewById(R.id.scrollView1);
 					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
@@ -334,6 +331,12 @@ public class MainActivity extends Activity {
 					}
 					else 
 					{
+						Toast toast = Toast.makeText(
+								thisActivity, 
+								getString(R.string.error) + e.getClass().getName(), 
+								Toast.LENGTH_SHORT
+								);
+						toast.show();
 						e.printStackTrace();
 						return;
 					}
@@ -420,6 +423,15 @@ public class MainActivity extends Activity {
 							toast.show();
 						}
 					});
+				} catch (final Exception e)
+				{
+					Toast toast = Toast.makeText(
+							thisActivity, 
+							getString(R.string.error) + e.getClass().getName(), 
+							Toast.LENGTH_SHORT
+							);
+					toast.show();
+					e.printStackTrace();
 				}
 			}
 		}).start();
