@@ -393,7 +393,7 @@ public class MainActivity extends Activity {
 				try {
 					if(cepik==null)
 					{
-						cepik = new WebService();	//ustawia ciastko
+						cepik = new WebService(getApplicationContext());	//ustawia ciastko
 					}
 					
 					final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę

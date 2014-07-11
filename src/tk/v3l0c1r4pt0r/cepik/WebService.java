@@ -1,5 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -10,22 +11,24 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.List;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import javax.security.cert.CertificateException;
-import javax.security.cert.X509Certificate;
+import javax.net.ssl.TrustManagerFactory;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -41,6 +44,8 @@ public class WebService implements Serializable {
 	private static String pdfUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/historiaPojazdu.xhtml";
 	private static String captchaUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/captcha";
 	private static String userAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0";
+	
+	private Context context = null;
 	
 	public enum Field
 	{
@@ -73,12 +78,35 @@ public class WebService implements Serializable {
 		
 	}
 	
-	public WebService() throws IOException
-	{
+	public WebService(Context con) 
+			throws IOException, java.security.cert.CertificateException, 
+			KeyStoreException, NoSuchAlgorithmException, KeyManagementException
+	{   
+		this.context = con;
+		KeyStore keyStore  = KeyStore.getInstance(KeyStore.getDefaultType());
+		keyStore.load(null);//Make an empty store
+		InputStream fis = context.getResources().openRawResource(R.raw.historiapojazdu);//TODO
+		BufferedInputStream bis = new BufferedInputStream(fis);
+
+		CertificateFactory cf = CertificateFactory.getInstance("X.509");
+
+		while (bis.available() > 0) {
+		    Certificate cert = cf.generateCertificate(bis);
+		    keyStore.setCertificateEntry("fiddler"+bis.available(), cert);
+		}
+		String algorithm = TrustManagerFactory.getDefaultAlgorithm();
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance(algorithm);
+		tmf.init(keyStore);
+
+		SSLContext context = SSLContext.getInstance("TLS");
+		context.init(null, tmf.getTrustManagers(), null);
+
 		URL url = new URL(mainUrl);
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		
+		urlConnection.setSSLSocketFactory(context.getSocketFactory());
+		
 		urlConnection.setRequestProperty("User-Agent", userAgent);
-		trustAllHosts();//FIXME
 		try {
 			urlConnection.connect();
 			List<String> cookies = urlConnection.getHeaderFields().get("Set-Cookie");
@@ -104,7 +132,7 @@ public class WebService implements Serializable {
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
-		trustAllHosts();//FIXME
+		//trustAllHosts();//FIXME
 
 		try {
 			urlConnection.connect();
@@ -136,7 +164,7 @@ public class WebService implements Serializable {
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
-		trustAllHosts();//FIXME
+		//trustAllHosts();//FIXME
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -176,7 +204,7 @@ public class WebService implements Serializable {
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
-		trustAllHosts();//FIXME
+		//trustAllHosts();//FIXME
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -287,61 +315,5 @@ public class WebService implements Serializable {
 		else
 			throw new ReportNotGeneratedException();
 	}
-	
-    // always verify the host - dont check for certificate
-    final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
-          public boolean verify(String hostname, SSLSession session) {
-              return true;
-          }
-   };
-
-
-    /**
-     * Trust every server - dont check for any certificate
-     */
-    private static void trustAllHosts() {
-              // Create a trust manager that does not validate certificate chains
-              TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-                      public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                              return new java.security.cert.X509Certificate[] {};
-                      }
-
-                      public void checkClientTrusted(X509Certificate[] chain,
-                                      String authType) throws CertificateException {
-                      }
-
-                      public void checkServerTrusted(X509Certificate[] chain,
-                                      String authType) throws CertificateException {
-                      }
-
-					@Override
-					public void checkClientTrusted(
-							java.security.cert.X509Certificate[] chain,
-							String authType)
-							throws java.security.cert.CertificateException {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void checkServerTrusted(
-							java.security.cert.X509Certificate[] chain,
-							String authType)
-							throws java.security.cert.CertificateException {
-						// TODO Auto-generated method stub
-						
-					}
-              } };
-
-              // Install the all-trusting trust manager
-              try {
-                      SSLContext sc = SSLContext.getInstance("TLS");
-                      sc.init(null, trustAllCerts, new java.security.SecureRandom());
-                      HttpsURLConnection
-                                      .setDefaultSSLSocketFactory(sc.getSocketFactory());
-              } catch (Exception e) {
-                      e.printStackTrace();
-              }
-      }
 
 }
