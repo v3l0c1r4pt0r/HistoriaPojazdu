@@ -440,7 +440,7 @@ public class MainActivity extends Activity {
 							Toast toast = Toast.makeText(
 									thisActivity, 
 									getString(R.string.error) + e.getClass().getName() +
-									(e.getLocalizedMessage().length() > 0 ? 
+									(e.getLocalizedMessage() != null && e.getLocalizedMessage().length() > 0 ? 
 											getString(R.string.errorMore) + e.getLocalizedMessage() : ""), 
 									Toast.LENGTH_SHORT
 									);
