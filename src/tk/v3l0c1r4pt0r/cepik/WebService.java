@@ -16,11 +16,15 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
 
 import org.jsoup.Jsoup;
@@ -31,6 +35,7 @@ import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 public class WebService implements Serializable {
 	
@@ -83,21 +88,25 @@ public class WebService implements Serializable {
 			KeyStoreException, NoSuchAlgorithmException, KeyManagementException
 	{   
 		this.context = con;
-		/*CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		// From https://www.washington.edu/itconnect/security/ca/load-der.crt
-		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
-		Certificate ca;
-		try {
-		    ca = cf.generateCertificate(caInput);
-		} finally {
-		    caInput.close();
-		}
 
 		// Create a KeyStore containing our trusted CAs
 		String keyStoreType = KeyStore.getDefaultType();
 		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
 		keyStore.load(null, null);
-		keyStore.setCertificateEntry("ca", ca);
+		X509Certificate ss = getCertificate(R.raw.historiapojazdu);
+		keyStore.setCertificateEntry(ss.getSubjectX500Principal().getName(), ss);
+		
+		//FIXME: DEBUG
+		Enumeration aliases = keyStore.aliases();
+		while (aliases.hasMoreElements()) {
+		    String alias = (String) aliases.nextElement();
+		    X509Certificate cert = (X509Certificate) 
+		       keyStore.getCertificate(alias);
+		    Log.d(getClass().getName(), "Subject DN: " + 
+		       cert.getSubjectDN().getName());
+		    Log.d(getClass().getName(), "Issuer DN: " + 
+		       cert.getIssuerDN().getName());
+		}
 
 		// Create a TrustManager that trusts the CAs in our KeyStore
 		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
@@ -106,13 +115,13 @@ public class WebService implements Serializable {
 
 		// Create an SSLContext that uses our TrustManager
 		SSLContext context = SSLContext.getInstance("TLS");
-		context.init(null, tmf.getTrustManagers(), null);*/
+		context.init(null, tmf.getTrustManagers(), null);
 
 
 		URL url = new URL(mainUrl);
 		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 		
-		//urlConnection.setSSLSocketFactory(context.getSocketFactory());
+		urlConnection.setSSLSocketFactory(context.getSocketFactory());
 		
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		try {
@@ -126,6 +135,7 @@ public class WebService implements Serializable {
 		}
 		catch(IOException e)
 		{
+			e.getCause().printStackTrace();
 			throw e;
 		}
 	    finally {
@@ -322,6 +332,19 @@ public class WebService implements Serializable {
 		}
 		else
 			throw new ReportNotGeneratedException();
+	}
+	
+	private X509Certificate getCertificate(int rawId) throws IOException, CertificateException
+	{
+		CertificateFactory cf = CertificateFactory.getInstance("X.509");
+		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
+		X509Certificate ca;
+		try {
+		    ca = (X509Certificate) cf.generateCertificate(caInput);
+		} finally {
+		    caInput.close();
+		}
+		return ca;
 	}
 
 }
