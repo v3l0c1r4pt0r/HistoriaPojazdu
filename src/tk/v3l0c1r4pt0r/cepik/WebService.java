@@ -1,6 +1,5 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,16 +11,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateFactory;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -78,41 +78,14 @@ public class WebService implements Serializable {
 		
 	}
 	
-	public WebService(Context con) 
-			throws IOException, java.security.cert.CertificateException, 
-			KeyStoreException, NoSuchAlgorithmException, KeyManagementException
+	public WebService(Context con) throws KeyManagementException, NoSuchAlgorithmException, IOException
 	{   
 		this.context = con;
-		/*CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		// From https://www.washington.edu/itconnect/security/ca/load-der.crt
-		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
-		Certificate ca;
-		try {
-		    ca = cf.generateCertificate(caInput);
-		} finally {
-		    caInput.close();
-		}
-
-		// Create a KeyStore containing our trusted CAs
-		String keyStoreType = KeyStore.getDefaultType();
-		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-		keyStore.load(null, null);
-		keyStore.setCertificateEntry("ca", ca);
-
-		// Create a TrustManager that trusts the CAs in our KeyStore
-		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-		tmf.init(keyStore);
-
-		// Create an SSLContext that uses our TrustManager
-		SSLContext context = SSLContext.getInstance("TLS");
-		context.init(null, tmf.getTrustManagers(), null);*/
-
 
 		URL url = new URL(mainUrl);
 		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 		
-		//urlConnection.setSSLSocketFactory(context.getSocketFactory());
+		urlConnection.setSSLSocketFactory(getFactory());
 		
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		try {
@@ -133,14 +106,15 @@ public class WebService implements Serializable {
 	    }
 	}
 	
-	private byte[] getResponse(URL url) throws IOException
+	private byte[] getResponse(URL url) throws IOException, KeyManagementException, NoSuchAlgorithmException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		
+		urlConnection.setSSLSocketFactory(getFactory());
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
-		//trustAllHosts();//FIXME
 
 		try {
 			urlConnection.connect();
@@ -162,17 +136,18 @@ public class WebService implements Serializable {
 		return baos.toByteArray();
 	}
 	
-	private byte[] getResponse(URL url, String postData) throws IOException
+	private byte[] getResponse(URL url, String postData) throws IOException, KeyManagementException, NoSuchAlgorithmException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		
+		urlConnection.setSSLSocketFactory(getFactory());
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
-		//trustAllHosts();//FIXME
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -202,17 +177,18 @@ public class WebService implements Serializable {
 		return baos.toByteArray();
 	}
 	
-	private WebFile getResponseAsFile(URL url, String postData) throws IOException
+	private WebFile getResponseAsFile(URL url, String postData) throws IOException, KeyManagementException, NoSuchAlgorithmException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		
+		urlConnection.setSSLSocketFactory(getFactory());
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
-		//trustAllHosts();//FIXME
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -245,7 +221,7 @@ public class WebService implements Serializable {
 		return new WebFile(fileName,baos.toByteArray());
 	}
 	
-	public Bitmap getCaptcha() throws MalformedURLException, IOException
+	public Bitmap getCaptcha() throws MalformedURLException, IOException, KeyManagementException, NoSuchAlgorithmException
 	{
 		byte[] response = getResponse(new URL(captchaUrl));
 		Bitmap bmp = BitmapFactory.decodeByteArray(response, 0, response.length);
@@ -254,7 +230,7 @@ public class WebService implements Serializable {
 	
 	public CarReport getReport(String nrRejestracyjny, String vin, String dataRejestracji, String captcha) 
 			throws MalformedURLException, IOException, EntryNotFoundException, WrongCaptchaException, 
-			InvalidInputException
+			InvalidInputException, KeyManagementException, NoSuchAlgorithmException
 	{
 		if(nrRejestracyjny.length() == 0)
 		{
@@ -309,7 +285,7 @@ public class WebService implements Serializable {
 		}
 	}
 	
-	public WebFile getReportPdf() throws MalformedURLException, IOException, ReportNotGeneratedException
+	public WebFile getReportPdf() throws MalformedURLException, IOException, ReportNotGeneratedException, KeyManagementException, NoSuchAlgorithmException
 	{
 		if(javaxState != null && javaxState != "")
 		{
@@ -322,6 +298,41 @@ public class WebService implements Serializable {
 		}
 		else
 			throw new ReportNotGeneratedException();
+	}
+	
+	public class EmptyTrustManager implements X509TrustManager
+	{//FIXME: it is not good idea to do this that way
+
+		@Override
+		public void checkClientTrusted(X509Certificate[] chain, String authType)
+				throws CertificateException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void checkServerTrusted(X509Certificate[] chain, String authType)
+				throws CertificateException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public X509Certificate[] getAcceptedIssuers() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
+	
+	private SSLSocketFactory getFactory() throws KeyManagementException, NoSuchAlgorithmException
+	{
+		// Create an SSLContext that uses our TrustManager
+		SSLContext context = SSLContext.getInstance("TLS");
+		TrustManager[] tms = new TrustManager[1];
+		tms[0] = new EmptyTrustManager();
+		context.init(null, tms, null);
+		return context.getSocketFactory();
 	}
 
 }
