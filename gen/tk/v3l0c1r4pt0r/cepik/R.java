@@ -1309,7 +1309,7 @@ containing a value of this type.
         public static final int test=0x7f0f0002;
     }
     public static final class raw {
-        public static final int certum=0x7f060000;
+        public static final int chain=0x7f060000;
         public static final int historiapojazdu=0x7f060001;
     }
     public static final class string {
