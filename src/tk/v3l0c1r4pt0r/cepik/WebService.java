@@ -1,6 +1,5 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,31 +10,15 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-import java.util.Enumeration;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 public class WebService implements Serializable {
 	
@@ -49,8 +32,6 @@ public class WebService implements Serializable {
 	private static String pdfUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/historiaPojazdu.xhtml";
 	private static String captchaUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/captcha";
 	private static String userAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0";
-	
-	private Context context = null;
 	
 	public enum Field
 	{
@@ -83,46 +64,12 @@ public class WebService implements Serializable {
 		
 	}
 	
-	public WebService(Context con) 
-			throws IOException, java.security.cert.CertificateException, 
-			KeyStoreException, NoSuchAlgorithmException, KeyManagementException
-	{   
-		this.context = con;
-
-		// Create a KeyStore containing our trusted CAs
-//		String keyStoreType = KeyStore.getDefaultType();
-		KeyStore keyStore = KeyStore.getInstance("BKS");
-		keyStore.load(context.getResources().openRawResource(R.raw.chain), "1qazxsw2".toCharArray());
-//		X509Certificate ss = getCertificate(R.raw.historiapojazdu);
-//		keyStore.setCertificateEntry(ss.getSubjectX500Principal().getName(), ss);
-		
-		//FIXME: DEBUG
-		Enumeration aliases = keyStore.aliases();
-		while (aliases.hasMoreElements()) {
-		    String alias = (String) aliases.nextElement();
-		    X509Certificate cert = (X509Certificate) 
-		       keyStore.getCertificate(alias);
-		    Log.d(getClass().getName(), "Subject DN: " + 
-		       cert.getSubjectDN().getName());
-		    Log.d(getClass().getName(), "Issuer DN: " + 
-		       cert.getIssuerDN().getName());
-		}
-
-		// Create a TrustManager that trusts the CAs in our KeyStore
-		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-		tmf.init(keyStore);
-
-		// Create an SSLContext that uses our TrustManager
-		SSLContext context = SSLContext.getInstance("TLS");
-		context.init(null, tmf.getTrustManagers(), null);
-
+	public WebService() throws IOException
+	{
 		URL url = new URL(mainUrl);
-		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-		
-		urlConnection.setSSLSocketFactory(context.getSocketFactory());
-		
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
+		//trustAllHosts();//FIXME
 		try {
 			urlConnection.connect();
 			List<String> cookies = urlConnection.getHeaderFields().get("Set-Cookie");
@@ -331,19 +278,6 @@ public class WebService implements Serializable {
 		}
 		else
 			throw new ReportNotGeneratedException();
-	}
-	
-	private X509Certificate getCertificate(int rawId) throws IOException, CertificateException
-	{
-		CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
-		X509Certificate ca;
-		try {
-		    ca = (X509Certificate) cf.generateCertificate(caInput);
-		} finally {
-		    caInput.close();
-		}
-		return ca;
 	}
 
 }
