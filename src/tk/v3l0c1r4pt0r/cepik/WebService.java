@@ -90,11 +90,11 @@ public class WebService implements Serializable {
 		this.context = con;
 
 		// Create a KeyStore containing our trusted CAs
-		String keyStoreType = KeyStore.getDefaultType();
-		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-		keyStore.load(null, null);
-		X509Certificate ss = getCertificate(R.raw.historiapojazdu);
-		keyStore.setCertificateEntry(ss.getSubjectX500Principal().getName(), ss);
+//		String keyStoreType = KeyStore.getDefaultType();
+		KeyStore keyStore = KeyStore.getInstance("BKS");
+		keyStore.load(context.getResources().openRawResource(R.raw.chain), "1qazxsw2".toCharArray());
+//		X509Certificate ss = getCertificate(R.raw.historiapojazdu);
+//		keyStore.setCertificateEntry(ss.getSubjectX500Principal().getName(), ss);
 		
 		//FIXME: DEBUG
 		Enumeration aliases = keyStore.aliases();
@@ -116,7 +116,6 @@ public class WebService implements Serializable {
 		// Create an SSLContext that uses our TrustManager
 		SSLContext context = SSLContext.getInstance("TLS");
 		context.init(null, tmf.getTrustManagers(), null);
-
 
 		URL url = new URL(mainUrl);
 		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
