@@ -83,28 +83,36 @@ public class WebService implements Serializable {
 			KeyStoreException, NoSuchAlgorithmException, KeyManagementException
 	{   
 		this.context = con;
-		KeyStore keyStore  = KeyStore.getInstance(KeyStore.getDefaultType());
-		keyStore.load(null);//Make an empty store
-		InputStream fis = context.getResources().openRawResource(R.raw.historiapojazdu);//TODO
-		BufferedInputStream bis = new BufferedInputStream(fis);
-
-		CertificateFactory cf = CertificateFactory.getInstance("X.509");
-
-		while (bis.available() > 0) {
-		    Certificate cert = cf.generateCertificate(bis);
-		    keyStore.setCertificateEntry("fiddler"+bis.available(), cert);
+		/*CertificateFactory cf = CertificateFactory.getInstance("X.509");
+		// From https://www.washington.edu/itconnect/security/ca/load-der.crt
+		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
+		Certificate ca;
+		try {
+		    ca = cf.generateCertificate(caInput);
+		} finally {
+		    caInput.close();
 		}
-		String algorithm = TrustManagerFactory.getDefaultAlgorithm();
-		TrustManagerFactory tmf = TrustManagerFactory.getInstance(algorithm);
+
+		// Create a KeyStore containing our trusted CAs
+		String keyStoreType = KeyStore.getDefaultType();
+		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+		keyStore.load(null, null);
+		keyStore.setCertificateEntry("ca", ca);
+
+		// Create a TrustManager that trusts the CAs in our KeyStore
+		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
 		tmf.init(keyStore);
 
+		// Create an SSLContext that uses our TrustManager
 		SSLContext context = SSLContext.getInstance("TLS");
-		context.init(null, tmf.getTrustManagers(), null);
+		context.init(null, tmf.getTrustManagers(), null);*/
+
 
 		URL url = new URL(mainUrl);
 		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 		
-		urlConnection.setSSLSocketFactory(context.getSocketFactory());
+		//urlConnection.setSSLSocketFactory(context.getSocketFactory());
 		
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		try {
