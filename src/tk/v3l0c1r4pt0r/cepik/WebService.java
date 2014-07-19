@@ -10,13 +10,24 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.util.List;
+import java.security.cert.Certificate;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -32,6 +43,8 @@ public class WebService implements Serializable {
 	private static String pdfUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/historiaPojazdu.xhtml";
 	private static String captchaUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/captcha";
 	private static String userAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0";
+	
+	Context context = null;
 	
 	public enum Field
 	{
@@ -64,12 +77,38 @@ public class WebService implements Serializable {
 		
 	}
 	
-	public WebService() throws IOException
+	public WebService(Context con) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException
 	{
+		this.context = con;
+		
 		URL url = new URL(mainUrl);
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
-		//trustAllHosts();//FIXME
+		
+		CertificateFactory cf = CertificateFactory.getInstance("X.509");
+		// From https://www.washington.edu/itconnect/security/ca/load-der.crt
+		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
+		Certificate ca;
+		try {
+		ca = cf.generateCertificate(caInput);
+		} finally {
+		caInput.close();
+		}
+		// Create a KeyStore containing our trusted CAs
+		String keyStoreType = KeyStore.getDefaultType();
+		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+		keyStore.load(null, null);
+		keyStore.setCertificateEntry("ca", ca);
+		
+		// Create a TrustManager that trusts the CAs in our KeyStore
+		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+		tmf.init(keyStore);
+		
+		// Create an SSLContext that uses our TrustManager
+		SSLContext context = SSLContext.getInstance("TLS");
+		context.init(null, tmf.getTrustManagers(), null);
+		
 		try {
 			urlConnection.connect();
 			List<String> cookies = urlConnection.getHeaderFields().get("Set-Cookie");
