@@ -19,6 +19,7 @@ import java.security.cert.CertificateFactory;
 import java.util.List;
 import java.security.cert.Certificate;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
@@ -82,7 +83,7 @@ public class WebService implements Serializable {
 		this.context = con;
 		
 		URL url = new URL(mainUrl);
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		
 		CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -108,6 +109,8 @@ public class WebService implements Serializable {
 		// Create an SSLContext that uses our TrustManager
 		SSLContext context = SSLContext.getInstance("TLS");
 		context.init(null, tmf.getTrustManagers(), null);
+		
+		urlConnection.setSSLSocketFactory(context.getSocketFactory());
 		
 		try {
 			urlConnection.connect();
