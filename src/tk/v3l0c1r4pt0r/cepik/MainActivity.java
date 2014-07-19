@@ -361,7 +361,14 @@ public class MainActivity extends Activity {
 				    	Button btn = (Button) findViewById(R.id.sendBtn);
 				    	btn.setEnabled(true);
 				    	
-				    	startActivity(intent);
+				    	try
+				    	{
+				    		startActivity(intent);
+				    	}
+				    	catch(RuntimeException e)
+				    	{
+				    		e.printStackTrace();
+				    	}
 					}
 				});
 			}

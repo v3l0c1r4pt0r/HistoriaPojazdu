@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -46,7 +45,7 @@ public class WebService implements Serializable {
 	private static String captchaUrl = "https://historiapojazdu.gov.pl/historia-pojazdu-web/captcha";
 	private static String userAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0";
 	
-	Context context = null;
+	private transient Context context = null;
 	
 	public enum Field
 	{
