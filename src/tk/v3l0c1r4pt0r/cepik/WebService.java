@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.List;
+import java.util.Map;
 import java.security.cert.Certificate;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -92,7 +93,22 @@ public class WebService implements Serializable {
 		
 		try {
 			urlConnection.connect();
-			List<String> cookies = urlConnection.getHeaderFields().get("Set-Cookie");
+			/*InputStream is = urlConnection.getInputStream();
+			byte[] buf = new byte[1024];
+			int len = 0;
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			while((len = is.read(buf)) != -1)
+			{
+				baos.write(buf, 0, len);
+			}
+			String content = baos.toString();
+			content.toString();*/
+			Map<String, List<String>> map = urlConnection.getHeaderFields();
+			map.toString();
+			List<String> cookies;
+			cookies = urlConnection.getHeaderFields().get("Set-Cookie");
+			if(cookies == null)
+				cookies = urlConnection.getHeaderFields().get("set-cookie");
 			cookie = "";
 			for(String c : cookies)
 			{
