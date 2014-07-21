@@ -335,20 +335,12 @@ public class WebService implements Serializable {
 			KeyManagementException
 	{
 		
-		CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		// From https://www.washington.edu/itconnect/security/ca/load-der.crt
-		InputStream caInput = context.getResources().openRawResource(R.raw.historiapojazdu);
-		Certificate ca;
-		try {
-		ca = cf.generateCertificate(caInput);
-		} finally {
-		caInput.close();
-		}
 		// Create a KeyStore containing our trusted CAs
 		String keyStoreType = KeyStore.getDefaultType();
 		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
 		keyStore.load(null, null);
-		keyStore.setCertificateEntry("ca", ca);
+		keyStore.setCertificateEntry("ca", getCertFromRes(R.raw.historiapojazdu));
+//		keyStore.setCertificateEntry("burp", getCertFromRes(R.raw.burp));
 		
 		// Create a TrustManager that trusts the CAs in our KeyStore
 		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
@@ -361,6 +353,20 @@ public class WebService implements Serializable {
 		
 		return context.getSocketFactory();
 		
+	}
+	
+	private Certificate getCertFromRes(int res) throws CertificateException, IOException
+	{
+		CertificateFactory cf = CertificateFactory.getInstance("X.509");
+		InputStream caInput = context.getResources().openRawResource(res);
+		Certificate ca;
+		try {
+		ca = cf.generateCertificate(caInput);
+		} finally {
+		caInput.close();
+		}
+		
+		return ca;
 	}
 
 }
