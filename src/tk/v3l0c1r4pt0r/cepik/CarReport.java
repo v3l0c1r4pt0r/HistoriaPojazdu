@@ -296,6 +296,10 @@ public class CarReport implements Serializable {
 		{
 			this.dataRejestracji = "";
 		}
+		catch(IndexOutOfBoundsException e)
+		{
+			this.dataRejestracji = "";
+		}
 
 
     	this.dataWydaniaDowodu = setById("dataWydaniaDowRej", doc);

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 import tk.v3l0c1r4pt0r.cepik.WebService.ReportNotGeneratedException;
@@ -189,7 +191,7 @@ public class ResultActivity extends ActionBarActivity implements
 								toast.show();
 							}
 						});
-					} catch (final ReportNotGeneratedException e) {
+					} catch (final Exception e) {
 						thisActivity.findViewById(R.id.pager).post(new Runnable() {
 							
 							@Override

@@ -1,7 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
@@ -189,9 +188,6 @@ public class MainActivity extends Activity {
 		    	CarReport rep = null;
 		    	try {
 					rep = cepik.getReport(nrRejestracyjny, vin, dataRejestracji, captcha);
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-					return;
 				} catch (final IOException e) {
 					View v = findViewById(R.id.scrollView1);
 					final ImageView iv = (ImageView) findViewById(R.id.captchaImage);
@@ -338,6 +334,21 @@ public class MainActivity extends Activity {
 					}
 					else 
 					{
+						View v = findViewById(R.id.scrollView1);
+						v.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast toast = Toast.makeText(
+										thisActivity, 
+										getString(R.string.error) + e.getClass().getName() +
+										((e.getLocalizedMessage() != null && e.getLocalizedMessage().length() > 0) ? 
+												getString(R.string.errorMore) + e.getLocalizedMessage() : ""), 
+										Toast.LENGTH_SHORT
+										);
+								toast.show();
+							}
+						});
 						e.printStackTrace();
 						return;
 					}
@@ -354,7 +365,14 @@ public class MainActivity extends Activity {
 				    	Button btn = (Button) findViewById(R.id.sendBtn);
 				    	btn.setEnabled(true);
 				    	
-				    	startActivity(intent);
+				    	try
+				    	{
+				    		startActivity(intent);
+				    	}
+				    	catch(RuntimeException e)
+				    	{
+				    		e.printStackTrace();
+				    	}
 					}
 				});
 			}
@@ -386,7 +404,7 @@ public class MainActivity extends Activity {
 				try {
 					if(cepik==null)
 					{
-						cepik = new WebService();	//ustawia ciastko
+						cepik = new WebService(getApplicationContext());	//ustawia ciastko
 					}
 					
 					final Bitmap captcha = cepik.getCaptcha();	//pobiera captchę
@@ -424,6 +442,23 @@ public class MainActivity extends Activity {
 							toast.show();
 						}
 					});
+				} catch (final Exception e)
+				{
+					iv.post(new Runnable() {
+						
+						@Override
+						public void run() {
+							Toast toast = Toast.makeText(
+									thisActivity, 
+									getString(R.string.error) + e.getClass().getName() +
+									(e.getLocalizedMessage() != null && e.getLocalizedMessage().length() > 0 ? 
+											getString(R.string.errorMore) + e.getLocalizedMessage() : ""), 
+									Toast.LENGTH_SHORT
+									);
+							toast.show();
+						}
+					});
+					e.printStackTrace();
 				}
 			}
 		}).start();
