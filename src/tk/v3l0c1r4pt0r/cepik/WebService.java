@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.List;
-import java.util.Map;
 import java.security.cert.Certificate;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -89,7 +88,7 @@ public class WebService implements Serializable {
 		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		
-//		urlConnection.setSSLSocketFactory(getSocketFactory());
+		urlConnection.setSSLSocketFactory(getSocketFactory());
 		
 		try {
 			urlConnection.connect();
@@ -103,8 +102,6 @@ public class WebService implements Serializable {
 			}
 			String content = baos.toString();
 			content.toString();*/
-			Map<String, List<String>> map = urlConnection.getHeaderFields();
-			map.toString();
 			List<String> cookies;
 			cookies = urlConnection.getHeaderFields().get("Set-Cookie");
 			if(cookies == null)
@@ -135,7 +132,7 @@ public class WebService implements Serializable {
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
 		
-//		urlConnection.setSSLSocketFactory(getSocketFactory());
+		urlConnection.setSSLSocketFactory(getSocketFactory());
 
 		try {
 			urlConnection.connect();
@@ -170,7 +167,7 @@ public class WebService implements Serializable {
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
 		
-//		urlConnection.setSSLSocketFactory(getSocketFactory());
+		urlConnection.setSSLSocketFactory(getSocketFactory());
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -194,7 +191,7 @@ public class WebService implements Serializable {
 				urlConnection.setDoInput(true);
 				urlConnection.setDoOutput(true);
 				
-//				urlConnection.setSSLSocketFactory(getSocketFactory());
+				urlConnection.setSSLSocketFactory(getSocketFactory());
 
 				OutputStream os2 = urlConnection.getOutputStream();
 				BufferedWriter writer2 = new BufferedWriter(
@@ -237,7 +234,7 @@ public class WebService implements Serializable {
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
 		
-//		urlConnection.setSSLSocketFactory(getSocketFactory());
+		urlConnection.setSSLSocketFactory(getSocketFactory());
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
