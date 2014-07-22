@@ -1,0 +1,12 @@
+v1.1.0:
+- dodałem okno pomocy
+- pomniejsze porawki w wyglądzie wyników
+* dodałem oś czasu
+v1.0.3:
+- powrót do standardowych certyfikatów (kolejna zmiana certyfikatu serwera)
+- obniżenie wymagań odnośnie wersji systemu (z API 14 do 10 - GingerBread)
+v1.0.2:
+- poprawiłem błąd połączenia HTTPS (certyfikat serwera zmienił się na self-signed)
+v1.0.1
+- podniosłem minimalne wymagania do API w wersji 14 (ICS)
+- pomniejsze poprawki w obsłudze błędów
