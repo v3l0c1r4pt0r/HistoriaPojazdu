@@ -20,6 +20,7 @@ import java.security.cert.Certificate;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
 
@@ -88,10 +89,16 @@ public class WebService implements Serializable {
 		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		
-		urlConnection.setSSLSocketFactory(getSocketFactory());
-		
 		try {
-			urlConnection.connect();
+			try
+			{
+				urlConnection.connect();
+			}
+			catch(SSLHandshakeException e)
+			{
+				urlConnection.setSSLSocketFactory(getSocketFactory());
+				urlConnection.connect();
+			}
 			/*InputStream is = urlConnection.getInputStream();
 			byte[] buf = new byte[1024];
 			int len = 0;
@@ -132,10 +139,16 @@ public class WebService implements Serializable {
 		urlConnection.setRequestProperty("User-Agent", userAgent);
 		urlConnection.setRequestProperty("Cookie", cookie);
 		
-		urlConnection.setSSLSocketFactory(getSocketFactory());
-
 		try {
-			urlConnection.connect();
+			try
+			{
+				urlConnection.connect();
+			}
+			catch(SSLHandshakeException e)
+			{
+				urlConnection.setSSLSocketFactory(getSocketFactory());
+				urlConnection.connect();
+			}
 			InputStream is = urlConnection.getInputStream();
 			int len = 0;
 			while ((len = is.read(buffer)) != -1) 
@@ -166,8 +179,6 @@ public class WebService implements Serializable {
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
-		
-		urlConnection.setSSLSocketFactory(getSocketFactory());
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -176,9 +187,17 @@ public class WebService implements Serializable {
 		writer.flush();
 		writer.close();
 		os.close();
-
+		
 		try {
-			urlConnection.connect();
+			try
+			{
+				urlConnection.connect();
+			}
+			catch(SSLHandshakeException e)
+			{
+				urlConnection.setSSLSocketFactory(getSocketFactory());
+				urlConnection.connect();
+			}
 			String redirect = urlConnection.getHeaderField("Location");
 			if(redirect != null)	//truth before ICS
 			{
@@ -190,8 +209,6 @@ public class WebService implements Serializable {
 				urlConnection.setRequestMethod("POST");
 				urlConnection.setDoInput(true);
 				urlConnection.setDoOutput(true);
-				
-				urlConnection.setSSLSocketFactory(getSocketFactory());
 
 				OutputStream os2 = urlConnection.getOutputStream();
 				BufferedWriter writer2 = new BufferedWriter(
@@ -200,8 +217,15 @@ public class WebService implements Serializable {
 				writer2.flush();
 				writer2.close();
 				os2.close();
-				
-				urlConnection.connect();
+				try
+				{
+					urlConnection.connect();
+				}
+				catch(SSLHandshakeException e)
+				{
+					urlConnection.setSSLSocketFactory(getSocketFactory());
+					urlConnection.connect();
+				}
 			}
 			InputStream is = urlConnection.getInputStream();
 			int len = 0;
@@ -233,8 +257,6 @@ public class WebService implements Serializable {
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoInput(true);
 		urlConnection.setDoOutput(true);
-		
-		urlConnection.setSSLSocketFactory(getSocketFactory());
 
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(
@@ -245,9 +267,17 @@ public class WebService implements Serializable {
 		os.close();
 		
 		String fileName;
-
+		
 		try {
-			urlConnection.connect();
+			try
+			{
+				urlConnection.connect();
+			}
+			catch(SSLHandshakeException e)
+			{
+				urlConnection.setSSLSocketFactory(getSocketFactory());
+				urlConnection.connect();
+			}
 			InputStream is = urlConnection.getInputStream();
 			int len = 0;
 			while ((len = is.read(buffer)) != -1) 
