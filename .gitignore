@@ -4,3 +4,4 @@
 .classpath
 proguard-project.txt
 bin
+gen
