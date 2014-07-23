@@ -187,6 +187,46 @@ public class CarReport implements Serializable {
 	public String getNaciskNaOs() {
 		return naciskNaOs;
 	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public List<Event> getZdarzenia() {
+		return zdarzenia;
+	}
+
+	public String getWlascicieleSum() {
+		return wlascicieleSum;
+	}
+
+	public String getWspolwlascicieleSum() {
+		return wspolwlascicieleSum;
+	}
+
+	public String getWojewodztwo() {
+		return wojewodztwo;
+	}
+
+	public String getPolisa() {
+		return polisa;
+	}
+
+	public String getBadanie() {
+		return badanie;
+	}
+
+	public String getKradzionyOpis() {
+		return kradzionyOpis;
+	}
+
+	public String getWlascicieleAkt() {
+		return wlascicieleAkt;
+	}
+
+	public String getWspolwlascicieleAkt() {
+		return wspolwlascicieleAkt;
+	}
 
 	String marka;
 	String typ;
@@ -236,7 +276,7 @@ public class CarReport implements Serializable {
 	String hWersja;
 	String hNumer;
 	String hWariant;
-	
+
 	List<Event> zdarzenia = new ArrayList<Event>();
 
 	String wlascicieleSum;
@@ -397,6 +437,14 @@ public class CarReport implements Serializable {
     	{
     		kradziony = false;
     	}
+
+    	//os
+    	this.wlascicieleSum = setById("iloscWlascicieliPojazdu2", doc);
+    	this.wspolwlascicieleSum = setById("iloscWspolwlascicieliPojazdu2", doc);
+    	this.wojewodztwo = setById("miejsceZarejestrowania", doc);
+    	//FIXME: oc i przegląd nie stąd
+    	this.wlascicieleAkt = setById("aktualnaIloscWlascicieliPojazdu2", doc);
+    	this.wspolwlascicieleAkt = setById("aktualnaIloscWspolwlascicieliPojazdu2", doc);
 	}
 	
 	private String setById(String id, Document doc)
