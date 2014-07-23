@@ -1,6 +1,5 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
