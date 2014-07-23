@@ -28,7 +28,7 @@
     	        android:layout_height="wrap_content"
     	        android:padding="3dp"
     	        android:textStyle="bold"
-    	        android:text="Data" />
+    	        android:text="@string/dateCap" />
     	    
     	    <View 
     	        android:background="#555"
@@ -41,7 +41,7 @@
     	        android:layout_weight="1"
     	        android:padding="3dp"
     	        android:textStyle="bold"
-    	        android:text="Zdarzenie" />
+    	        android:text="@string/zdarzenieCap" />
 
     	</TableRow>
     	
@@ -77,8 +77,121 @@
     </TableLayout>
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/podsumowanieCap"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:id="@+id/wlascicieleCap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Podsumowanie" />
+        android:text="@string/wlascicieleCap" />
+
+    <TextView
+        android:id="@+id/wlascicieleVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/wspolwlascicieleCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wspolwlascicieleCap" />
+
+    <TextView
+        android:id="@+id/wspolwlascicieleVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/aktualnyCap"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/wojewodztwoCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wojewodztwoCap" />
+
+    <TextView
+        android:id="@+id/wojewodztwoVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/ocFullCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocFullCap" />
+
+    <TextView
+        android:id="@+id/ocFullVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/przegladFullCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/przegladFullCap" />
+
+    <TextView
+        android:id="@+id/przegladFullVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/kradzionyFullCap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kradzionyFullCap"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_horizontal"
+        android:textColor="#f00"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/wlascicieleAkCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wlascicieleAkCap" />
+
+    <TextView
+        android:id="@+id/wlascicieleAkVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/wspolwlascicieleAkCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wspolwlascicieleAkCap" />
+
+    <TextView
+        android:id="@+id/wspolwlascicieleAkVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

@@ -112,7 +112,18 @@
     <string name="wariantVal">--</string>
 
     <!-- time axis -->
-    <string name="hello_blank_fragment">TODO: zaprojektować!</string>
+    <string name="dateCap">Data</string>
+    <string name="zdarzenieCap">Zdarzenie</string>
+    <string name="podsumowanieCap">Podsumowanie</string>
+    <string name="wlascicieleCap">Właściciele (łącznie):</string>
+    <string name="wspolwlascicieleCap">Współwłaściciele (łącznie):</string>
+    <string name="aktualnyCap">Stan aktualny</string>
+    <string name="wlascicieleAkCap">Właściciele (obecnie):</string>
+    <string name="wspolwlascicieleAkCap">Współwłaściciele (obecnie):</string>
+    <string name="wojewodztwoCap">Województwo:</string>
+    <string name="ocFullCap">Polisa OC:</string>
+    <string name="przegladFullCap">Badanie techniczne:</string>
+    <string name="kradzionyFullCap">Pojazd oznaczony w ewidencji jako kradziony!</string>
     
     <!-- help -->
     <string name="title_activity_help">Pomoc</string>
