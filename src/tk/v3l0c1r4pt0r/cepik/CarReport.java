@@ -1,6 +1,8 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
@@ -235,7 +237,7 @@ public class CarReport implements Serializable {
 	String hNumer;
 	String hWariant;
 	
-	//TODO: oś czasu
+	List<Zdarzenie> zdarzenia = new ArrayList<Zdarzenie>();
 
 	String wlascicieleSum;
 	String wspolwlascicieleSum;
