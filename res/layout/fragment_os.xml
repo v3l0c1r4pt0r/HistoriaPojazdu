@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/podsumowanieCap"
+        android:textStyle="bold"
         android:layout_marginBottom="5dp" />
 
     <TextView
@@ -114,6 +115,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/aktualnyCap"
+        android:textStyle="bold"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp" />
 
