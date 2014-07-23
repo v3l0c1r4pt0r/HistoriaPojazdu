@@ -272,7 +272,7 @@ public class ResultActivity extends ActionBarActivity implements
 			case 2:
 				return DokFragment.newInstance(report);
 			case 3:
-				return OsFragment.newInstance("", "");
+				return OsFragment.newInstance(report);
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
 			}
