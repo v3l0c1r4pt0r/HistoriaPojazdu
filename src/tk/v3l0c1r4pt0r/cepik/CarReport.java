@@ -236,6 +236,16 @@ public class CarReport implements Serializable {
 	String hWariant;
 	
 	//TODO: oś czasu
+
+	String wlascicieleSum;
+	String wspolwlascicieleSum;
+	
+	String wojewodztwo;
+	String polisa;
+	String badanie;
+	String kradzionyOpis;
+	String wlascicieleAkt;
+	String wspolwlascicieleAkt;
 	
 	public CarReport(String nrRejestracyjny, String vin, String dataRejestracji)
 	{
