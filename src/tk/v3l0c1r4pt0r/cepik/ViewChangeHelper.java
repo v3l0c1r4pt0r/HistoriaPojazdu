@@ -16,7 +16,7 @@ public class ViewChangeHelper {
 	{
 		TextView tv = (TextView) view.findViewById(valId);
 		View capTv = (View) view.findViewById(capId);
-		if(hideOnEmpty)
+		if(hideOnEmpty && capTv != null)
 		{
 			if(value.length()>0)
 			{
@@ -34,7 +34,8 @@ public class ViewChangeHelper {
 		{
 			tv.setText(value);
 			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
+			if(capTv != null)
+				capTv.setVisibility(View.VISIBLE);
 		}
 	}
 

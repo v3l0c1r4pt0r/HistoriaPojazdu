@@ -4,45 +4,51 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
-import android.widget.TableLayout;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
- * contain this fragment must implement the
- * {@link OsFragment.OnFragmentInteractionListener} interface to handle
- * interaction events. Use the {@link OsFragment#newInstance} factory method to
- * create an instance of this fragment.
- * 
+ * A simple {@link Fragment} subclass. Activities that contain this fragment
+ * must implement the {@link AxisEntryFragment.OnFragmentInteractionListener}
+ * interface to handle interaction events. Use the
+ * {@link AxisEntryFragment#newInstance} factory method to create an instance of
+ * this fragment.
+ *
  */
-public class OsFragment extends Fragment {
-	private static final String ARG_REPORT = "report";
+public class AxisEntryFragment extends Fragment {
+	// TODO: Rename parameter arguments, choose names that match
+	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+	private static final String ARG_DATE = "date";
+	private static final String ARG_DESC = "description";
 
-	private CarReport cr;
+	// TODO: Rename and change types of parameters
+	private String mDate;
+	private String mDescription;
 
 	private OnFragmentInteractionListener mListener;
 
 	/**
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
-	 * 
-	 * @param cr
-	 *            Car data class
-	 * @return A new instance of fragment OsFragment.
+	 *
+	 * @param param1
+	 *            Parameter 1.
+	 * @param param2
+	 *            Parameter 2.
+	 * @return A new instance of fragment AxisEntryFragment.
 	 */
-	public static OsFragment newInstance(CarReport cr) {
-		OsFragment fragment = new OsFragment();
+	// TODO: Rename and change types and number of parameters
+	public static AxisEntryFragment newInstance(String date, String description) {
+		AxisEntryFragment fragment = new AxisEntryFragment();
 		Bundle args = new Bundle();
-		args.putSerializable(ARG_REPORT, cr);
+		args.putString(ARG_DATE, date);
+		args.putString(ARG_DESC, description);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public OsFragment() {
+	public AxisEntryFragment() {
 		// Required empty public constructor
 	}
 
@@ -50,7 +56,8 @@ public class OsFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
+			mDate = getArguments().getString(ARG_DATE);
+			mDescription = getArguments().getString(ARG_DESC);
 		}
 	}
 
@@ -58,31 +65,19 @@ public class OsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_os, container, false);
+		return inflater.inflate(R.layout.fragment_axis_entry, container, false);
 	}
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
-    {
+	{
         super.onActivityCreated(savedInstanceState);
 		
 		ViewChangeHelper vch = new ViewChangeHelper(getView());
 
-		//wlasciciele, wspolwlasciciele
-		vch.ChangeEntryState(R.id.wlascicieleCap, R.id.wlascicieleVal, cr.getWlascicieleSum(), true);
-		vch.ChangeEntryState(R.id.wspolwlascicieleCap, R.id.wspolwlascicieleVal, cr.getWspolwlascicieleSum(), true);
-		vch.ChangeEntryState(R.id.wlascicieleAkCap, R.id.wlascicieleAkVal, cr.getWlascicieleAkt(), true);
-		vch.ChangeEntryState(R.id.wspolwlascicieleAkCap, R.id.wspolwlascicieleAkVal, cr.getWspolwlascicieleAkt(), true);
-		
-		//województwo
-		vch.ChangeEntryState(R.id.wojewodztwoCap, R.id.wojewodztwoVal, cr.getWojewodztwo(), true);
-		
-		//oś
-		TableLayout table = (TableLayout) getView().findViewById(R.id.axisTable);
-		ViewPager vp = new ViewPager(getActivity());
-		
-		table.addView(vp);
-    }
+		vch.ChangeEntryState(-1, R.id.elDataVal, mDate, false);
+		vch.ChangeEntryState(-1, R.id.elOpisVal, mDescription, false);
+	}
 
 	// TODO: Rename method, update argument and hook method into UI event
 	public void onButtonPressed(Uri uri) {

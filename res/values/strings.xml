@@ -124,10 +124,11 @@
     <string name="ocFullCap">Polisa OC:</string>
     <string name="przegladFullCap">Badanie techniczne:</string>
     <string name="kradzionyFullCap">Pojazd oznaczony w ewidencji jako kradziony!</string>
-    
+
     <!-- help -->
     <string name="title_activity_help">Pomoc</string>
     <string name="hello_world">Hello world!</string>
     <string name="dowod">Dowód rejestracyjny</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
