@@ -237,7 +237,7 @@ public class CarReport implements Serializable {
 	String hNumer;
 	String hWariant;
 	
-	List<Zdarzenie> zdarzenia = new ArrayList<Zdarzenie>();
+	List<Event> zdarzenia = new ArrayList<Event>();
 
 	String wlascicieleSum;
 	String wspolwlascicieleSum;

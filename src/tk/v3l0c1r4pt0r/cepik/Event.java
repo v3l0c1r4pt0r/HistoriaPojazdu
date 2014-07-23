@@ -1,6 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-public class Zdarzenie {
+public class Event {
 	
 	private String data;
 	private String opis;
@@ -13,7 +13,7 @@ public class Zdarzenie {
 		return opis;
 	}
 
-	public Zdarzenie(String data, String opis)
+	public Event(String data, String opis)
 	{
 		this.data = data;
 		this.opis = opis;
