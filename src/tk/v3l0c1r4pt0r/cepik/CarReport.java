@@ -442,7 +442,15 @@ public class CarReport implements Serializable {
     	this.wlascicieleSum = setById("iloscWlascicieliPojazdu2", doc);
     	this.wspolwlascicieleSum = setById("iloscWspolwlascicieliPojazdu2", doc);
     	this.wojewodztwo = setById("miejsceZarejestrowania", doc);
-    	//FIXME: oc i przegląd nie stąd
+    	
+    	this.polisa = setById("infoOPolisieOC", doc);
+    	if(this.polisa == "")
+    		this.polisa = setById("infoOPolisieOCBrak", doc);
+    	
+    	this.badanie = setById("infoOBadaniuTechnicznym", doc);
+    	if(this.badanie == "")
+    		this.badanie = setById("infoOBadaniuTechnicznymBrak", doc);
+    	
     	this.wlascicieleAkt = setById("aktualnaIloscWlascicieliPojazdu2", doc);
     	this.wspolwlascicieleAkt = setById("aktualnaIloscWspolwlascicieliPojazdu2", doc);
 	}

@@ -77,6 +77,10 @@ public class OsFragment extends Fragment {
 		//województwo
 		vch.ChangeEntryState(R.id.wojewodztwoCap, R.id.wojewodztwoVal, cr.getWojewodztwo(), true);
 		
+		//badanie i polisa
+		vch.ChangeEntryState(R.id.ocFullCap, R.id.ocFullVal, cr.getPolisa(), true);
+		vch.ChangeEntryState(R.id.przegladFullCap, R.id.przegladFullVal, cr.getBadanie(), true);
+		
 		//oś
 		TableLayout table = (TableLayout) getView().findViewById(R.id.axisTable);
 		ViewPager vp = new ViewPager(getActivity());
