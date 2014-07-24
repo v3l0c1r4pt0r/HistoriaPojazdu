@@ -1,6 +1,8 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -82,10 +84,16 @@ public class OsFragment extends Fragment {
 		vch.ChangeEntryState(R.id.przegladFullCap, R.id.przegladFullVal, cr.getBadanie(), true);
 		
 		//oś
-		TableLayout table = (TableLayout) getView().findViewById(R.id.axisTable);
-		ViewPager vp = new ViewPager(getActivity());
-		
-		table.addView(vp);
+		android.support.v4.app.FragmentManager manager = getFragmentManager();
+		android.support.v4.app.FragmentTransaction trans = manager.beginTransaction();
+		for(int i = 0; i < 10; i++)	//TODO: użyć prawdziwych danych
+		{
+			Fragment event = AxisEntryFragment.newInstance(""+(int)(1900+i), "Zdarzenie #"+i);
+			Fragment border = AxisBorderFragment.newInstance();
+			trans.add(R.id.axisTable, border);
+			trans.add(R.id.axisTable, event);
+		}
+		trans.commit();
     }
 
 	// TODO: Rename method, update argument and hook method into UI event

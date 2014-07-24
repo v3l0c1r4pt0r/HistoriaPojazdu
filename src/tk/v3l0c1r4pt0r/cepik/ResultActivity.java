@@ -32,7 +32,9 @@ public class ResultActivity extends ActionBarActivity implements
 		TechFragment.OnFragmentInteractionListener, 
 		OgolneFragment.OnFragmentInteractionListener, 
 		DokFragment.OnFragmentInteractionListener, 
-		OsFragment.OnFragmentInteractionListener {
+		OsFragment.OnFragmentInteractionListener,
+		AxisEntryFragment.OnFragmentInteractionListener,
+		AxisBorderFragment.OnFragmentInteractionListener {
 	
 	private CarReport report = null;
 	private WebService downloader = null;
