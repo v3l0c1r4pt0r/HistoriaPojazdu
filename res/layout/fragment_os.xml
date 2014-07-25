@@ -51,36 +51,6 @@
 
     	</TableRow>
     	
-    	<TableRow 
-    	    android:background="#555" >
-    	    <View android:layout_height="1dp"/>
-    	</TableRow>
-
-		<TableRow
-    	    android:layout_width="match_parent"
-    	    android:layout_height="wrap_content"
-    	    android:background="@android:color/background_dark" >
-
-    	    <TextView
-    	        android:layout_width="0dp"
-    	        android:layout_height="wrap_content"
-    	        android:layout_weight="1"
-    	        android:padding="3dp"
-    	        android:text="1890" />
-    	    
-    	    <View 
-    	        android:background="#555"
-				android:layout_width="1dp"
-				android:layout_height="fill_parent" />
-
-    	    <TextView
-    	        android:layout_width="0dp"
-    	        android:layout_height="wrap_content"
-    	        android:layout_weight="2"
-    	        android:padding="3dp"
-    	        android:text="Rok produkcji" />
-
-    	</TableRow>
     </TableLayout>
 
     <TextView
