@@ -86,9 +86,9 @@ public class OsFragment extends Fragment {
 		//oś
 		android.support.v4.app.FragmentManager manager = getFragmentManager();
 		android.support.v4.app.FragmentTransaction trans = manager.beginTransaction();
-		for(int i = 0; i < 10; i++)	//TODO: użyć prawdziwych danych
+		for(Event zdarzenie : cr.getZdarzenia())
 		{
-			Fragment event = AxisEntryFragment.newInstance(""+(int)(1900+i), "Zdarzenie #"+i);
+			Fragment event = AxisEntryFragment.newInstance(zdarzenie.getData(),zdarzenie.getOpis());
 			Fragment border = AxisBorderFragment.newInstance();
 			trans.add(R.id.axisTable, border);
 			trans.add(R.id.axisTable, event);

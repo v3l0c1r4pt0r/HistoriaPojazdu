@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class CarReport implements Serializable {
 	
@@ -439,6 +440,13 @@ public class CarReport implements Serializable {
     	}
 
     	//os
+    	for(int i = 0; i < 10; i++)//TODO: TEMP
+    	{
+    		this.zdarzenia.add(new Event(""+(int)(1900+i), "Zdarzenie #"+i));
+    	}
+    	Element table = doc.getElementById("timeline");
+    	Element produkcja = table.getElementsByTag("thead").get(0).getElementById("production");
+    	
     	this.wlascicieleSum = setById("iloscWlascicieliPojazdu2", doc);
     	this.wspolwlascicieleSum = setById("iloscWspolwlascicieliPojazdu2", doc);
     	this.wojewodztwo = setById("miejsceZarejestrowania", doc);

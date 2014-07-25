@@ -32,6 +32,7 @@
     <string name="notfMsg">Nie znaleziono!</string>
     <string name="aboutContentMsg">Historia Pojazdu\nCopyright by v3l0c1r4pt0r\nStrona domowa: www.v3l0c1r4pt0r.tk</string>
     <string name="downloadedMsg">Raport został zapisany jako </string>
+    <string name="runtimeError">Błąd podczas tworzenia aktywności.\nSkontaktuj się z twórcą aplikacji i podaj następującą przyczynę: </string>
 
     <!-- tabs -->
     <string name="title_activity_results">Wyniki</string>
