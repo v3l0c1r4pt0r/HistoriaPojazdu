@@ -442,14 +442,24 @@ public class CarReport implements Serializable {
     	//os
     	Element table = doc.getElementById("timeline");
     	Element produkcja = table.getElementsByTag("thead").get(0).getElementById("production");
-    	String data = produkcja.getElementsByClass("date").get(0).getElementsByTag("strong").get(0).html();
-    	String opis = produkcja.getElementsByClass("description").get(0).getElementsByTag("strong").get(0).html();
-    	this.zdarzenia.add(new Event(data, opis));
+    	{
+    		String data = produkcja.getElementsByClass("date").get(0).getElementsByTag("strong").get(0).html();
+    		String opis = produkcja.getElementsByClass("description").get(0).getElementsByTag("strong").get(0).html();
+    		this.zdarzenia.add(new Event(data, opis));
+    	}
     	
     	for(int i = 0; i < 10; i++)//TODO: TEMP
     	{
     		this.zdarzenia.add(new Event(""+(int)(1900+i), "Zdarzenie #"+i));
     	}
+    	
+    	Element raport = table.getElementsByTag("tfoot").get(0).getElementById("summary");
+    	{
+    		String data = raport.getElementsByClass("date").get(0).html();
+    		String opis = raport.getElementsByClass("description").get(0).getElementsByTag("p").get(0).html();
+    		this.zdarzenia.add(new Event(data, opis));
+    	}
+    	
     	
     	this.wlascicieleSum = setById("iloscWlascicieliPojazdu2", doc);
     	this.wspolwlascicieleSum = setById("iloscWspolwlascicieliPojazdu2", doc);
