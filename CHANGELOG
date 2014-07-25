@@ -3,6 +3,7 @@ v1.1.0:
 - pomniejsze porawki w wyglądzie wyników
 - dodałem oś czasu
 - moc silnika przeliczana na konie mechaniczne
+- poprawka wyglądu zaznaczenia błędnych danych wejściowych (GB)
 v1.0.3:
 - powrót do standardowych certyfikatów (kolejna zmiana certyfikatu serwera)
 - obniżenie wymagań odnośnie wersji systemu (z API 14 do 10 - GingerBread)
