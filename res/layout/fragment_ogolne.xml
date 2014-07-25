@@ -166,74 +166,30 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/rodzajCap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/typCap" />
-    
-    <LinearLayout
+        android:text="@string/rodzajCap" />
+
+    <TextView
+        android:id="@+id/rodzajVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-	    <TextView
-	        android:id="@+id/rodzajVal"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-	        android:text="@string/rodzajVal"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-	    <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/comma"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	
-	    <TextView
-	        android:id="@+id/podrodzajVal"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-	        android:text="@string/podrodzajVal"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-    </LinearLayout>
+        android:layout_marginRight="5dp"
+        android:text="@string/rodzajVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/silnikCap" />
-    
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/pojemnoscVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-	    <TextView
-	        android:id="@+id/pojemnoscVal"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:text="@string/pojemnoscVal"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-	    <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/comma"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	
-	    <TextView
-	        android:id="@+id/paliwoVal"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:text="@string/paliwoVal"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-    </LinearLayout>
+        android:text="@string/pojemnoscVal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>
 </ScrollView>

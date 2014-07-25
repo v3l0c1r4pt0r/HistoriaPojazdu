@@ -96,16 +96,10 @@ public class OgolneFragment extends Fragment {
 		vch.ChangeEntryState(R.id.rokCap, R.id.rokVal, cr.getRokProdukcji(), true);
 		
 		tv = (TextView) getView().findViewById(R.id.rodzajVal);
-		tv.setText(cr.getRodzaj());
-		
-		tv = (TextView) getView().findViewById(R.id.podrodzajVal);
-		tv.setText(cr.getPodrodzaj());
+		tv.setText(cr.getRodzaj()+", "+cr.getPodrodzaj());
 		
 		tv = (TextView) getView().findViewById(R.id.pojemnoscVal);
-		tv.setText(cr.getPojemnoscSilnika());
-		
-		tv = (TextView) getView().findViewById(R.id.paliwoVal);
-		tv.setText(cr.getRodzajPaliwa());
+		tv.setText(cr.getPojemnoscSilnika()+", "+cr.getRodzajPaliwa());
 		
 		vch.ChangeEntryState(R.id.vinCap, R.id.vinVal, cr.getVin(), true);
 

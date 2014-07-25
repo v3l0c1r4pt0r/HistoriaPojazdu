@@ -57,9 +57,8 @@
     <string name="statusVal">-</string>
     <string name="rokCap">Rok produkcji:</string>
     <string name="rokVal">----</string>
-    <string name="typCap">Typ:</string>
-    <string name="rodzajVal">-</string>
-    <string name="podrodzajVal">-</string>
+    <string name="rodzajCap">Typ:</string>
+    <string name="rodzajVal">-, -</string>
     <string name="silnikCap">Silnik:</string>
     <string name="pojemnoscCap">Pojemność silnika:</string>
     <string name="pojemnoscVal">--- cm³</string>
