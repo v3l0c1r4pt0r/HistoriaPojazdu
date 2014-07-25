@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
-import tk.v3l0c1r4pt0r.cepik.WebService.ReportNotGeneratedException;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -35,7 +32,9 @@ public class ResultActivity extends ActionBarActivity implements
 		TechFragment.OnFragmentInteractionListener, 
 		OgolneFragment.OnFragmentInteractionListener, 
 		DokFragment.OnFragmentInteractionListener, 
-		OsFragment.OnFragmentInteractionListener {
+		OsFragment.OnFragmentInteractionListener,
+		AxisEntryFragment.OnFragmentInteractionListener,
+		AxisBorderFragment.OnFragmentInteractionListener {
 	
 	private CarReport report = null;
 	private WebService downloader = null;
@@ -272,7 +271,7 @@ public class ResultActivity extends ActionBarActivity implements
 			case 2:
 				return DokFragment.newInstance(report);
 			case 3:
-				return OsFragment.newInstance("", "");
+				return OsFragment.newInstance(report);
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
 			}
@@ -281,7 +280,7 @@ public class ResultActivity extends ActionBarActivity implements
 		@Override
 		public int getCount() {
 			// Show 4 total pages.
-			return 3;
+			return 4;
 			//FIXME: ustawiony w zależności od liczby kart
 		}
 

@@ -71,6 +71,14 @@ public class TechFragment extends Fragment {
 		//moc silnika
 		vch.ChangeEntryState(R.id.mocCap, R.id.mocVal, cr.getMocSilnika(), true);
 		//TODO: dodać moc w KM w nawiasie
+		if(cr.getMocSilnika() != "")
+		{
+			String mocKw = cr.getMocSilnika();
+			double moc = Integer.parseInt(mocKw.substring(0, mocKw.length()-3));
+			moc = (moc * 1000) / 735.49875;
+			String mocInKm = " ("+Math.round(moc)+" KM)";
+			vch.ChangeEntryState(-1, R.id.mocKmVal, mocInKm, false);
+		}
 
 		//emisja co2
 		vch.ChangeEntryState(R.id.emisjaCap, R.id.emisjaVal, cr.getEmisjaCo2(), true);

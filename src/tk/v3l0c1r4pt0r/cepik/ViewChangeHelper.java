@@ -1,5 +1,6 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import android.text.Spanned;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ public class ViewChangeHelper {
 	{
 		TextView tv = (TextView) view.findViewById(valId);
 		View capTv = (View) view.findViewById(capId);
-		if(hideOnEmpty)
+		if(hideOnEmpty && capTv != null)
 		{
 			if(value.length()>0)
 			{
@@ -34,7 +35,35 @@ public class ViewChangeHelper {
 		{
 			tv.setText(value);
 			tv.setVisibility(View.VISIBLE);
-			capTv.setVisibility(View.VISIBLE);
+			if(capTv != null)
+				capTv.setVisibility(View.VISIBLE);
+		}
+	}
+
+	public void ChangeEntryState(int capId, int valId, Spanned value,
+			boolean hideOnEmpty) {
+		TextView tv = (TextView) view.findViewById(valId);
+		View capTv = (View) view.findViewById(capId);
+		if(hideOnEmpty && capTv != null)
+		{
+			if(value.length()>0)
+			{
+				tv.setText(value);
+				tv.setVisibility(View.VISIBLE);
+				capTv.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				tv.setVisibility(View.GONE);
+				capTv.setVisibility(View.GONE);
+			}
+		}
+		else
+		{
+			tv.setText(value);
+			tv.setVisibility(View.VISIBLE);
+			if(capTv != null)
+				capTv.setVisibility(View.VISIBLE);
 		}
 	}
 

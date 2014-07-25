@@ -1,12 +1,17 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.TableLayout;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
@@ -17,14 +22,9 @@ import android.view.ViewGroup;
  * 
  */
 public class OsFragment extends Fragment {
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
+	private static final String ARG_REPORT = "report";
 
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private CarReport cr;
 
 	private OnFragmentInteractionListener mListener;
 
@@ -32,18 +32,14 @@ public class OsFragment extends Fragment {
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
 	 * 
-	 * @param param1
-	 *            Parameter 1.
-	 * @param param2
-	 *            Parameter 2.
+	 * @param cr
+	 *            Car data class
 	 * @return A new instance of fragment OsFragment.
 	 */
-	// TODO: Rename and change types and number of parameters
-	public static OsFragment newInstance(String param1, String param2) {
+	public static OsFragment newInstance(CarReport cr) {
 		OsFragment fragment = new OsFragment();
 		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
+		args.putSerializable(ARG_REPORT, cr);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -56,8 +52,7 @@ public class OsFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
+			cr = (CarReport) getArguments().getSerializable(ARG_REPORT);
 		}
 	}
 
@@ -67,6 +62,39 @@ public class OsFragment extends Fragment {
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_os, container, false);
 	}
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+		
+		ViewChangeHelper vch = new ViewChangeHelper(getView());
+
+		//wlasciciele, wspolwlasciciele
+		vch.ChangeEntryState(R.id.wlascicieleCap, R.id.wlascicieleVal, cr.getWlascicieleSum(), true);
+		vch.ChangeEntryState(R.id.wspolwlascicieleCap, R.id.wspolwlascicieleVal, cr.getWspolwlascicieleSum(), true);
+		vch.ChangeEntryState(R.id.wlascicieleAkCap, R.id.wlascicieleAkVal, cr.getWlascicieleAkt(), true);
+		vch.ChangeEntryState(R.id.wspolwlascicieleAkCap, R.id.wspolwlascicieleAkVal, cr.getWspolwlascicieleAkt(), true);
+		
+		//województwo
+		vch.ChangeEntryState(R.id.wojewodztwoCap, R.id.wojewodztwoVal, cr.getWojewodztwo(), true);
+		
+		//badanie i polisa
+		vch.ChangeEntryState(R.id.ocFullCap, R.id.ocFullVal, cr.getPolisa(), true);
+		vch.ChangeEntryState(R.id.przegladFullCap, R.id.przegladFullVal, cr.getBadanie(), true);
+		
+		//oś
+		android.support.v4.app.FragmentManager manager = getFragmentManager();
+		android.support.v4.app.FragmentTransaction trans = manager.beginTransaction();
+		for(Event zdarzenie : cr.getZdarzenia())
+		{
+			Fragment event = AxisEntryFragment.newInstance(zdarzenie);
+			Fragment border = AxisBorderFragment.newInstance();
+			trans.add(R.id.axisTable, border);
+			trans.add(R.id.axisTable, event);
+		}
+		trans.commit();
+    }
 
 	// TODO: Rename method, update argument and hook method into UI event
 	public void onButtonPressed(Uri uri) {

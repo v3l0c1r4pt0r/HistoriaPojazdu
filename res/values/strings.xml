@@ -2,17 +2,18 @@
 <resources>
 
     <string name="app_name">Historia Pojazdu</string>
-    
+
     <!-- menu -->
     <string name="action_about">O programie</string>
     <string name="action_download">Pobierz PDF</string>
     <string name="action_settings">Ustawienia</string>
-    
+    <string name="action_help">Pomoc</string>
+
     <!-- inputs -->
     <string name="rejVal"></string>
     <string name="vinVal"></string>
     <string name="rejestracjaVal"></string>
-    
+
     <!-- input screen -->
     <string name="captchaTxtStr">CAPTCHA:</string>
     <string name="captcha">CAPTCHA</string>
@@ -21,7 +22,7 @@
     <string name="vinCap">VIN:</string>
     <string name="dataCap">Data pierwszej rej.:</string>
     <string name="refresh">Odśwież</string>
-    
+
     <!-- messages -->
     <string name="wrongCaptchaMsg">Wprowadzona CAPTCHA była błędna. Spróbuj ponownie!</string>
     <string name="notFoundMsg">Nie znaleziono pojazdu o podanych danych. Sprawdź poprawność wprowadzonych danych i spróbuj ponownie.</string>
@@ -31,7 +32,8 @@
     <string name="notfMsg">Nie znaleziono!</string>
     <string name="aboutContentMsg">Historia Pojazdu\nCopyright by v3l0c1r4pt0r\nStrona domowa: www.v3l0c1r4pt0r.tk</string>
     <string name="downloadedMsg">Raport został zapisany jako </string>
-    
+    <string name="runtimeError">Błąd podczas tworzenia aktywności.\nSkontaktuj się z twórcą aplikacji i podaj następującą przyczynę: </string>
+
     <!-- tabs -->
     <string name="title_activity_results">Wyniki</string>
     <string name="title_activity_test">Wyniki</string>
@@ -39,7 +41,7 @@
     <string name="title_techniczne">Techniczne</string>
     <string name="title_dokumenty">Dokumenty</string>
     <string name="title_os">Oś czasu</string>
-    
+
     <!-- overview -->
     <string name="comma">, </string>
     <string name="przebiegCap">Przebieg:</string>
@@ -55,15 +57,14 @@
     <string name="statusVal">-</string>
     <string name="rokCap">Rok produkcji:</string>
     <string name="rokVal">----</string>
-    <string name="typCap">Typ:</string>
-    <string name="rodzajVal">-</string>
-    <string name="podrodzajVal">-</string>
+    <string name="rodzajCap">Typ:</string>
+    <string name="rodzajVal">-, -</string>
     <string name="silnikCap">Silnik:</string>
     <string name="pojemnoscCap">Pojemność silnika:</string>
     <string name="pojemnoscVal">--- cm³</string>
     <string name="paliwoCap">Paliwo:</string>
     <string name="paliwoVal">-</string>
-    
+
     <!-- technical -->
     <string name="mocCap">Moc silnika:</string>
     <string name="mocVal">-- kW</string>
@@ -93,7 +94,7 @@
     <string name="rozstawKolVal">-</string>
     <string name="naciskNaOsCap">Maksymalny nacisk na oś:</string>
     <string name="naciskNaOsVal">-</string>
-    
+
     <!-- documents -->
     <string name="rejestracjaCap">Data pierwszej rejestracji:</string>
     <string name="dowodCap">Data wydania dowodu rejestracyjnego:</string>
@@ -109,8 +110,25 @@
     <string name="numerVal">-</string>
     <string name="wariantCap">Wariant:</string>
     <string name="wariantVal">--</string>
-    
+
     <!-- time axis -->
-    <string name="hello_blank_fragment">TODO: zaprojektować!</string>
+    <string name="dateCap">Data</string>
+    <string name="zdarzenieCap">Zdarzenie</string>
+    <string name="podsumowanieCap">Podsumowanie</string>
+    <string name="wlascicieleCap">Właściciele (łącznie):</string>
+    <string name="wspolwlascicieleCap">Współwłaściciele (łącznie):</string>
+    <string name="aktualnyCap">Stan aktualny</string>
+    <string name="wlascicieleAkCap">Właściciele (obecnie):</string>
+    <string name="wspolwlascicieleAkCap">Współwłaściciele (obecnie):</string>
+    <string name="wojewodztwoCap">Województwo:</string>
+    <string name="ocFullCap">Polisa OC:</string>
+    <string name="przegladFullCap">Badanie techniczne:</string>
+    <string name="kradzionyFullCap">Pojazd oznaczony w ewidencji jako kradziony!</string>
+
+    <!-- help -->
+    <string name="title_activity_help">Pomoc</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="dowod">Dowód rejestracyjny</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

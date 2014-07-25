@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tk.v3l0c1r4pt0r.cepik"
-    android:versionCode="5"
-    android:versionName="1.0.4" >
+    android:versionCode="6"
+    android:versionName="1.1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -28,6 +28,14 @@
         <activity
             android:name="tk.v3l0c1r4pt0r.cepik.ResultActivity"
             android:label="@string/title_activity_test" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tk.v3l0c1r4pt0r.cepik.MainActivity" />
+        </activity>
+        <activity
+            android:name="tk.v3l0c1r4pt0r.cepik.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName="tk.v3l0c1r4pt0r.cepik.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="tk.v3l0c1r4pt0r.cepik.MainActivity" />

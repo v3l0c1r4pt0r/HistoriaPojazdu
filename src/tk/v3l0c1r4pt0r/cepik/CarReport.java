@@ -1,11 +1,16 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import android.text.Html;
 
 public class CarReport implements Serializable {
 	
@@ -185,6 +190,46 @@ public class CarReport implements Serializable {
 	public String getNaciskNaOs() {
 		return naciskNaOs;
 	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public List<Event> getZdarzenia() {
+		return zdarzenia;
+	}
+
+	public String getWlascicieleSum() {
+		return wlascicieleSum;
+	}
+
+	public String getWspolwlascicieleSum() {
+		return wspolwlascicieleSum;
+	}
+
+	public String getWojewodztwo() {
+		return wojewodztwo;
+	}
+
+	public String getPolisa() {
+		return polisa;
+	}
+
+	public String getBadanie() {
+		return badanie;
+	}
+
+	public String getKradzionyOpis() {
+		return kradzionyOpis;
+	}
+
+	public String getWlascicieleAkt() {
+		return wlascicieleAkt;
+	}
+
+	public String getWspolwlascicieleAkt() {
+		return wspolwlascicieleAkt;
+	}
 
 	String marka;
 	String typ;
@@ -234,8 +279,18 @@ public class CarReport implements Serializable {
 	String hWersja;
 	String hNumer;
 	String hWariant;
+
+	List<Event> zdarzenia = new ArrayList<Event>();
+
+	String wlascicieleSum;
+	String wspolwlascicieleSum;
 	
-	//TODO: oś czasu
+	String wojewodztwo;
+	String polisa;
+	String badanie;
+	String kradzionyOpis;
+	String wlascicieleAkt;
+	String wspolwlascicieleAkt;
 	
 	public CarReport(String nrRejestracyjny, String vin, String dataRejestracji)
 	{
@@ -385,6 +440,53 @@ public class CarReport implements Serializable {
     	{
     		kradziony = false;
     	}
+
+    	//oś
+    	//FIXME: prawdopodobnie trzeba będzie przepuścić wszystkie dane przez stringDeHtml
+    	Element table = doc.getElementById("timeline");
+    	Element produkcja = table.getElementsByTag("thead").get(0).getElementById("production");
+    	{
+    		String data = produkcja.getElementsByClass("date").get(0).html();
+    		String opis = produkcja.getElementsByClass("description").get(0).html();
+    		this.zdarzenia.add(new Event(data, opis));
+    	}
+    	
+    	Elements events = table.getElementsByTag("tbody").get(0).getElementsByClass("event");
+    	for(Element event : events)
+    	{
+    		String data = event.getElementsByClass("date").get(0).html();
+    		String opis = event.getElementsByClass("description").get(0).html();
+
+    		if(opis.indexOf("txt-green") != -1)
+    			this.zdarzenia.add(new ColoredEvent(data, opis, R.color.importantEvent));
+    		else if(opis.indexOf("txt-red") != -1)
+    			this.zdarzenia.add(new ColoredEvent(data, opis, R.color.dangerousEvent));
+    		else
+    			this.zdarzenia.add(new Event(data,opis));
+    	}
+    	
+    	Element raport = table.getElementsByTag("tfoot").get(0).getElementById("summary");
+    	{
+    		String data = raport.getElementsByClass("date").get(0).html();
+    		String opis = raport.getElementsByClass("description").get(0).html();
+    		this.zdarzenia.add(new Event(data, opis));
+    	}
+    	
+    	
+    	this.wlascicieleSum = setById("iloscWlascicieliPojazdu2", doc);
+    	this.wspolwlascicieleSum = setById("iloscWspolwlascicieliPojazdu2", doc);
+    	this.wojewodztwo = setById("miejsceZarejestrowania", doc);
+    	
+    	this.polisa = setById("infoOPolisieOC", doc);
+    	if(this.polisa == "")
+    		this.polisa = setById("infoOPolisieOCBrak", doc);
+    	
+    	this.badanie = setById("infoOBadaniuTechnicznym", doc);
+    	if(this.badanie == "")
+    		this.badanie = setById("infoOBadaniuTechnicznymBrak", doc);
+    	
+    	this.wlascicieleAkt = setById("aktualnaIloscWlascicieliPojazdu2", doc);
+    	this.wspolwlascicieleAkt = setById("aktualnaIloscWspolwlascicieliPojazdu2", doc);
 	}
 	
 	private String setById(String id, Document doc)
