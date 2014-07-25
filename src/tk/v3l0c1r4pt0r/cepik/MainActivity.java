@@ -84,7 +84,13 @@ public class MainActivity extends Activity {
 			if(dateNewStr.length() == 10 && !DataValidator.validateDateFormat(dateNewStr))
 			{
 				//niepoprawny format daty
-				date.setBackgroundDrawable(getResources().getDrawable(R.drawable.textfield_wrong_holo_dark));
+				int id = 0;	//check which version of textfield res to get
+				if(android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD_MR1)
+					id = R.drawable.textfield_wrong_holo_dark;
+				else
+					id = R.drawable.textfield_wrong;
+				final int drawableId = id;
+				date.setBackgroundDrawable(getResources().getDrawable(drawableId));
 			}
 			else
 				date.setBackgroundDrawable(normalDateBg);
@@ -269,6 +275,12 @@ public class MainActivity extends Activity {
 					}
 					else if(e instanceof InvalidInputException)
 					{
+						int id = 0;	//check which version of textfield res to get
+						if(android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD_MR1)
+							id = R.drawable.textfield_wrong_holo_dark;
+						else
+							id = R.drawable.textfield_wrong;
+						final int drawableId = id;
 						switch(((InvalidInputException) e).field)
 						{
 						case Rej:
@@ -278,7 +290,7 @@ public class MainActivity extends Activity {
 								@Override
 								public void run() {
 									rejVal.setBackgroundDrawable(
-											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											getResources().getDrawable(drawableId)
 											);
 								}
 							});
@@ -290,7 +302,7 @@ public class MainActivity extends Activity {
 								@Override
 								public void run() {
 									vinVal.setBackgroundDrawable(
-											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											getResources().getDrawable(drawableId)
 											);
 								}
 							});
@@ -302,7 +314,7 @@ public class MainActivity extends Activity {
 								@Override
 								public void run() {
 									dateVal.setBackgroundDrawable(
-											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											getResources().getDrawable(drawableId)
 											);
 								}
 							});
@@ -314,7 +326,7 @@ public class MainActivity extends Activity {
 								@Override
 								public void run() {
 									captchaVal.setBackgroundDrawable(
-											getResources().getDrawable(R.drawable.textfield_wrong_holo_dark)
+											getResources().getDrawable(drawableId)
 											);
 								}
 							});
