@@ -1,6 +1,5 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-import android.R.menu;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.TextView;
 
 /**
@@ -21,26 +19,21 @@ import android.widget.TextView;
  *
  */
 public class AxisEntryFragment extends Fragment {
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 	private static final String ARG_EVENT = "event";
 
-	// TODO: Rename and change types of parameters
 	private Event mEvent;
 
+	@SuppressWarnings("unused")
 	private OnFragmentInteractionListener mListener;
 
 	/**
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
 	 *
-	 * @param date
-	 *            Parameter 1.
-	 * @param description
-	 *            Parameter 2.
+	 * @param event
+	 *            Object containing all the information needed by this Fragment
 	 * @return A new instance of fragment AxisEntryFragment.
 	 */
-	// TODO: Rename and change types and number of parameters
 	public static AxisEntryFragment newInstance(Event event) {
 		AxisEntryFragment fragment = new AxisEntryFragment();
 		Bundle args = new Bundle();
@@ -81,14 +74,7 @@ public class AxisEntryFragment extends Fragment {
 		if(mEvent instanceof ColoredEvent)
 		{
 			TextView opisCell = (TextView) getView().findViewById(R.id.elOpisVal);
-			opisCell.setBackgroundColor(((ColoredEvent) mEvent).getColorId());
-		}
-	}
-
-	// TODO: Rename method, update argument and hook method into UI event
-	public void onButtonPressed(Uri uri) {
-		if (mListener != null) {
-			mListener.onFragmentInteraction(uri);
+			opisCell.setBackgroundColor(getResources().getColor(((ColoredEvent) mEvent).getColorId()));
 		}
 	}
 
@@ -119,7 +105,6 @@ public class AxisEntryFragment extends Fragment {
 	 * >Communicating with Other Fragments</a> for more information.
 	 */
 	public interface OnFragmentInteractionListener {
-		// TODO: Update argument type and name
 		public void onFragmentInteraction(Uri uri);
 	}
 
