@@ -446,8 +446,8 @@ public class CarReport implements Serializable {
     	Element table = doc.getElementById("timeline");
     	Element produkcja = table.getElementsByTag("thead").get(0).getElementById("production");
     	{
-    		String data = produkcja.getElementsByClass("date").get(0).getElementsByTag("strong").get(0).html();
-    		String opis = produkcja.getElementsByClass("description").get(0).getElementsByTag("strong").get(0).html();
+    		String data = produkcja.getElementsByClass("date").get(0).html();
+    		String opis = produkcja.getElementsByClass("description").get(0).html();
     		this.zdarzenia.add(new Event(data, opis));
     	}
     	
@@ -468,7 +468,7 @@ public class CarReport implements Serializable {
     	Element raport = table.getElementsByTag("tfoot").get(0).getElementById("summary");
     	{
     		String data = raport.getElementsByClass("date").get(0).html();
-    		String opis = raport.getElementsByClass("description").get(0).getElementsByTag("p").get(0).html();
+    		String opis = raport.getElementsByClass("description").get(0).html();
     		this.zdarzenia.add(new Event(data, opis));
     	}
     	

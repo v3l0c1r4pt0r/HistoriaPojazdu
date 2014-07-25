@@ -6,6 +6,6 @@
     <color name="captchaErr">#00000000</color>
     <color name="validData">#00000000</color>
     <color name="invalidData">#880000</color>
-    <color name="dangerousEvent">#800000</color>
-    <color name="importantEvent">#008000</color>
+    <color name="dangerousEvent">#500</color>
+    <color name="importantEvent">#050</color>
 </resources>
