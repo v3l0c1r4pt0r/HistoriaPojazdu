@@ -10,6 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import android.text.Html;
+
 public class CarReport implements Serializable {
 	
 	public class EntryNotFoundException extends Exception
@@ -439,7 +441,8 @@ public class CarReport implements Serializable {
     		kradziony = false;
     	}
 
-    	//os
+    	//oś
+    	//FIXME: prawdopodobnie trzeba będzie przepuścić wszystkie dane przez stringDeHtml
     	Element table = doc.getElementById("timeline");
     	Element produkcja = table.getElementsByTag("thead").get(0).getElementById("production");
     	{
@@ -451,9 +454,15 @@ public class CarReport implements Serializable {
     	Elements events = table.getElementsByTag("tbody").get(0).getElementsByClass("event");
     	for(Element event : events)
     	{
-    		String data = event.getElementsByClass("date").get(0).getElementsByTag("p").get(0).html();
-    		String opis = event.getElementsByClass("description").get(0).html();//FIXME: extract formatting from html
-    		this.zdarzenia.add(new Event(data,opis));
+    		String data = event.getElementsByClass("date").get(0).html();
+    		String opis = event.getElementsByClass("description").get(0).html();
+
+    		if(opis.indexOf("txt-green") != -1)
+    			this.zdarzenia.add(new ColoredEvent(data, opis, R.color.importantEvent));
+    		else if(opis.indexOf("txt-red") != -1)
+    			this.zdarzenia.add(new ColoredEvent(data, opis, R.color.dangerousEvent));
+    		else
+    			this.zdarzenia.add(new Event(data,opis));
     	}
     	
     	Element raport = table.getElementsByTag("tfoot").get(0).getElementById("summary");

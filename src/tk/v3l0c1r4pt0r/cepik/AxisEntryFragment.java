@@ -1,12 +1,16 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import android.R.menu;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass. Activities that contain this fragment
@@ -19,12 +23,10 @@ import android.view.ViewGroup;
 public class AxisEntryFragment extends Fragment {
 	// TODO: Rename parameter arguments, choose names that match
 	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_DATE = "date";
-	private static final String ARG_DESC = "description";
+	private static final String ARG_EVENT = "event";
 
 	// TODO: Rename and change types of parameters
-	private String mDate;
-	private String mDescription;
+	private Event mEvent;
 
 	private OnFragmentInteractionListener mListener;
 
@@ -32,18 +34,17 @@ public class AxisEntryFragment extends Fragment {
 	 * Use this factory method to create a new instance of this fragment using
 	 * the provided parameters.
 	 *
-	 * @param param1
+	 * @param date
 	 *            Parameter 1.
-	 * @param param2
+	 * @param description
 	 *            Parameter 2.
 	 * @return A new instance of fragment AxisEntryFragment.
 	 */
 	// TODO: Rename and change types and number of parameters
-	public static AxisEntryFragment newInstance(String date, String description) {
+	public static AxisEntryFragment newInstance(Event event) {
 		AxisEntryFragment fragment = new AxisEntryFragment();
 		Bundle args = new Bundle();
-		args.putString(ARG_DATE, date);
-		args.putString(ARG_DESC, description);
+		args.putSerializable(ARG_EVENT, event);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -56,8 +57,7 @@ public class AxisEntryFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			mDate = getArguments().getString(ARG_DATE);
-			mDescription = getArguments().getString(ARG_DESC);
+			mEvent = (Event) getArguments().getSerializable(ARG_EVENT);
 		}
 	}
 
@@ -75,8 +75,14 @@ public class AxisEntryFragment extends Fragment {
 		
 		ViewChangeHelper vch = new ViewChangeHelper(getView());
 
-		vch.ChangeEntryState(-1, R.id.elDataVal, mDate, false);
-		vch.ChangeEntryState(-1, R.id.elOpisVal, mDescription, false);
+		vch.ChangeEntryState(-1, R.id.elDataVal, Html.fromHtml(mEvent.getData()), false);
+		vch.ChangeEntryState(-1, R.id.elOpisVal, Html.fromHtml(mEvent.getOpis()), false);
+		
+		if(mEvent instanceof ColoredEvent)
+		{
+			TextView opisCell = (TextView) getView().findViewById(R.id.elOpisVal);
+			opisCell.setBackgroundColor(((ColoredEvent) mEvent).getColorId());
+		}
 	}
 
 	// TODO: Rename method, update argument and hook method into UI event
