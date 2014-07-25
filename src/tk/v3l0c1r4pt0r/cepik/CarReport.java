@@ -448,9 +448,12 @@ public class CarReport implements Serializable {
     		this.zdarzenia.add(new Event(data, opis));
     	}
     	
-    	for(int i = 0; i < 10; i++)//TODO: TEMP
+    	Elements events = table.getElementsByTag("tbody").get(0).getElementsByClass("event");
+    	for(Element event : events)
     	{
-    		this.zdarzenia.add(new Event(""+(int)(1900+i), "Zdarzenie #"+i));
+    		String data = event.getElementsByClass("date").get(0).getElementsByTag("p").get(0).html();
+    		String opis = event.getElementsByClass("description").get(0).html();//FIXME: extract formatting from html
+    		this.zdarzenia.add(new Event(data,opis));
     	}
     	
     	Element raport = table.getElementsByTag("tfoot").get(0).getElementById("summary");
