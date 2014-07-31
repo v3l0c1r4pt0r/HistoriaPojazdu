@@ -1,19 +1,31 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
+import tk.v3l0c1r4pt0r.cepik.ResultActivity.PlaceholderFragment;
+import tk.v3l0c1r4pt0r.cepik.ResultActivity.SectionsPagerAdapter;
 import tk.v3l0c1r4pt0r.cepik.WebService.InvalidInputException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.Configuration;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -25,7 +37,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity implements
+	ActionBar.TabListener,
+	InputFragment.OnFragmentInteractionListener,
+	HistoryFragment.OnFragmentInteractionListener {
 
 	public final static String report = "tk.v3l0c1r4pt0r.HistoriaPojazdu.report";
 	public final static String downloader = "tk.v3l0c1r4pt0r.HistoriaPojazdu.downloader";
@@ -36,6 +51,22 @@ public class MainActivity extends Activity {
 	private Drawable normalVinBg = null;
 	private Drawable normalRejBg = null;
 	private Drawable normalCaptchaBg = null;
+	private ActionBar actionBar = null;
+	private Activity thisActivity = null;
+
+	/**
+	 * The {@link android.support.v4.view.PagerAdapter} that will provide
+	 * fragments for each of the sections. We use a {@link FragmentPagerAdapter}
+	 * derivative, which will keep every loaded fragment in memory. If this
+	 * becomes too memory intensive, it may be best to switch to a
+	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+	 */
+	SectionsPagerAdapter mSectionsPagerAdapter;
+
+	/**
+	 * The {@link ViewPager} that will host the section contents.
+	 */
+	ViewPager mViewPager;
 	
 //	private final String[] values = new String[7];
 	
@@ -108,28 +139,79 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        //Add event listeners
-        EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
-        EditText vinVal = (EditText) findViewById(R.id.vinVal);
-        EditText rejVal = (EditText) findViewById(R.id.rejVal);
-        EditText captchaVal = (EditText) findViewById(R.id.captchaVal);
-        TextWatcher tw1 = new MyTextWatcher(/*data*/);
-        TextWatcher tw2 = new MyTextWatcher(/*vin*/);
-        TextWatcher tw3 = new MyTextWatcher(/*rej*/);
-        TextWatcher tw4 = new MyTextWatcher(/*captcha*/);
-		dateVal.addTextChangedListener(tw1);
-		vinVal.addTextChangedListener(tw2);
-		rejVal.addTextChangedListener(tw3);
-		captchaVal.addTextChangedListener(tw4);
 
-		final Button btn = (Button) findViewById(R.id.sendBtn);
-		reloadImage(btn);
-		normalDateBg = dateVal.getBackground();
-		normalRejBg = rejVal.getBackground();
-		normalVinBg = vinVal.getBackground();
-		normalCaptchaBg = captchaVal.getBackground();
+		// Set up the action bar.
+		final ActionBar actionBar = getSupportActionBar();
+		this.actionBar = actionBar;
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+//		ActionBarUtils.setHasEmbeddedTabs(actionBar, false);
+
+		// Create the adapter that will return a fragment for each of the three
+		// primary sections of the activity.
+		mSectionsPagerAdapter = new SectionsPagerAdapter(
+				getSupportFragmentManager());
+
+		// Set up the ViewPager with the sections adapter.
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+
+		// When swiping between different sections, select the corresponding
+		// tab. We can also use ActionBar.Tab#select() to do this if we have
+		// a reference to the Tab.
+		mViewPager
+				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+						try
+						{
+							actionBar.setSelectedNavigationItem(position);
+						}
+						catch(IllegalStateException e)
+						{
+							e.printStackTrace();
+						}
+					}
+				});
+
+		// For each of the sections in the app, add a tab to the action bar.
+		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+			// Create a tab with text corresponding to the page title defined by
+			// the adapter. Also specify this Activity object, which implements
+			// the TabListener interface, as the callback (listener) for when
+			// this tab is selected.
+			actionBar.addTab(actionBar.newTab()
+					.setText(mSectionsPagerAdapter.getPageTitle(i))
+					.setTabListener(this));
+		}
+        
+//        //Add event listeners
+//        EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
+//        EditText vinVal = (EditText) findViewById(R.id.vinVal);
+//        EditText rejVal = (EditText) findViewById(R.id.rejVal);
+//        EditText captchaVal = (EditText) findViewById(R.id.captchaVal);
+//        TextWatcher tw1 = new MyTextWatcher(/*data*/);
+//        TextWatcher tw2 = new MyTextWatcher(/*vin*/);
+//        TextWatcher tw3 = new MyTextWatcher(/*rej*/);
+//        TextWatcher tw4 = new MyTextWatcher(/*captcha*/);
+//		dateVal.addTextChangedListener(tw1);
+//		vinVal.addTextChangedListener(tw2);
+//		rejVal.addTextChangedListener(tw3);
+//		captchaVal.addTextChangedListener(tw4);
+//
+//		final Button btn = (Button) findViewById(R.id.sendBtn);
+//		reloadImage(btn);
+//		normalDateBg = dateVal.getBackground();
+//		normalRejBg = rejVal.getBackground();
+//		normalVinBg = vinVal.getBackground();
+//		normalCaptchaBg = captchaVal.getBackground();
     }
+	
+	@Override
+	public void onConfigurationChanged (Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		ActionBarUtils.setHasEmbeddedTabs(actionBar, false);
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,6 +252,14 @@ public class MainActivity extends Activity {
 		AlertDialog dialog = builder.create();
 		dialog.show();
     }
+
+	@Override
+	public void onTabSelected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
+		// When the given tab is selected, switch to the corresponding page in
+		// the ViewPager.
+		mViewPager.setCurrentItem(tab.getPosition());
+	}
     
     public void sendRequest(final View view)
     {
@@ -483,5 +573,109 @@ public class MainActivity extends Activity {
 			}
 		}).start();
     }
+
+	@Override
+	public void onTabUnselected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
+	}
+
+	@Override
+	public void onTabReselected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
+	}
+
+	/**
+	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+	 * one of the sections/tabs/pages.
+	 */
+	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+		public SectionsPagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			// getItem is called to instantiate the fragment for the given page.
+			// Return a PlaceholderFragment (defined as a static inner class
+			// below).
+			switch(position)
+			{
+			case 0:
+				return InputFragment.newInstance("","");
+			case 1:
+				return HistoryFragment.newInstance("","");
+			default:
+			return PlaceholderFragment.newInstance(position + 1);
+			}
+		}
+
+		@Override
+		public int getCount() {
+			// Show 2 total pages.
+			return 2;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			Locale l = Locale.getDefault();
+			switch (position) {
+			case 0:
+				return getString(R.string.title_szukaj).toUpperCase(l);
+			case 1:
+				return getString(R.string.title_historia).toUpperCase(l);
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * A placeholder fragment containing a simple view.
+	 */
+	public static class PlaceholderFragment extends Fragment {
+		/**
+		 * The fragment argument representing the section number for this
+		 * fragment.
+		 */
+		private static final String ARG_SECTION_NUMBER = "section_number";
+
+		/**
+		 * Returns a new instance of this fragment for the given section number.
+		 */
+		public static PlaceholderFragment newInstance(int sectionNumber) {
+			PlaceholderFragment fragment = new PlaceholderFragment();
+			Bundle args = new Bundle();
+			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+			fragment.setArguments(args);
+			return fragment;
+		}
+
+		public PlaceholderFragment() {
+		}
+
+		/*@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_test, container,
+					false);
+			TextView textView = (TextView) rootView
+					.findViewById(R.id.section_label);
+			textView.setText(Integer.toString(getArguments().getInt(
+					ARG_SECTION_NUMBER)));
+			return rootView;
+		}*/
+	}
+
+	@Override
+	public void onFragmentInteraction(Uri uri) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFragmentInteraction(String id) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
