@@ -1,15 +1,32 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        custom:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_search"
+        android:visible="false"
+        android:title="" />
+
+    <item
+        android:id="@+id/action_history"
+        android:orderInCategory="100"
+        custom:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:visible="true"
+        android:title="" />
 
     <item
         android:id="@+id/action_help"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        custom:showAsAction="never"
         android:title="@string/action_help" />
 
     <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        custom:showAsAction="never"
         android:title="@string/action_about" />
 
 </menu>

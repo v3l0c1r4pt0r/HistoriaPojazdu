@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-
 import tk.v3l0c1r4pt0r.cepik.dummy.DummyContent;
 
 /**
@@ -84,8 +85,8 @@ public class HistoryFragment extends Fragment implements
 					    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
 					    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-					    text1.setText(DummyContent.ITEMS.get(position).getContent());
-					    text2.setText(DummyContent.ITEMS.get(position).getSubcontent());
+					    text1.setText(DummyContent.ITEMS.get(position).getNrRej());
+					    text2.setText(DummyContent.ITEMS.get(position).getOpis());
 					    return view;
 					  }
 				};
@@ -115,10 +116,14 @@ public class HistoryFragment extends Fragment implements
 			throw new ClassCastException(activity.toString()
 					+ " must implement OnFragmentInteractionListener");
 		}
+//		MenuItem history = (MenuItem) activity.findViewById(R.id.action_history);
+//		history.setVisible(false);
 	}
 
 	@Override
 	public void onDetach() {
+//		MenuItem history = (MenuItem) getActivity().findViewById(R.id.action_history);
+//		history.setVisible(true);
 		super.onDetach();
 		mListener = null;
 	}

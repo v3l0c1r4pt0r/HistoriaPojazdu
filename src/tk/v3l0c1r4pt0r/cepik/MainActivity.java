@@ -1,16 +1,20 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
-
+import java.util.Map;
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
 import tk.v3l0c1r4pt0r.cepik.ResultActivity.PlaceholderFragment;
 import tk.v3l0c1r4pt0r.cepik.ResultActivity.SectionsPagerAdapter;
 import tk.v3l0c1r4pt0r.cepik.WebService.InvalidInputException;
+import tk.v3l0c1r4pt0r.cepik.dummy.DummyContent;
+import tk.v3l0c1r4pt0r.cepik.dummy.DummyContent.DummyItem;
 import android.net.Uri;
 import android.os.Bundle;
 import android.R.string;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -24,8 +28,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -46,13 +52,12 @@ public class MainActivity extends ActionBarActivity implements
 	public final static String downloader = "tk.v3l0c1r4pt0r.HistoriaPojazdu.downloader";
 	
 	private WebService cepik = null;
-	
-	private Drawable normalDateBg = null;
-	private Drawable normalVinBg = null;
-	private Drawable normalRejBg = null;
-	private Drawable normalCaptchaBg = null;
 	private ActionBar actionBar = null;
 	private Activity thisActivity = null;
+	
+	@SuppressLint("UseSparseArrays")
+	private Map<Integer,Boolean> btnVisibility = new HashMap<Integer,Boolean>();
+
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -72,73 +77,13 @@ public class MainActivity extends ActionBarActivity implements
 	
 	String cookieContent = "";
 	
-	class MyTextWatcher implements TextWatcher {
-		
-		/*EditText et = null;
-		
-		public MyTextWatcher(EditText et)
-		{
-			this.et = et;
-		}*/
-		
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-		}
-		
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count,
-				int after) {
-		}
-		
-		@SuppressWarnings("deprecation")
-		@Override
-		public void afterTextChanged(Editable s) {
-			EditText date = (EditText) findViewById(R.id.rejestracjaVal);
-			
-			String dateStr = date.getText().toString();
-			
-			String dateNewStr = DataValidator.validateDate(dateStr);
-			int sel = date.getSelectionStart();
-			if(dateStr != dateNewStr)
-			{
-				//zabezpieczenie przed nieskończoną pętlą
-				date.setText(dateNewStr);
-				try
-				{
-					date.setSelection(sel-1, sel-1);
-				} catch (IndexOutOfBoundsException e)
-				{
-					//nie powinno się zdarzyć, ale jeśli się zdarzy to niech chociaż ktoś kto czyta logi wie
-					e.printStackTrace();
-				}
-			}
-			if(dateNewStr.length() == 10 && !DataValidator.validateDateFormat(dateNewStr))
-			{
-				//niepoprawny format daty
-				int id = 0;	//check which version of textfield res to get
-				if(android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD_MR1)
-					id = R.drawable.textfield_wrong_holo_dark;
-				else
-					id = R.drawable.textfield_wrong;
-				final int drawableId = id;
-				date.setBackgroundDrawable(getResources().getDrawable(drawableId));
-			}
-			else
-				date.setBackgroundDrawable(normalDateBg);
-			EditText rej = (EditText) findViewById(R.id.rejVal);
-			EditText vin = (EditText) findViewById(R.id.vinVal);
-			EditText captcha = (EditText) findViewById(R.id.captchaVal);
-			rej.setBackgroundDrawable(normalRejBg);
-			vin.setBackgroundDrawable(normalVinBg);
-			captcha.setBackgroundDrawable(normalCaptchaBg);
-			
-		}
-	};
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        btnVisibility.put(R.id.action_history, true);
+        btnVisibility.put(R.id.action_search, false);
 
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
@@ -159,17 +104,53 @@ public class MainActivity extends ActionBarActivity implements
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
 		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+				.setOnPageChangeListener(new OnPageChangeListener() {
 					@Override
 					public void onPageSelected(int position) {
 						try
 						{
 							actionBar.setSelectedNavigationItem(position);
+							onPageChanged(position);
 						}
 						catch(IllegalStateException e)
 						{
 							e.printStackTrace();
 						}
+					}
+
+					@Override
+					public void onPageScrollStateChanged(int arg0) {
+					}
+
+					@Override
+					public void onPageScrolled(int arg0, float arg1, int arg2) {
+						onPageChanged(arg0);
+					}
+					
+					private void onPageChanged(int position)
+					{
+						supportInvalidateOptionsMenu();
+						try
+						{
+							switch(position)
+							{
+							case 0:
+								btnVisibility.clear();
+								btnVisibility.put(R.id.action_search, false);
+								btnVisibility.put(R.id.action_history, true);
+								break;
+							case 1:
+								btnVisibility.clear();
+								btnVisibility.put(R.id.action_search, true);
+								btnVisibility.put(R.id.action_history, false);
+								break;
+							default:
+								btnVisibility.clear();
+								btnVisibility.put(R.id.action_search, true);
+								btnVisibility.put(R.id.action_history, true);
+							}
+						}
+						catch(NullPointerException e) {}
 					}
 				});
 
@@ -180,30 +161,8 @@ public class MainActivity extends ActionBarActivity implements
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
+					.setTabListener(this).setIcon(mSectionsPagerAdapter.getPageIcon(i)));
 		}
-        
-//        //Add event listeners
-//        EditText dateVal = (EditText) findViewById(R.id.rejestracjaVal);
-//        EditText vinVal = (EditText) findViewById(R.id.vinVal);
-//        EditText rejVal = (EditText) findViewById(R.id.rejVal);
-//        EditText captchaVal = (EditText) findViewById(R.id.captchaVal);
-//        TextWatcher tw1 = new MyTextWatcher(/*data*/);
-//        TextWatcher tw2 = new MyTextWatcher(/*vin*/);
-//        TextWatcher tw3 = new MyTextWatcher(/*rej*/);
-//        TextWatcher tw4 = new MyTextWatcher(/*captcha*/);
-//		dateVal.addTextChangedListener(tw1);
-//		vinVal.addTextChangedListener(tw2);
-//		rejVal.addTextChangedListener(tw3);
-//		captchaVal.addTextChangedListener(tw4);
-//
-//		final Button btn = (Button) findViewById(R.id.sendBtn);
-//		reloadImage(btn);
-//		normalDateBg = dateVal.getBackground();
-//		normalRejBg = rejVal.getBackground();
-//		normalVinBg = vinVal.getBackground();
-//		normalCaptchaBg = captchaVal.getBackground();
     }
 	
 	@Override
@@ -217,6 +176,10 @@ public class MainActivity extends ActionBarActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem search = menu.findItem(R.id.action_search);
+        search.setVisible(btnVisibility.get(R.id.action_search));
+        MenuItem history = menu.findItem(R.id.action_history);
+        history.setVisible(btnVisibility.get(R.id.action_history));
         return true;
     }
     
@@ -627,6 +590,17 @@ public class MainActivity extends ActionBarActivity implements
 			}
 			return null;
 		}
+
+		public Drawable getPageIcon(int position) {
+			Locale l = Locale.getDefault();
+			switch (position) {
+			case 0:
+				return getResources().getDrawable(android.R.drawable.ic_menu_search);
+			case 1:
+				return getResources().getDrawable(android.R.drawable.ic_menu_recent_history);
+			}
+			return null;
+		}
 	}
 
 	/**
@@ -674,7 +648,12 @@ public class MainActivity extends ActionBarActivity implements
 
 	@Override
 	public void onFragmentInteraction(String id) {
-		// TODO Auto-generated method stub
+		DummyItem item = DummyContent.ITEM_MAP.get(id);
+		EditText rej = (EditText) findViewById(R.id.rejVal);
+		EditText vin = (EditText) findViewById(R.id.vinVal);
+		EditText dat = (EditText) findViewById(R.id.rejestracjaVal);
+		rej.setText(item.getNrRej());
+		actionBar.selectTab(actionBar.getTabAt(0));
 		
 	}
     

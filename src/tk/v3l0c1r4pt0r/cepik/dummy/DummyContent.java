@@ -40,20 +40,41 @@ public class DummyContent {
 	 */
 	public static class DummyItem {
 		public String id;
-		public String content;
-		public String subcontent;
-		
-		public String getContent() {
-			return content;
+		private String nrRej;
+		private String opis;
+		private String vin;
+		private String dataRej;
+
+		public String getNrRej() {
+			return nrRej;
 		}
-		public String getSubcontent() {
-			return subcontent;
+
+		public String getOpis() {
+			return opis;
+		}
+
+		public String getVin() {
+			return vin;
+		}
+
+		public String getDataRej() {
+			return dataRej;
 		}
 
 		public DummyItem(String id, String content, String subcontent) {
 			this.id = id;
-			this.content = content;
-			this.subcontent = subcontent;
+			this.nrRej = content;
+			this.opis = subcontent;
+			this.vin = "";
+			this.dataRej = "";
+		}
+
+		public DummyItem(String id, String rej, String opis, String vin, String data) {
+			this.id = id;
+			this.nrRej = rej;
+			this.opis = opis;
+			this.vin = vin;
+			this.dataRej = data;
 		}
 	}
 }
