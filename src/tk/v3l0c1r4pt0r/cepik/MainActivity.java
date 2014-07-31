@@ -191,6 +191,12 @@ public class MainActivity extends ActionBarActivity implements
     		Intent intent = new Intent(this, HelpActivity.class);
     		startActivity(intent);
     		break;
+    	case R.id.action_search:
+    		mViewPager.setCurrentItem(actionBar.getTabAt(0).getPosition(),true);
+    		break;
+    	case R.id.action_history:
+    		mViewPager.setCurrentItem(actionBar.getTabAt(1).getPosition(),true);
+    		break;
     	}
     	return super.onOptionsItemSelected(item);
     }
