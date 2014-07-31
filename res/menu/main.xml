@@ -7,7 +7,7 @@
         custom:showAsAction="always"
         android:icon="@android:drawable/ic_menu_search"
         android:visible="false"
-        android:title="" />
+        android:title="@string/title_szukaj" />
 
     <item
         android:id="@+id/action_history"
@@ -15,7 +15,7 @@
         custom:showAsAction="always"
         android:icon="@android:drawable/ic_menu_recent_history"
         android:visible="true"
-        android:title="" />
+        android:title="@string/title_historia" />
 
     <item
         android:id="@+id/action_help"
