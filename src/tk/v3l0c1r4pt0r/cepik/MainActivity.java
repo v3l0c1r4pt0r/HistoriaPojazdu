@@ -129,28 +129,24 @@ public class MainActivity extends ActionBarActivity implements
 					
 					private void onPageChanged(int position)
 					{
-						supportInvalidateOptionsMenu();
-						try
+						switch(position)
 						{
-							switch(position)
-							{
-							case 0:
-								btnVisibility.clear();
-								btnVisibility.put(R.id.action_search, false);
-								btnVisibility.put(R.id.action_history, true);
-								break;
-							case 1:
-								btnVisibility.clear();
-								btnVisibility.put(R.id.action_search, true);
-								btnVisibility.put(R.id.action_history, false);
-								break;
-							default:
-								btnVisibility.clear();
-								btnVisibility.put(R.id.action_search, true);
-								btnVisibility.put(R.id.action_history, true);
-							}
+						case 0:
+							btnVisibility.clear();
+							btnVisibility.put(R.id.action_search, false);
+							btnVisibility.put(R.id.action_history, true);
+							break;
+						case 1:
+							btnVisibility.clear();
+							btnVisibility.put(R.id.action_search, true);
+							btnVisibility.put(R.id.action_history, false);
+							break;
+						default:
+							btnVisibility.clear();
+							btnVisibility.put(R.id.action_search, true);
+							btnVisibility.put(R.id.action_history, true);
 						}
-						catch(NullPointerException e) {}
+						supportInvalidateOptionsMenu();
 					}
 				});
 
