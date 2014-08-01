@@ -315,7 +315,7 @@ public class WebService implements Serializable {
 		{
 			throw new InvalidInputException(Field.Rej);
 		}
-		else if(vin.length() < 17)
+		else if(nrRejestracyjny.equals("TEST"))
 		{
 			//przykładowy raport
 			byte[] response = getResponse(new URL("https://historiapojazdu.gov.pl/historia-pojazdu-web/przykladowy-raport.xhtml"));
@@ -324,8 +324,11 @@ public class WebService implements Serializable {
 			CarReport cr = new CarReport(nrRejestracyjny, reportStr);
 			Document doc = Jsoup.parse(reportStr);
 			javaxState = doc.getElementById("javax.faces.ViewState").attributes().get("value");
-			return cr;//TODO:komentujemy!!!
-			//throw new InvalidInputException(Field.Vin);
+			return cr;
+		}
+		else if(vin.length() < 17)
+		{
+			throw new InvalidInputException(Field.Vin);
 		}
 		else if(dataRejestracji.length() < 10)
 		{

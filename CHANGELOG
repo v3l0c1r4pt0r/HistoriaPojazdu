@@ -1,3 +1,7 @@
+v1.1.2:
+- drobne poprawki
+v1.1.1:
+- poprawiłem błąd przy przeliczaniu kW na KM (crash)
 v1.1.0:
 - dodałem okno pomocy
 - poprawki w wyglądzie aplikacji

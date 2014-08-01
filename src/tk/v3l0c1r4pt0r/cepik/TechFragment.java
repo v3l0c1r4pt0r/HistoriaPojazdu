@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
@@ -74,10 +75,18 @@ public class TechFragment extends Fragment {
 		if(cr.getMocSilnika() != "")
 		{
 			String mocKw = cr.getMocSilnika();
-			double moc = Integer.parseInt(mocKw.substring(0, mocKw.length()-3));
-			moc = (moc * 1000) / 735.49875;
-			String mocInKm = " ("+Math.round(moc)+" KM)";
-			vch.ChangeEntryState(-1, R.id.mocKmVal, mocInKm, false);
+			try
+			{
+				double moc = Integer.parseInt(mocKw.substring(0, mocKw.length()-3));
+				moc = (moc * 1000) / 735.49875;
+				String mocInKm = " ("+Math.round(moc)+" KM)";
+				vch.ChangeEntryState(-1, R.id.mocKmVal, mocInKm, true);
+			}
+			catch(StringIndexOutOfBoundsException e)
+			{
+				TextView tv = (TextView) getView().findViewById(R.id.mocKmVal);
+				tv.setVisibility(View.GONE);
+			}
 		}
 
 		//emisja co2
