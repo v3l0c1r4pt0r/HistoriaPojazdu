@@ -10,8 +10,6 @@ import java.util.Map;
 
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
-import tk.v3l0c1r4pt0r.cepik.ResultActivity.PlaceholderFragment;
-import tk.v3l0c1r4pt0r.cepik.ResultActivity.SectionsPagerAdapter;
 import tk.v3l0c1r4pt0r.cepik.WebService.InvalidInputException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,9 +31,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.internal.view.menu.ActionMenuItemView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,7 +50,6 @@ public class MainActivity extends ActionBarActivity implements
 	
 	private WebService cepik = null;
 	private ActionBar actionBar = null;
-	private Activity thisActivity = null;
 	private List<HistoryElement> historyList = new ArrayList<HistoryElement>();
 	private Map<String, HistoryElement> historyMap = new HashMap<String, HistoryElement>();
 	
@@ -607,7 +601,6 @@ public class MainActivity extends ActionBarActivity implements
 		}
 
 		public Drawable getPageIcon(int position) {
-			Locale l = Locale.getDefault();
 			switch (position) {
 			case 0:
 				return getResources().getDrawable(android.R.drawable.ic_menu_search);
