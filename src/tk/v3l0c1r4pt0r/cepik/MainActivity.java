@@ -1,16 +1,18 @@
 package tk.v3l0c1r4pt0r.cepik;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
 import tk.v3l0c1r4pt0r.cepik.CarReport.EntryNotFoundException;
 import tk.v3l0c1r4pt0r.cepik.CarReport.WrongCaptchaException;
 import tk.v3l0c1r4pt0r.cepik.ResultActivity.PlaceholderFragment;
 import tk.v3l0c1r4pt0r.cepik.ResultActivity.SectionsPagerAdapter;
 import tk.v3l0c1r4pt0r.cepik.WebService.InvalidInputException;
-import tk.v3l0c1r4pt0r.cepik.dummy.DummyContent;
-import tk.v3l0c1r4pt0r.cepik.dummy.DummyContent.DummyItem;
 import android.net.Uri;
 import android.os.Bundle;
 import android.R.string;
@@ -54,6 +56,8 @@ public class MainActivity extends ActionBarActivity implements
 	private WebService cepik = null;
 	private ActionBar actionBar = null;
 	private Activity thisActivity = null;
+	private List<HistoryElement> historyList = new ArrayList<HistoryElement>();
+	private Map<String, HistoryElement> historyMap = new HashMap<String, HistoryElement>();
 	
 	@SuppressLint("UseSparseArrays")
 	private Map<Integer,Boolean> btnVisibility = new HashMap<Integer,Boolean>();
@@ -538,6 +542,12 @@ public class MainActivity extends ActionBarActivity implements
 			}
 		}).start();
     }
+    
+    private void addHistory(HistoryElement he)
+    {
+    	historyList.add(he);
+    	historyMap.put(he.id, he);
+    }
 
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab,
@@ -569,7 +579,10 @@ public class MainActivity extends ActionBarActivity implements
 			case 0:
 				return InputFragment.newInstance("","");
 			case 1:
-				return HistoryFragment.newInstance("","");
+				addHistory(new HistoryElement("0", "WA12345", "FSO Polonez", "SUP4RA1R5BJ312970", "26.01.1982"));
+				addHistory(new HistoryElement("1", "TEST", "FSO Polonez", "", ""));
+				addHistory(new HistoryElement("2", "UB1945", "Fiat 126p", "", ""));//TODO
+				return HistoryFragment.newInstance((Serializable) historyList);
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
 			}
@@ -650,11 +663,13 @@ public class MainActivity extends ActionBarActivity implements
 
 	@Override
 	public void onFragmentInteraction(String id) {
-		DummyItem item = DummyContent.ITEM_MAP.get(id);
+		HistoryElement item = historyMap.get(id);
 		EditText rej = (EditText) findViewById(R.id.rejVal);
 		EditText vin = (EditText) findViewById(R.id.vinVal);
 		EditText dat = (EditText) findViewById(R.id.rejestracjaVal);
 		rej.setText(item.getNrRej());
+		vin.setText(item.getVin());
+		dat.setText(item.getDataRej());
 		actionBar.selectTab(actionBar.getTabAt(0));
 		
 	}

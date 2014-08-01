@@ -1,5 +1,8 @@
 package tk.v3l0c1r4pt0r.cepik;
 
+import java.io.Serializable;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import tk.v3l0c1r4pt0r.cepik.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -29,12 +31,10 @@ public class HistoryFragment extends Fragment implements
 
 	// TODO: Rename parameter arguments, choose names that match
 	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
+	private static final String ARG_HISTORY = "historyMap";
 
 	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private List<HistoryElement> mHistory;
 
 	private OnFragmentInteractionListener mListener;
 
@@ -50,11 +50,10 @@ public class HistoryFragment extends Fragment implements
 	private ListAdapter mAdapter;
 
 	// TODO: Rename and change types of parameters
-	public static HistoryFragment newInstance(String param1, String param2) {
+	public static HistoryFragment newInstance(Serializable historyMap) {
 		HistoryFragment fragment = new HistoryFragment();
 		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
+		args.putSerializable(ARG_HISTORY, historyMap);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -70,23 +69,29 @@ public class HistoryFragment extends Fragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
+		try
+		{
+			if (getArguments() != null) {
+				mHistory = (List<HistoryElement>) getArguments().getSerializable(ARG_HISTORY);
+			}
+		}
+		catch(ClassCastException e)
+		{
+			e.printStackTrace();
 		}
 
 		// TODO: Change Adapter to display your content
-		mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+		mAdapter = new ArrayAdapter<HistoryElement>(getActivity(),
 				android.R.layout.simple_list_item_2, android.R.id.text1,
-				DummyContent.ITEMS) {
+				mHistory) {
 					  @Override
 					  public View getView(int position, View convertView, ViewGroup parent) {
 					    View view = super.getView(position, convertView, parent);
 					    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
 					    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-					    text1.setText(DummyContent.ITEMS.get(position).getNrRej());
-					    text2.setText(DummyContent.ITEMS.get(position).getOpis());
+					    text1.setText(mHistory.get(position).getNrRej());
+					    text2.setText(mHistory.get(position).getOpis());
 					    return view;
 					  }
 				};
@@ -135,7 +140,7 @@ public class HistoryFragment extends Fragment implements
 			// Notify the active callbacks interface (the activity, if the
 			// fragment is attached to one) that an item has been selected.
 			mListener
-					.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+					.onFragmentInteraction(mHistory.get(position).id);
 		}
 	}
 
