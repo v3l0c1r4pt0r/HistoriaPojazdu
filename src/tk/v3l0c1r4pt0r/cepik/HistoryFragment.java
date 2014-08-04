@@ -88,11 +88,7 @@ public class HistoryFragment extends Fragment implements
 					    return view;
 					  }
 				};
-		try
-		{
-			((ArrayAdapter<HistoryElement>) mAdapter).notifyDataSetChanged();
-		}
-		catch(ClassCastException e) {};
+		notifyCollectionChanged();
 	}
 
 	@Override
@@ -173,6 +169,17 @@ public class HistoryFragment extends Fragment implements
 	public interface OnFragmentInteractionListener {
 		// TODO: Update argument type and name
 		public void onFragmentInteraction(String id);
+	}
+	
+	/**
+	 * Notifies the adapter that the collection it uses has changed
+	 */
+	public void notifyCollectionChanged() {
+		try
+		{
+			((ArrayAdapter<HistoryElement>) mAdapter).notifyDataSetChanged();
+		}
+		catch(ClassCastException e) {};
 	}
 
 }

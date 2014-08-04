@@ -60,6 +60,7 @@ public class MainActivity extends ActionBarActivity implements
 	
 	private SQLiteDatabase db = null;
 	private Cursor dbCursor = null;
+	private HistoryFragment historyFragment = null;
 	
 	private Activity thisActivity = this;
 
@@ -200,6 +201,7 @@ public class MainActivity extends ActionBarActivity implements
         			));
         		}
         		while(dbCursor.moveToNext());
+        		//historyFragment.notifyCollectionChanged();//FIXME
         	}
         }).start();
     }
@@ -618,7 +620,8 @@ public class MainActivity extends ActionBarActivity implements
 			case 0:
 				return InputFragment.newInstance("","");
 			case 1:
-				return HistoryFragment.newInstance((Serializable) historyList);
+				historyFragment = HistoryFragment.newInstance((Serializable) historyList);
+				return historyFragment;
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
 			}
