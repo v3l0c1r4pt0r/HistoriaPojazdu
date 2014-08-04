@@ -59,6 +59,7 @@ public class MainActivity extends ActionBarActivity implements
 	private Map<Integer,Boolean> btnVisibility = new HashMap<Integer,Boolean>();
 	
 	private SQLiteDatabase db = null;
+	private Cursor dbCursor = null;
 	
 	private Activity thisActivity = this;
 
@@ -170,7 +171,7 @@ public class MainActivity extends ActionBarActivity implements
         		DbOpenHelper dbHelper = new DbOpenHelper(thisActivity);
         		db = dbHelper.getWritableDatabase();
         		
-        		Cursor result = db.query(
+        		dbCursor = db.query(
         				DbOpenHelper.DICTIONARY_TABLE_NAME, 
         				new String[] {
         						DbOpenHelper.KEY_ID, 
@@ -187,17 +188,19 @@ public class MainActivity extends ActionBarActivity implements
         				"10"
         		);
         		
+        		dbCursor.moveToFirst();
         		do
         		{
         			addHistory(new HistoryElement(
-        					result.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
-        					result.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
-        					result.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
-        					result.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
-        					result.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
-        			));//FIXME: CursorIndexOutOfBounds on COL_ID
+        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
+        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
+        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
+        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
+        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
+        			));
         		}
-        		while(result.moveToNext());
+        		while(dbCursor.moveToNext());
+        		//FIXME: update list
         	}
         }).start();
     }
@@ -616,9 +619,6 @@ public class MainActivity extends ActionBarActivity implements
 			case 0:
 				return InputFragment.newInstance("","");
 			case 1:
-//				addHistory(new HistoryElement("0", "WA12345", "FSO Polonez", "SUP4RA1R5BJ312970", "26.01.1982"));
-//				addHistory(new HistoryElement("1", "TEST", "FSO Polonez", "", ""));
-//				addHistory(new HistoryElement("2", "UB1945", "Fiat 126p", "", ""));//TODO
 				return HistoryFragment.newInstance((Serializable) historyList);
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
