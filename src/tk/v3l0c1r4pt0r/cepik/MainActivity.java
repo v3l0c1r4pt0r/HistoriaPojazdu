@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,10 @@ public class MainActivity extends ActionBarActivity implements
 	
 	@SuppressLint("UseSparseArrays")
 	private Map<Integer,Boolean> btnVisibility = new HashMap<Integer,Boolean>();
+	
+	private SQLiteDatabase db = null;
+	
+	private Activity thisActivity = this;
 
 
 	/**
@@ -157,6 +162,16 @@ public class MainActivity extends ActionBarActivity implements
 			actionBar.addTab(actionBar.newTab()
 					.setTabListener(this).setIcon(mSectionsPagerAdapter.getPageIcon(i)));
 		}
+
+        (new Thread() {
+        	@Override
+			public void run() {
+        		DbOpenHelper dbHelper = new DbOpenHelper(thisActivity);
+        		db = dbHelper.getWritableDatabase();
+        		
+        		//TODO: pobrać listę z bazy danych
+        	}
+        }).start();
     }
 	
 	@Override

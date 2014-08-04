@@ -112,6 +112,12 @@ public class HistoryFragment extends Fragment implements
 		return view;
 	}
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+    }
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
