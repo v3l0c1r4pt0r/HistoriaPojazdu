@@ -7,10 +7,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,11 +27,8 @@ import android.widget.TextView;
 public class HistoryFragment extends Fragment implements
 		AbsListView.OnItemClickListener {
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 	private static final String ARG_HISTORY = "historyMap";
 
-	// TODO: Rename and change types of parameters
 	private List<HistoryElement> mHistory;
 
 	private OnFragmentInteractionListener mListener;
@@ -49,7 +44,6 @@ public class HistoryFragment extends Fragment implements
 	 */
 	private ListAdapter mAdapter;
 
-	// TODO: Rename and change types of parameters
 	public static HistoryFragment newInstance(Serializable historyMap) {
 		HistoryFragment fragment = new HistoryFragment();
 		Bundle args = new Bundle();
@@ -80,7 +74,6 @@ public class HistoryFragment extends Fragment implements
 			e.printStackTrace();
 		}
 
-		// TODO: Change Adapter to display your content
 		mAdapter = new ArrayAdapter<HistoryElement>(getActivity(),
 				android.R.layout.simple_list_item_2, android.R.id.text1,
 				mHistory) {
@@ -95,6 +88,11 @@ public class HistoryFragment extends Fragment implements
 					    return view;
 					  }
 				};
+		try
+		{
+			((ArrayAdapter<HistoryElement>) mAdapter).notifyDataSetChanged();
+		}
+		catch(ClassCastException e) {};
 	}
 
 	@Override

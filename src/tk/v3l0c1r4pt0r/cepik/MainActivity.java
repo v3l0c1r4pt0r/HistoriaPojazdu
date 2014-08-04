@@ -200,7 +200,6 @@ public class MainActivity extends ActionBarActivity implements
         			));
         		}
         		while(dbCursor.moveToNext());
-        		//FIXME: update list
         	}
         }).start();
     }
