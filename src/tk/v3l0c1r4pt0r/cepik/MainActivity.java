@@ -708,7 +708,7 @@ public class MainActivity extends ActionBarActivity implements
 		rej.setText(item.getNrRej());
 		vin.setText(item.getVin());
 		dat.setText(item.getDataRej());
-		actionBar.selectTab(actionBar.getTabAt(0));
+		mViewPager.setCurrentItem(actionBar.getTabAt(0).getPosition(),true);
 		
 	}
     
