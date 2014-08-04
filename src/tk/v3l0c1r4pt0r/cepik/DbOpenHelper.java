@@ -6,15 +6,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbOpenHelper extends SQLiteOpenHelper {
 
-	private static final String KEY_ID = "id";
-	private static final String KEY_REJ = "nr_rejestracyjny";
-	private static final String KEY_OPIS = "opis";
-	private static final String KEY_VIN = "VIN";
-	private static final String KEY_DATA = "data_rejestracji";
+	public static final String KEY_ID = "id";
+	public static final String KEY_REJ = "nr_rejestracyjny";
+	public static final String KEY_OPIS = "opis";
+	public static final String KEY_VIN = "VIN";
+	public static final String KEY_DATA = "data_rejestracji";
+	
+	public static enum COLUMNS
+	{
+		COL_ID, COL_REJ, COL_OPIS, COL_VIN, COL_DATA
+	};
 
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "HistoriaPojazdu";
-    private static final String DICTIONARY_TABLE_NAME = "history";
+    public static final String DICTIONARY_TABLE_NAME = "history";
     private static final String DICTIONARY_TABLE_CREATE =
                 "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
                         KEY_ID + " INTEGER PRIMARY KEY, " +

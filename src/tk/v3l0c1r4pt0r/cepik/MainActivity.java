@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -169,7 +170,34 @@ public class MainActivity extends ActionBarActivity implements
         		DbOpenHelper dbHelper = new DbOpenHelper(thisActivity);
         		db = dbHelper.getWritableDatabase();
         		
-        		//TODO: pobrać listę z bazy danych
+        		Cursor result = db.query(
+        				DbOpenHelper.DICTIONARY_TABLE_NAME, 
+        				new String[] {
+        						DbOpenHelper.KEY_ID, 
+        						DbOpenHelper.KEY_REJ, 
+        						DbOpenHelper.KEY_OPIS, 
+        						DbOpenHelper.KEY_VIN, 
+        						DbOpenHelper.KEY_DATA
+        				}, 
+        				null, 
+        				null, 
+        				null, 
+        				null, 
+        				"id DESC", 
+        				"10"
+        		);
+        		
+        		do
+        		{
+        			addHistory(new HistoryElement(
+        					result.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
+        					result.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
+        					result.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
+        					result.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
+        					result.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
+        			));//FIXME: CursorIndexOutOfBounds on COL_ID
+        		}
+        		while(result.moveToNext());
         	}
         }).start();
     }
@@ -588,9 +616,9 @@ public class MainActivity extends ActionBarActivity implements
 			case 0:
 				return InputFragment.newInstance("","");
 			case 1:
-				addHistory(new HistoryElement("0", "WA12345", "FSO Polonez", "SUP4RA1R5BJ312970", "26.01.1982"));
-				addHistory(new HistoryElement("1", "TEST", "FSO Polonez", "", ""));
-				addHistory(new HistoryElement("2", "UB1945", "Fiat 126p", "", ""));//TODO
+//				addHistory(new HistoryElement("0", "WA12345", "FSO Polonez", "SUP4RA1R5BJ312970", "26.01.1982"));
+//				addHistory(new HistoryElement("1", "TEST", "FSO Polonez", "", ""));
+//				addHistory(new HistoryElement("2", "UB1945", "Fiat 126p", "", ""));//TODO
 				return HistoryFragment.newInstance((Serializable) historyList);
 			default:
 			return PlaceholderFragment.newInstance(position + 1);
