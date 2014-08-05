@@ -23,6 +23,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -191,17 +192,21 @@ public class MainActivity extends ActionBarActivity implements
         		);
         		
         		dbCursor.moveToFirst();
-        		do
+        		try
         		{
-        			addHistory(new HistoryElement(
-        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
-        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
-        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
-        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
-        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
-        			));
-        		}
-        		while(dbCursor.moveToNext());
+	        		do
+	        		{
+	        			addHistory(new HistoryElement(
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
+	        			));
+	        		}
+	        		while(dbCursor.moveToNext());
+	        	}
+        		catch(CursorIndexOutOfBoundsException e) {}
         		//historyFragment.notifyCollectionChanged();//FIXME
         	}
         }).start();
@@ -483,7 +488,9 @@ public class MainActivity extends ActionBarActivity implements
 		    		values.put(DbOpenHelper.KEY_DATA, report.getDataRejestracji());
 					db.insert(DbOpenHelper.DICTIONARY_TABLE_NAME, null, values);
 		    	}
-		    	catch(NullPointerException e) {}//FIXME:RuntimeException gdzieś tu??
+		    	catch(NullPointerException e) {}
+		    	//TODO: NotifyDbChanged
+		    	//FIXME:RuntimeException gdzieś tu??
 				v.post(new Runnable() {
 					
 					@Override

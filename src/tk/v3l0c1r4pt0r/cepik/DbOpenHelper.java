@@ -25,7 +25,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
                         KEY_ID + " INTEGER PRIMARY KEY, " +
                         KEY_REJ + " TEXT, " +
                         KEY_OPIS + " TEXT, " +
-                        KEY_VIN + " TEXT, " +
+                        KEY_VIN + " TEXT UNIQUE, " +
                         KEY_DATA + " TEXT);";
 
     DbOpenHelper(Context context) {
