@@ -17,6 +17,7 @@ import android.R.string;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
@@ -467,6 +468,22 @@ public class MainActivity extends ActionBarActivity implements
 				}
 		    	View v = (View) findViewById(R.id.scrollView1);
 		    	final CarReport report = rep;
+
+		    	try
+		    	{
+		    		ContentValues values = new ContentValues();
+		    		values.put(DbOpenHelper.KEY_REJ, report.getNrRejestracyjny());
+		    		values.put(
+		    				DbOpenHelper.KEY_OPIS, 
+		    				report.getMarka()+
+		    				(report.getTyp().length()>0?" "+report.getTyp():"")+
+		    				" "+report.getModel()
+		    		);
+		    		values.put(DbOpenHelper.KEY_VIN, report.getVin());
+		    		values.put(DbOpenHelper.KEY_DATA, report.getDataRejestracji());
+					db.insert(DbOpenHelper.DICTIONARY_TABLE_NAME, null, values);
+		    	}
+		    	catch(NullPointerException e) {}//FIXME:RuntimeException gdzieś tu??
 				v.post(new Runnable() {
 					
 					@Override
