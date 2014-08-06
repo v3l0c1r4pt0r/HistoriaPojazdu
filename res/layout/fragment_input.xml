@@ -40,6 +40,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:ems="10"
+			        android:hint="@string/rejHint"
 			        android:inputType="text|textCapCharacters|textNoSuggestions"
 			        android:maxLength="8"
 			        android:singleLine="true"
@@ -71,6 +72,7 @@
 			        android:inputType="textCapCharacters"
 			        android:maxLength="17"
 			        android:singleLine="true"
+			        android:hint="@string/vinHint"
 			        android:text="@string/vinVal" />
 		    </LinearLayout>
             
@@ -95,6 +97,7 @@
 			        android:inputType="text"
 			        android:maxLength="10"
 			        android:singleLine="true"
+			        android:hint="@string/dataHint"
 			        android:text="@string/rejestracjaVal" />
 		    </LinearLayout>
 

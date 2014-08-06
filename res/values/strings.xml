@@ -13,6 +13,9 @@
     <string name="rejVal"></string>
     <string name="vinVal"></string>
     <string name="rejestracjaVal"></string>
+    <string name="rejHint">np. WA12345</string>
+    <string name="vinHint">np. SUP4RA1R5BJ312970</string>
+    <string name="dataHint">np. 26.01.1982</string>
 
     <!-- input screen -->
     <string name="captchaTxtStr">CAPTCHA:</string>
