@@ -490,7 +490,6 @@ public class MainActivity extends ActionBarActivity implements
 		    	}
 		    	catch(NullPointerException e) {}
 		    	//TODO: NotifyDbChanged
-		    	//FIXME:RuntimeException gdzieś tu??
 				v.post(new Runnable() {
 					
 					@Override

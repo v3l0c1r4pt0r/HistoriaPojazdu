@@ -1,6 +1,12 @@
 package tk.v3l0c1r4pt0r.cepik;
 
-public class HistoryElement {
+import java.io.Serializable;
+
+public class HistoryElement implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8081929687296171707L;
 	public String id;
 	private String nrRej;
 	private String opis;
