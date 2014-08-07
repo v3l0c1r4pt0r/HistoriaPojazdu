@@ -63,15 +63,8 @@ public class HistoryFragment extends Fragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		try
-		{
-			if (getArguments() != null) {
-				mHistory = (List<HistoryElement>) getArguments().getSerializable(ARG_HISTORY);
-			}
-		}
-		catch(ClassCastException e)
-		{
-			e.printStackTrace();
+		if (getArguments() != null && getArguments().getSerializable(ARG_HISTORY) instanceof List<?>) {
+			mHistory = (List<HistoryElement>) getArguments().getSerializable(ARG_HISTORY);
 		}
 
 		mAdapter = new ArrayAdapter<HistoryElement>(getActivity(),
@@ -167,7 +160,6 @@ public class HistoryFragment extends Fragment implements
 	 * >Communicating with Other Fragments</a> for more information.
 	 */
 	public interface OnFragmentInteractionListener {
-		// TODO: Update argument type and name
 		public void onFragmentInteraction(String id);
 	}
 	
@@ -179,7 +171,8 @@ public class HistoryFragment extends Fragment implements
 		{
 			((ArrayAdapter<HistoryElement>) mAdapter).notifyDataSetChanged();
 		}
-		catch(ClassCastException e) {};
+		catch(ClassCastException e) {}
+		catch(NullPointerException e) {}
 	}
 
 }

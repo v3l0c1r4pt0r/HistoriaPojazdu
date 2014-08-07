@@ -167,49 +167,7 @@ public class MainActivity extends ActionBarActivity implements
 			actionBar.addTab(actionBar.newTab()
 					.setTabListener(this).setIcon(mSectionsPagerAdapter.getPageIcon(i)));
 		}
-
-        (new Thread() {
-        	@Override
-			public void run() {
-        		DbOpenHelper dbHelper = new DbOpenHelper(thisActivity);
-        		db = dbHelper.getWritableDatabase();
-        		
-        		dbCursor = db.query(
-        				DbOpenHelper.DICTIONARY_TABLE_NAME, 
-        				new String[] {
-        						DbOpenHelper.KEY_ID, 
-        						DbOpenHelper.KEY_REJ, 
-        						DbOpenHelper.KEY_OPIS, 
-        						DbOpenHelper.KEY_VIN, 
-        						DbOpenHelper.KEY_DATA
-        				}, 
-        				null, 
-        				null, 
-        				null, 
-        				null, 
-        				"id DESC", 
-        				"10"
-        		);
-        		
-        		dbCursor.moveToFirst();
-        		try
-        		{
-	        		do
-	        		{
-	        			addHistory(new HistoryElement(
-	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
-	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
-	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
-	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
-	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
-	        			));
-	        		}
-	        		while(dbCursor.moveToNext());
-	        	}
-        		catch(CursorIndexOutOfBoundsException e) {}
-        		//historyFragment.notifyCollectionChanged();//FIXME
-        	}
-        }).start();
+		notifyDbChanged();
     }
 	
 	@Override
@@ -275,6 +233,64 @@ public class MainActivity extends ActionBarActivity implements
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
+	}
+	
+	public void notifyDbChanged() {
+        (new Thread() {
+        	@Override
+			public void run() {
+        		DbOpenHelper dbHelper = new DbOpenHelper(thisActivity);
+        		db = dbHelper.getWritableDatabase();
+        		
+        		dbCursor = db.query(
+        				DbOpenHelper.DICTIONARY_TABLE_NAME, 
+        				new String[] {
+        						DbOpenHelper.KEY_ID, 
+        						DbOpenHelper.KEY_REJ, 
+        						DbOpenHelper.KEY_OPIS, 
+        						DbOpenHelper.KEY_VIN, 
+        						DbOpenHelper.KEY_DATA
+        				}, 
+        				null, 
+        				null, 
+        				null, 
+        				null, 
+        				"id DESC", 
+        				"10"
+        		);
+        		
+        		historyList.clear();
+        		historyMap.clear();
+        		
+        		dbCursor.moveToFirst();
+        		try
+        		{
+	        		do
+	        		{
+	        			addHistory(new HistoryElement(
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_ID.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_REJ.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_OPIS.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_VIN.ordinal()), 
+	        					dbCursor.getString(DbOpenHelper.COLUMNS.COL_DATA.ordinal())
+	        			));
+	        		}
+	        		while(dbCursor.moveToNext());
+	        	}
+        		catch(CursorIndexOutOfBoundsException e) {}
+        			View list = findViewById(android.R.id.list);
+        		if(historyFragment != null && list != null)
+        		{
+        			list.post(new Runnable() {
+						
+						@Override
+						public void run() {
+		        			historyFragment.notifyCollectionChanged();
+						}
+					});
+        		}
+        	}
+        }).start();
 	}
     
     public void sendRequest(final View view)
@@ -489,7 +505,7 @@ public class MainActivity extends ActionBarActivity implements
 					db.insert(DbOpenHelper.DICTIONARY_TABLE_NAME, null, values);
 		    	}
 		    	catch(NullPointerException e) {}
-		    	//TODO: NotifyDbChanged
+		    	notifyDbChanged();
 				v.post(new Runnable() {
 					
 					@Override
@@ -717,10 +733,7 @@ public class MainActivity extends ActionBarActivity implements
 	}
 
 	@Override
-	public void onFragmentInteraction(Uri uri) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onFragmentInteraction(Uri uri) {}
 
 	@Override
 	public void onFragmentInteraction(String id) {
