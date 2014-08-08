@@ -35,6 +35,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -693,6 +694,14 @@ public class MainActivity extends ActionBarActivity implements
 			}
 			return null;
 		}
+		
+		@Override
+		public float getPageWidth(int position) {
+			TypedValue outValue = new TypedValue();
+			getResources().getValue(R.dimen.page_width, outValue, true);
+			float value = outValue.getFloat();  
+			return value;
+		} 
 	}
 
 	/**
