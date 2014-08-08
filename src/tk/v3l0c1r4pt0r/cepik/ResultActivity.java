@@ -23,6 +23,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -103,6 +105,9 @@ public class ResultActivity extends ActionBarActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
+		if(getHDensity() > 600)
+			mViewPager.setOffscreenPageLimit(6);
 	}
 	
 	@Override
@@ -228,6 +233,26 @@ public class ResultActivity extends ActionBarActivity implements
 		AlertDialog dialog = builder.create();
 		dialog.show();
     }
+    
+    private float getHDensity() {
+    	DisplayMetrics metrics = new DisplayMetrics();
+    	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+    	int widthPixels = metrics.widthPixels;
+//    	int heightPixels = metrics.heightPixels;
+    	float scaleFactor = metrics.density;
+    	float widthDp = widthPixels / scaleFactor;
+    	return widthDp;
+    }
+    
+    private float getVDensity() {
+    	DisplayMetrics metrics = new DisplayMetrics();
+    	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//    	int widthPixels = metrics.widthPixels;
+    	int heightPixels = metrics.heightPixels;
+    	float scaleFactor = metrics.density;
+    	float heightDp = heightPixels / scaleFactor;
+    	return heightDp;
+    }
 
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
@@ -299,6 +324,19 @@ public class ResultActivity extends ActionBarActivity implements
 			}
 			return null;
 		}
+		
+		@Override
+		public float getPageWidth(int position) {
+			if(position != 3)
+			{
+				TypedValue outValue = new TypedValue();
+				getResources().getValue(R.dimen.page_width, outValue, true);
+				float value = outValue.getFloat();
+				return value;
+			}
+			else 
+				return 1.0f;
+		} 
 	}
 
 	/**
