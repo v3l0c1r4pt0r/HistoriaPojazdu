@@ -35,6 +35,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -138,23 +139,30 @@ public class MainActivity extends ActionBarActivity implements
 					
 					private void onPageChanged(int position)
 					{
-						switch(position)
+						if(getHDensity() > 600)
 						{
-						case 0:
 							btnVisibility.clear();
 							btnVisibility.put(R.id.action_search, false);
-							btnVisibility.put(R.id.action_history, true);
-							break;
-						case 1:
-							btnVisibility.clear();
-							btnVisibility.put(R.id.action_search, true);
 							btnVisibility.put(R.id.action_history, false);
-							break;
-						default:
-							btnVisibility.clear();
-							btnVisibility.put(R.id.action_search, true);
-							btnVisibility.put(R.id.action_history, true);
 						}
+						else
+							switch(position)
+							{
+							case 0:
+								btnVisibility.clear();
+								btnVisibility.put(R.id.action_search, false);
+								btnVisibility.put(R.id.action_history, true);
+								break;
+							case 1:
+								btnVisibility.clear();
+								btnVisibility.put(R.id.action_search, true);
+								btnVisibility.put(R.id.action_history, false);
+								break;
+							default:
+								btnVisibility.clear();
+								btnVisibility.put(R.id.action_search, true);
+								btnVisibility.put(R.id.action_history, true);
+							}
 						supportInvalidateOptionsMenu();
 					}
 				});
@@ -628,6 +636,26 @@ public class MainActivity extends ActionBarActivity implements
     {
     	historyList.add(he);
     	historyMap.put(he.id, he);
+    }
+    
+    private float getHDensity() {
+    	DisplayMetrics metrics = new DisplayMetrics();
+    	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+    	int widthPixels = metrics.widthPixels;
+//    	int heightPixels = metrics.heightPixels;
+    	float scaleFactor = metrics.density;
+    	float widthDp = widthPixels / scaleFactor;
+    	return widthDp;
+    }
+    
+    private float getVDensity() {
+    	DisplayMetrics metrics = new DisplayMetrics();
+    	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//    	int widthPixels = metrics.widthPixels;
+    	int heightPixels = metrics.heightPixels;
+    	float scaleFactor = metrics.density;
+    	float heightDp = heightPixels / scaleFactor;
+    	return heightDp;
     }
 
 	@Override
