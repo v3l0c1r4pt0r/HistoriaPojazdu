@@ -77,7 +77,7 @@ public class TechFragment extends Fragment {
 			String mocKw = cr.getMocSilnika();
 			try
 			{
-				double moc = Integer.parseInt(mocKw.substring(0, mocKw.length()-3));
+				double moc = Double.parseDouble(mocKw.substring(0, mocKw.length()-3));
 				moc = (moc * 1000) / 735.49875;
 				String mocInKm = " ("+Math.round(moc)+" KM)";
 				vch.ChangeEntryState(-1, R.id.mocKmVal, mocInKm, true);
